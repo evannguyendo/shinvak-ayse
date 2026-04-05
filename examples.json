@@ -1,0 +1,33 @@
+{
+  "video_id": "video_001",
+  "control_path": "data/control.mp4",
+  "conflict_path": "data/conflict.mp4",
+
+  "conflict_type": "attribute_change_color",
+  "object_name": "pen",
+  "attribute_name": "color",
+
+  "state_A": "blue",
+  "state_B": "red",
+
+  "edit_timestamps": ["00:05"],
+  "change_position_bin": "middle",
+
+  "video_duration_sec": 10.0,
+
+  "control_metadata": {
+    "beginning_state": "A",
+    "end_state": "A",
+    "most_recent_state": "A",
+    "most_frequent_state": "A",
+    "change_exists": false
+  },
+
+  "conflict_metadata": {
+    "beginning_state": "A",
+    "end_state": "B",
+    "most_recent_state": "B",
+    "most_frequent_state": "A",
+    "change_exists": true
+  }
+}

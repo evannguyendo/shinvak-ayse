@@ -1,0 +1,146 @@
+{
+  "version": "1.0",
+  "description": "Reusable MCQ templates",
+  "templates": [
+    {
+      "template_id": "beginning_state_v1",
+      "question_family": "beginning_state",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "What is the {attribute_name} of the {object_name} at the beginning of the video?",
+      "options": [
+        { "option_id": "A", "text_template": "{state_A}" },
+        { "option_id": "B", "text_template": "{state_B}" },
+        { "option_id": "C", "text_template": "cannot determine" },
+        { "option_id": "D", "text_template": "not present" }
+      ],
+      "labeling_rule": "beginning_state"
+    },
+    {
+      "template_id": "end_state_v1",
+      "question_family": "end_state",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "What is the {attribute_name} of the {object_name} at the end of the video?",
+      "options": [
+        { "option_id": "A", "text_template": "{state_A}" },
+        { "option_id": "B", "text_template": "{state_B}" },
+        { "option_id": "C", "text_template": "cannot determine" },
+        { "option_id": "D", "text_template": "not present" }
+      ],
+      "labeling_rule": "end_state"
+    },
+    {
+      "template_id": "global_state_v1",
+      "question_family": "global_state",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "What is the {attribute_name} of the {object_name} in the video?",
+      "options": [
+        { "option_id": "A", "text_template": "{state_A}" },
+        { "option_id": "B", "text_template": "{state_B}" },
+        { "option_id": "C", "text_template": "both {state_A} and {state_B}" },
+        { "option_id": "D", "text_template": "cannot determine" }
+      ],
+      "labeling_rule": "global_state_policy"
+    },
+    {
+      "template_id": "conflict_detection_v1",
+      "question_family": "conflict_detection",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "Did the {attribute_name} of the {object_name} change during the video?",
+      "options": [
+        { "option_id": "A", "text_template": "yes" },
+        { "option_id": "B", "text_template": "no" },
+        { "option_id": "C", "text_template": "cannot determine" }
+      ],
+      "labeling_rule": "conflict_detection"
+    },
+    {
+      "template_id": "change_localization_v1",
+      "question_family": "change_localization",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "When did the {attribute_name} of the {object_name} change?",
+      "options": [
+        { "option_id": "A", "text_template": "beginning" },
+        { "option_id": "B", "text_template": "middle" },
+        { "option_id": "C", "text_template": "end" },
+        { "option_id": "D", "text_template": "no change" },
+        { "option_id": "E", "text_template": "cannot determine" }
+      ],
+      "labeling_rule": "change_localization"
+    },
+    {
+      "template_id": "multi_state_v1",
+      "question_family": "multi_state",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "Which of the following best describes the {attribute_name} of the {object_name} during the video?",
+      "options": [
+        { "option_id": "A", "text_template": "only {state_A} appears" },
+        { "option_id": "B", "text_template": "only {state_B} appears" },
+        { "option_id": "C", "text_template": "both {state_A} and {state_B} appear" },
+        { "option_id": "D", "text_template": "cannot determine" }
+      ],
+      "labeling_rule": "multi_state"
+    },
+    {
+      "template_id": "order_v1",
+      "question_family": "order",
+      "applies_to": [
+        "attribute_change_color",
+        "attribute_change_size",
+        "attribute_change_shape",
+        "count_change",
+        "object_replacement",
+        "spatial_position_change"
+      ],
+      "question_text_template": "Which came first for the {object_name}: {state_A} or {state_B}?",
+      "options": [
+        { "option_id": "A", "text_template": "{state_A} came first" },
+        { "option_id": "B", "text_template": "{state_B} came first" },
+        { "option_id": "C", "text_template": "they did not change order" },
+        { "option_id": "D", "text_template": "cannot determine" }
+      ],
+      "labeling_rule": "order"
+    }
+  ]
+}
