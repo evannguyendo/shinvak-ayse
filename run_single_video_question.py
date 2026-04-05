@@ -170,6 +170,8 @@ def ask_video_question(
     model: str,
     video_data_url: str,
     question: str,
+    max_tokens: int = 1200,
+    temperature: float = 0.1,
 ) -> tuple[QAResult, str]:
     prompt = f"""
 Answer the user's question about the video using only what is visually observable.
@@ -206,8 +208,8 @@ Rules:
     response = openrouter_chat(
         model=model,
         messages=messages,
-        max_tokens=1200,
-        temperature=0.1,
+        max_tokens=max_tokens,
+        temperature=temperature,
         response_format={"type": "json_object"},
     )
 

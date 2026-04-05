@@ -224,6 +224,8 @@ def run_example(
     example: ExampleRecord,
     model: str,
     responses_path: str | Path,
+    max_tokens: int = 1200,
+    temperature: float = 0.1,
 ) -> None:
     for variant in ["control", "conflict"]:
         video_path = example.control_path if variant == "control" else example.conflict_path
@@ -237,6 +239,8 @@ def run_example(
                     model=model,
                     video_data_url=video_data_url,
                     question=question.question_text,
+                    max_tokens=max_tokens,
+                    temperature=temperature,
                 )
 
                 record = build_response_record(
@@ -295,6 +299,8 @@ def main() -> None:
     parser.add_argument("--examples", required=True, help="Path to examples.jsonl")
     parser.add_argument("--responses", required=True, help="Path to responses.jsonl")
     parser.add_argument("--model", required=True, help="Model name, e.g. google/gemini-2.5-pro")
+    parser.add_argument("--max-tokens", type=int, default=1200)
+    parser.add_argument("--temperature", type=float, default=0.1)
     parser.add_argument(
         "--limit",
         type=int,
