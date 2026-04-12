@@ -8,8 +8,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import cv2
 import instructor
+import litellm
 from openai import OpenAI
 from dotenv import load_dotenv
 from huggingface_hub import hf_hub_download
@@ -37,14 +37,44 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 APP_URL = "https://github.com/evannguyendo"
 APP_NAME = "MVBench Eval"
 
-_client = instructor.from_openai(
-    OpenAI(
-        api_key=_OPENROUTER_API_KEY,
-        base_url=OPENROUTER_BASE_URL,
-        default_headers={"HTTP-Referer": APP_URL, "X-Title": APP_NAME},
-    ),
-    mode=instructor.Mode.JSON,
-)
+# Provider prefixes that LiteLLM recognises natively (not OpenRouter pass-throughs).
+# Any model string that does NOT start with one of these will be auto-prefixed with
+# "openrouter/" so LiteLLM routes it through OpenRouter.
+_LITELLM_NATIVE_PREFIXES: frozenset[str] = frozenset({
+    "gemini/", "anthropic/", "openai/", "vertex_ai/", "azure/",
+    "groq/", "mistral/", "cohere/", "together_ai/", "huggingface/",
+    "ollama/", "bedrock/", "openrouter/",
+})
+
+
+def _litellm_model_name(model: str) -> str:
+    """Prepend 'openrouter/' when the model string has no LiteLLM provider prefix."""
+    if any(model.startswith(p) for p in _LITELLM_NATIVE_PREFIXES):
+        return model
+    return f"openrouter/{model}"
+
+
+def build_instructor_client(backend: str) -> instructor.Instructor:
+    """Return an Instructor-patched client for the requested backend.
+
+    backend="openrouter"  – thin OpenAI-compatible client pointed at OpenRouter.
+    backend="litellm"     – LiteLLM completion function (supports 100+ providers).
+    """
+    if backend == "litellm":
+        # Expose the key so LiteLLM can reach OpenRouter (and other providers).
+        os.environ.setdefault("OPENROUTER_API_KEY", _OPENROUTER_API_KEY)
+        litellm.drop_params = True   # silently drop unknown provider params
+        return instructor.from_litellm(litellm.completion, mode=instructor.Mode.JSON)
+
+    # Default: openrouter via the OpenAI-compatible endpoint
+    return instructor.from_openai(
+        OpenAI(
+            api_key=_OPENROUTER_API_KEY,
+            base_url=OPENROUTER_BASE_URL,
+            default_headers={"HTTP-Referer": APP_URL, "X-Title": APP_NAME},
+        ),
+        mode=instructor.Mode.JSON,
+    )
 
 TASK_VIDEO_SOURCES: Dict[str, Dict[str, str]] = {
     "action_sequence":     {"type": "zip", "file": "video/star.zip"},
@@ -104,13 +134,8 @@ def answer_from_choice_index(choice_index: int, candidates: List[str]) -> str:
     return candidates[choice_index]
 
 
-def _model_supports_video_url(model: str) -> bool:
-    """Google/Gemini models accept video_url natively; all others get extracted frames."""
-    return model.startswith("google/")
-
-
 def encode_video_to_data_url(video_path: Path) -> str:
-    """Encode the full video file as a base64 data URL (Gemini models)."""
+    """Encode the full video file as a base64 data URL."""
     mime = {
         ".mp4": "video/mp4", ".mov": "video/quicktime",
         ".webm": "video/webm", ".avi": "video/x-msvideo",
@@ -118,58 +143,28 @@ def encode_video_to_data_url(video_path: Path) -> str:
     return f"data:{mime};base64,{base64.b64encode(video_path.read_bytes()).decode()}"
 
 
-def extract_frames_as_image_content(video_path: Path, num_frames: int = 16) -> List[Dict[str, Any]]:
-    """Extract evenly-spaced JPEG frames as image_url content blocks (non-Gemini models)."""
-    cap = cv2.VideoCapture(str(video_path))
-    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    if total <= 0:
-        cap.release()
-        raise RuntimeError(f"Could not read frames from {video_path}")
-
-    indices = [int(i * (total - 1) / max(num_frames - 1, 1)) for i in range(num_frames)]
-    blocks: List[Dict[str, Any]] = []
-    for idx in indices:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
-        ret, frame = cap.read()
-        if not ret:
-            continue
-        ok, buf = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
-        if ok:
-            blocks.append({
-                "type": "image_url",
-                "image_url": {"url": f"data:image/jpeg;base64,{base64.b64encode(buf.tobytes()).decode()}"},
-            })
-    cap.release()
-
-    if not blocks:
-        raise RuntimeError(f"No frames could be extracted from {video_path}")
-    return blocks
-
-
 def ask_video_question(
     *,
+    client: instructor.Instructor,
     model: str,
+    backend: str,
     video_path: Path,
     question: str,
     candidates: List[str],
     max_tokens: int = 8192,
     temperature: float = 0.1,
-    num_frames: int = 16,
 ) -> VideoEvalOutput:
     last = len(candidates) - 1
     numbered = "\n".join(f"  [{i}] {opt}" for i, opt in enumerate(candidates))
 
-    if _model_supports_video_url(model):
-        video_content: List[Dict[str, Any]] = [
-            {"type": "video_url", "video_url": {"url": encode_video_to_data_url(video_path)}}
-        ]
-        video_desc = "full video"
-    else:
-        video_content = extract_frames_as_image_content(video_path, num_frames=num_frames)
-        video_desc = f"{len(video_content)} evenly-spaced frames"
+    resolved_model = _litellm_model_name(model) if backend == "litellm" else model
+
+    video_content: List[Dict[str, Any]] = [
+        {"type": "video_url", "video_url": {"url": encode_video_to_data_url(video_path)}}
+    ]
 
     prompt = (
-        f"You are an expert video analysis AI. You are given {video_desc} from a video clip. "
+        f"You are an expert video analysis AI. You are given a full video clip. "
         f"Answer the multiple-choice question based only on what is visually observable.\n\n"
         f"Question:\n{question}\n\n"
         f"Answer choices (select by index only):\n{numbered}\n\n"
@@ -182,8 +177,9 @@ def ask_video_question(
         f"- confidence_score is an integer 1–10 (not a percentage)."
     )
 
-    return _client.chat.completions.create(
-        model=model,
+    # Instructor enforces the VideoEvalOutput schema via JSON mode for both backends.
+    return client.chat.completions.create(
+        model=resolved_model,
         response_model=VideoEvalOutput,
         messages=[{"role": "user", "content": [{"type": "text", "text": prompt}] + video_content}],
         max_tokens=max_tokens,
@@ -245,13 +241,14 @@ def evaluate_task(
     task_name: str,
     source_cfg: Dict[str, str],
     model: str,
+    backend: str = "openrouter",
     num_samples: int = 3,
     max_tokens: int = 8192,
     max_workers: int = 1,
-    num_frames: int = 16,
 ) -> Tuple[int, int]:
-    print(f"\n{_SEP}\nTASK: {task_name}\n{_SEP}")
+    print(f"\n{_SEP}\nTASK: {task_name}  [backend={backend}]\n{_SEP}")
 
+    client = build_instructor_client(backend)
     dataset = load_dataset("OpenGVLab/MVBench", task_name, split="train")
     temp_dir = tempfile.mkdtemp()
     correct_predictions = 0
@@ -287,9 +284,9 @@ def evaluate_task(
             idx, vn, q, cand, gt, path = job
             try:
                 result = ask_video_question(
-                    model=model, video_path=Path(path),
-                    question=q, candidates=cand,
-                    max_tokens=max_tokens, num_frames=num_frames,
+                    client=client, model=model, backend=backend,
+                    video_path=Path(path), question=q, candidates=cand,
+                    max_tokens=max_tokens,
                 )
                 return (idx, None, result, vn, q, cand, gt)
             except Exception as e:
@@ -302,7 +299,7 @@ def evaluate_task(
             for job in jobs:
                 idx, vn, q, cand, gt, _ = job
                 _print_sample_header(idx, vn, q, cand, gt)
-                print(f"  Querying OpenRouter ({model})...")
+                print(f"  Querying {backend} ({model})...")
                 _, err, ev, *_ = _run_one(job)
                 if err or ev is None:
                     print(f"  [ERROR] {err}")
@@ -311,7 +308,7 @@ def evaluate_task(
                         correct_predictions += 1
                     total_processed += 1
         else:
-            print(f"  Querying OpenRouter ({model}) on {len(jobs)} sample(s) (up to {max_workers} concurrent)...")
+            print(f"  Querying {backend} ({model}) on {len(jobs)} sample(s) (up to {max_workers} concurrent)...")
             collected: Dict[int, Tuple[Optional[str], Optional[VideoEvalOutput], str, str, List[str], str]] = {}
             with ThreadPoolExecutor(max_workers=max_workers) as pool:
                 future_map = {pool.submit(_run_one, job): job for job in jobs}
@@ -360,8 +357,13 @@ def main() -> None:
         help="Concurrent OpenRouter calls per task (1 = sequential). Try 2–3 to overlap slow uploads.",
     )
     parser.add_argument(
-        "--num-frames", type=int, default=16,
-        help="Frames to extract per video for non-Gemini models. Ignored for Google/Gemini models.",
+        "--backend", default="openrouter", choices=["openrouter", "litellm"],
+        help=(
+            "Inference backend for structured JSON output via Instructor. "
+            "'openrouter' uses the OpenAI-compatible client pointed at openrouter.ai. "
+            "'litellm' uses LiteLLM (supports 100+ providers; OpenRouter models are "
+            "auto-prefixed with 'openrouter/' if no provider prefix is detected)."
+        ),
     )
     args = parser.parse_args()
 
@@ -371,10 +373,10 @@ def main() -> None:
             results[task_name] = evaluate_task(
                 task_name, source_cfg,
                 model=args.model,
+                backend=args.backend,
                 num_samples=args.num_samples,
                 max_tokens=args.max_tokens,
                 max_workers=args.max_workers,
-                num_frames=args.num_frames,
             )
         except Exception as e:
             print(f"\n  [TASK ERROR] {task_name}: {e}")
