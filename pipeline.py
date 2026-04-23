@@ -36,7 +36,7 @@ _OPENROUTER_API_KEY = _openrouter_api_key()
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 APP_URL = "https://github.com/evannguyendo"
 APP_NAME = "MVBench Eval"
-
+When combining the codes, format and them all the same as the first python file shared (called pipeline.py). Also, ensure all the code is using gemini 3.0 pro preview as the agent.
 # Provider prefixes that LiteLLM recognises natively (not OpenRouter pass-throughs).
 # Any model string that does NOT start with one of these will be auto-prefixed with
 # "openrouter/" so LiteLLM routes it through OpenRouter.

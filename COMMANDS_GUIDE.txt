@@ -1,0 +1,145 @@
+Unified Video Benchmark - Commands Guide
+=======================================
+
+Script:
+  python unified_video_benchmark.py
+
+Default behavior:
+  If you run the script with no flags, it runs MVBench mode.
+
+
+1) MVBench mode (default)
+-------------------------
+Command:
+  python unified_video_benchmark.py
+
+Purpose:
+  Runs the MVBench evaluation pipeline using Hugging Face MVBench tasks and videos.
+  Prints per-task accuracy and overall accuracy.
+
+Useful variants:
+  python unified_video_benchmark.py --mode mvbench --num-samples 1
+  python unified_video_benchmark.py --mode mvbench --num-samples 3 --max-workers 2
+  python unified_video_benchmark.py --mode mvbench --model google/gemini-3-flash-preview
+
+Key flags:
+  --num-samples   Number of rows per MVBench task
+  --max-workers   Parallel requests per task (1 = sequential)
+  --model         OpenRouter model ID
+  --backend       openrouter or litellm
+
+
+2) Evaluate mode (single-video lightweight eval)
+------------------------------------------------
+Command:
+  python unified_video_benchmark.py --mode evaluate --video data/conflict.mp4 --question "What color is the pen?"
+
+Purpose:
+  Runs one inference call on one local video and prints:
+  - answer
+  - reasoning
+  - confidence
+
+With answer options:
+  python unified_video_benchmark.py --mode evaluate --video data/conflict.mp4 --question "What color is the pen?" --options "blue|red|green"
+
+With correctness check:
+  python unified_video_benchmark.py --mode evaluate --video data/conflict.mp4 --question "What color is the pen?" --options "blue|red|green" --expected "red"
+
+What --expected does:
+  Prints retrieval correctness as:
+  - ✅ CORRECT
+  - ❌ INCORRECT
+
+Key flags:
+  --video         Local video path
+  --question      Question text
+  --options       Optional pipe-separated choices
+  --expected      Optional expected answer for correctness check
+  --model         OpenRouter model ID
+  --backend       openrouter or litellm
+
+
+3) Batch mode (dataset-style benchmark)
+---------------------------------------
+Command:
+  python unified_video_benchmark.py --mode batch --examples examples.jsonl --responses responses.jsonl
+
+Purpose:
+  Runs benchmark over examples from JSONL and writes one response record per question
+  to responses.jsonl. Console output includes status and ✅/❌ when checkable.
+
+Useful variants:
+  python unified_video_benchmark.py --mode batch --examples examples.jsonl --responses responses.jsonl --limit 1
+  python unified_video_benchmark.py --mode batch --examples examples.jsonl --responses responses.jsonl --model google/gemini-3-flash-preview
+
+Key flags:
+  --examples      Input examples JSONL
+  --responses     Output responses JSONL
+  --limit         Optional cap on number of examples
+  --max-tokens    Token limit
+  --temperature   Sampling temperature
+  --model         OpenRouter model ID
+  --backend       openrouter or litellm
+
+
+4) Suite mode (multi-model batch run)
+-------------------------------------
+Command:
+  python unified_video_benchmark.py --mode suite --models-config models.json --examples examples.jsonl --out-dir runs/test_run
+
+Purpose:
+  Iterates enabled models in models.json and runs batch mode for each model.
+  Outputs are saved under:
+    runs/test_run/<model_id>/responses.jsonl
+
+Useful variant:
+  python unified_video_benchmark.py --mode suite --models-config models.json --examples examples.jsonl --out-dir runs/test_run --limit 1
+
+Key flags:
+  --models-config   JSON config listing models
+  --examples        Input examples JSONL
+  --out-dir         Output directory
+  --limit           Optional cap on examples per model
+  --backend         openrouter or litellm
+
+
+5) Interactive mode (chat with one video)
+-----------------------------------------
+Command:
+  python unified_video_benchmark.py --mode interactive --video data/conflict.mp4
+
+Purpose:
+  1) Runs initial analysis on the video
+  2) Opens an interactive question loop in terminal
+  3) Saves:
+     - video_analysis.json
+     - qa_log.jsonl
+
+Stop command:
+  Type "exit" or "quit" at the Question prompt.
+
+Key flags:
+  --video         Local video path
+  --model         OpenRouter model ID
+
+
+Model switching (all relevant modes)
+------------------------------------
+You can switch models without code changes:
+  python unified_video_benchmark.py --mode evaluate --video data/conflict.mp4 --question "..." --model google/gemini-3-flash-preview
+  python unified_video_benchmark.py --mode mvbench --model google/gemini-3-flash-preview
+
+If a model ID is invalid, OpenRouter returns:
+  OpenRouter error 400 ... is not a valid model ID
+
+
+Prerequisites
+-------------
+1) .env file must contain:
+   OPENROUTER_API_KEY=your_key_here
+
+2) Run commands from project root (where unified_video_benchmark.py exists).
+
+3) For local-video modes, confirm your file path is correct (for example data/control.mp4).
+

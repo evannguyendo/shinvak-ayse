@@ -1,0 +1,39 @@
+{
+  "summary": "A person's hand reaches into the frame to pick up a book and then plugs a hair dryer into a wall outlet.",
+  "timeline": [
+    {
+      "time": "00:00",
+      "event": "A book, a hair dryer, and a clothes hanger are on the floor in front of a wooden cabinet."
+    },
+    {
+      "time": "00:01",
+      "event": "A hand reaches in and picks up the book."
+    },
+    {
+      "time": "00:02",
+      "event": "The hand picks up the hair dryer's power cord."
+    },
+    {
+      "time": "00:03",
+      "event": "The hand plugs the hair dryer into the wall outlet."
+    }
+  ],
+  "objects": [
+    "hair dryer",
+    "book",
+    "clothes hanger",
+    "wooden cabinet",
+    "wall outlet",
+    "bed"
+  ],
+  "people": [
+    "unseen person (hand visible)"
+  ],
+  "locations": [
+    "bedroom"
+  ],
+  "uncertainties": [
+    "The title of the book is not clearly legible.",
+    "The exact purpose of the clothes hanger on the floor is unclear."
+  ]
+}
