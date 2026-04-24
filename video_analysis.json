@@ -1,39 +1,35 @@
 {
-  "summary": "A person's hand reaches into the frame to pick up a book and then plugs a hair dryer into a wall outlet.",
+  "summary": "A person is seen plugging a hair dryer into a wall outlet in a room with a wooden cabinet, a book, and a clothes hanger on the floor.",
   "timeline": [
     {
       "time": "00:00",
-      "event": "A book, a hair dryer, and a clothes hanger are on the floor in front of a wooden cabinet."
-    },
-    {
-      "time": "00:01",
-      "event": "A hand reaches in and picks up the book."
+      "event": "A person's hand reaches for a hair dryer plug on the floor."
     },
     {
       "time": "00:02",
-      "event": "The hand picks up the hair dryer's power cord."
+      "event": "The person plugs the hair dryer into a white wall outlet."
     },
     {
-      "time": "00:03",
-      "event": "The hand plugs the hair dryer into the wall outlet."
+      "time": "00:04",
+      "event": "The person's hand is seen near the outlet after plugging in the hair dryer."
     }
   ],
   "objects": [
     "hair dryer",
-    "book",
     "clothes hanger",
+    "book",
     "wooden cabinet",
     "wall outlet",
-    "bed"
+    "pink object"
   ],
   "people": [
-    "unseen person (hand visible)"
+    "unidentified person"
   ],
   "locations": [
-    "bedroom"
+    "indoor room with wooden flooring and purple walls"
   ],
   "uncertainties": [
-    "The title of the book is not clearly legible.",
-    "The exact purpose of the clothes hanger on the floor is unclear."
+    "The title of the book is in a language that is not immediately clear.",
+    "The exact purpose of the pink object on the floor is unknown."
   ]
 }

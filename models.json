@@ -23,7 +23,7 @@
     },
     {
       "id": "glm_5v",
-      "openrouter_model": "z-ai/glm-5-turbo",
+      "openrouter_model": "z-ai/glm-5-vision",
       "max_tokens": 1200,
       "temperature": 0.1,
       "enabled": true

@@ -853,7 +853,7 @@ def analyze_video_init(*, model: str, video_path: Path) -> Dict[str, Any]:
     ]
     response = _openrouter_chat(
         model=model, messages=messages, max_tokens=1800,
-        temperature=0.1, response_format={"type": "json_object"},
+        temperature=0.1,
     )
     text = _extract_message_text(response)
     return _parse_json_text(text)
@@ -891,7 +891,7 @@ def ask_question_interactive(
     ]
     response = _openrouter_chat(
         model=model, messages=messages, max_tokens=1200,
-        temperature=0.1, response_format={"type": "json_object"},
+        temperature=0.1,
     )
     text = _extract_message_text(response)
     return _parse_json_text(text)
