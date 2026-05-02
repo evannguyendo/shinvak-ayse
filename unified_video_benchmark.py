@@ -48,6 +48,23 @@ APP_NAME = "Video Benchmark"
 
 DEFAULT_MODEL = "google/gemini-3-flash-preview"
 
+
+def _openrouter_provider_extensions(model: str) -> Dict[str, Any]:
+    """Extra OpenRouter JSON fields so Z.AI–hosted models (e.g. z-ai/glm-5v-turbo) use the z-ai provider.
+
+    Without this, OpenRouter may route to disallowed hosts and return 404 for Z.AI-only models.
+    LiteLLM passes models like openrouter/z-ai/... — treat any path segment z-ai as Z.AI.
+    """
+    m = (model or "").strip()
+    if m.startswith("z-ai/") or "/z-ai/" in m:
+        return {
+            "provider": {
+                "only": ["z-ai"],
+                "allow_fallbacks": False,
+            }
+        }
+    return {}
+
 TIMESTAMP_RE = re.compile(r"^\d{2}:\d{2}$")
 
 # Provider prefixes that LiteLLM recognises natively (not OpenRouter pass-throughs).
@@ -285,6 +302,7 @@ def _openrouter_chat(
     }
     if response_format is not None:
         payload["response_format"] = response_format
+    payload.update(_openrouter_provider_extensions(model))
     resp = requests.post(OPENROUTER_URL, headers=headers, json=payload, timeout=300)
     if resp.status_code != 200:
         raise RuntimeError(f"OpenRouter error {resp.status_code}\n{resp.text[:4000]}")
@@ -456,7 +474,8 @@ def ask_video_question_mvbench(
         f"- choice_index must be 0–{last} inclusive.\n"
         f"- confidence_score is an integer 1–10 (not a percentage)."
     )
-    return client.chat.completions.create(
+    z_ai_extra = _openrouter_provider_extensions(resolved_model)
+    create_kw: Dict[str, Any] = dict(
         model=resolved_model,
         response_model=VideoEvalOutput,
         messages=[{"role": "user", "content": [{"type": "text", "text": prompt}] + video_content}],
@@ -464,6 +483,9 @@ def ask_video_question_mvbench(
         temperature=temperature,
         max_retries=3,
     )
+    if z_ai_extra:
+        create_kw["extra_body"] = z_ai_extra
+    return client.chat.completions.create(**create_kw)
 
 
 def evaluate_mvbench_task(
@@ -697,7 +719,8 @@ def ask_single_video_question(
         "- Evidence must be timestamps in MM:SS format.\n"
         "- Do not include any other keys."
     )
-    return client.chat.completions.create(
+    z_ai_extra = _openrouter_provider_extensions(resolved_model)
+    create_kw = dict(
         model=resolved_model,
         response_model=QAResult,
         messages=[{"role": "user", "content": [{"type": "text", "text": prompt}] + video_content}],
@@ -705,6 +728,9 @@ def ask_single_video_question(
         temperature=temperature,
         max_retries=3,
     )
+    if z_ai_extra:
+        create_kw["extra_body"] = z_ai_extra
+    return client.chat.completions.create(**create_kw)
 
 
 def run_example(
@@ -1034,7 +1060,8 @@ def run_evaluate(
     video_content: List[Dict[str, Any]] = [
         {"type": "video_url", "video_url": {"url": encode_video_to_data_url(video_path)}}
     ]
-    result = client.chat.completions.create(
+    z_ai_extra = _openrouter_provider_extensions(resolved_model)
+    create_kw = dict(
         model=resolved_model,
         response_model=LightEvalOutput,
         messages=[{"role": "user", "content": [{"type": "text", "text": prompt}] + video_content}],
@@ -1042,6 +1069,9 @@ def run_evaluate(
         temperature=temperature,
         max_retries=3,
     )
+    if z_ai_extra:
+        create_kw["extra_body"] = z_ai_extra
+    result = client.chat.completions.create(**create_kw)
 
     print(f"\n{_SEP}")
     print(f"  Video     : {video_path}")
