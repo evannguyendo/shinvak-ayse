@@ -1,0 +1,9 @@
+export FAL_KEY="..."
+export OPENROUTER_API_KEY="..."
+python sam3.py \
+  --video path/to/your.mp4 \
+  --question "Your MC question text" \
+  --wrong-option "The distractor you want the edit to support" \
+  --object-prompt "person" \
+  --output-dir ./sam3_test_out \
+  --max-segments 2
