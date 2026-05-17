@@ -1,9 +1,10 @@
-export FAL_KEY="..."
-export OPENROUTER_API_KEY="..."
+source .venv/bin/activate
 python sam3.py \
-  --video path/to/your.mp4 \
-  --question "Your MC question text" \
-  --wrong-option "The distractor you want the edit to support" \
-  --object-prompt "person" \
-  --output-dir ./sam3_test_out \
-  --max-segments 2
+  --video data/control.mp4 \
+  --question "What color is the pen?" \
+  --wrong-option "blue" \
+  --object-prompt pen \
+  --interval-pick middle \
+  --max-segments 1 \
+  --dry-run \
+  --output-dir test_full_pen_blue
