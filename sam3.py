@@ -5,8 +5,8 @@ Pipeline
 1. Use SAM3 (fal.ai) to find every time interval in the video where the
    target object is actually visible.
 2. Extract those intervals as short clips (3–10 s, Kling's input constraint).
-3. Use Gemini (via OpenRouter) to generate a detailed Kling video-editing
-   instruction from the benchmark question + the wrong answer option.
+3. Use Gemini (via OpenRouter) to auto-generate scene context and a detailed Kling
+   video-editing instruction from the question, wrong answer option, and a reference keyframe.
 4. Send each clip to Kling video-to-video edit (fal.ai) to produce an
    edited version that visually supports the wrong answer.
 5. Splice each edited clip back into the ORIGINAL video at the exact time
@@ -192,6 +192,66 @@ def extract_object_from_question(question: str, model_name: str) -> str:
     if not obj:
         raise RuntimeError("LLM returned empty object extraction")
     return obj
+
+
+OBJECT_CONTEXT_SYSTEM = """\
+You write a single-sentence scene hint for an AI video editor that will recolor or \
+modify an object already in a clip.
+
+Rules:
+- Describe how the target object appears in the clip (color, material, pose, location).
+- State the specific in-place visual change needed so the clip misleadingly supports \
+the wrong multiple-choice answer.
+- Stress: edit the existing object only — same instance, position, and motion; do NOT add, \
+duplicate, or replace with a different object.
+- One sentence, plain English, under 60 words. No markdown or labels.
+"""
+
+
+def generate_object_context(
+    question: str,
+    wrong_option: str,
+    object_prompt: str,
+    model_name: str,
+    keyframe_path: Optional[Path] = None,
+) -> str:
+    """
+    Ask the LLM for a scene hint describing the object in the clip and the edit to apply.
+    When keyframe_path is set, uses the reference frame so hints match visible appearance.
+    """
+    api_key = os.environ.get("OPENROUTER_API_KEY")
+    if not api_key:
+        raise RuntimeError("Set OPENROUTER_API_KEY")
+
+    user_text = (
+        f"Target object: {object_prompt}\n"
+        f"Question: {question}\n"
+        f"Wrong answer option to make visually believable: {wrong_option}\n"
+    )
+    if keyframe_path and keyframe_path.is_file():
+        user_text += (
+            "Reference frame from the clip is attached — ground your description in what you see.\n"
+        )
+        user_content: Any = [
+            {"type": "text", "text": user_text},
+            {"type": "image_url", "image_url": {"url": image_to_data_uri(str(keyframe_path))}},
+        ]
+    else:
+        user_content = user_text
+
+    payload = {
+        "model": model_name,
+        "messages": [
+            {"role": "system", "content": OBJECT_CONTEXT_SYSTEM},
+            {"role": "user", "content": user_content},
+        ],
+        "temperature": 0.25,
+        "max_tokens": 120,
+    }
+    ctx = _openrouter_text(_openrouter_post(payload, api_key)).strip().strip('"')
+    if not ctx:
+        raise RuntimeError("LLM returned empty object context")
+    return ctx
 
 
 # --- SAM3 (fal) ---
@@ -579,20 +639,25 @@ def select_presence_interval(
 # --- Gemini ---
 
 GEMINI_EDIT_SYSTEM = """You write precise instructions for Kling AI video-to-video editing.
-The editor receives a short clip cut from a longer video. Describe ONLY in-place visual edits
-so the clip misleadingly supports a wrong multiple-choice answer.
+The editor receives a short clip cut from a longer video. A reference keyframe from the clip \
+is attached — ground all your directions in exactly what you see in that image.
 
 Critical rules:
 - RECOLOR or MODIFY the existing object already in the footage. Do NOT add a new object,
-  duplicate, or replace with a different item. Same pen, same position, same motion — only
-  change appearance (e.g. pink → blue).
-- Preserve camera angle, background, hands, and scene layout unless a tiny adjustment is
-  required for consistency.
-- Output one paragraph of concrete directions (color, material, reflections, lighting).
-  No markdown, no bullet labels.
-- Start with one short clause naming the question and wrong option, then the edit.
+  duplicate, or replace with a different item. Same instance, same position, same motion —
+  only change its appearance (e.g. color, finish, texture).
+- Explicitly instruct Kling to PRESERVE unchanged everything else in the frame:
+  name the exact colors of the background, surface/table, hands or skin tones, shadows,
+  and any other visible objects as you see them in the keyframe.
+- Use specific color descriptions (e.g. "warm ivory surface", "soft pink matte finish →
+  solid deep cobalt blue with a subtle satin sheen") not vague terms.
+- Require temporal consistency: the edit must look identical in every frame of the clip,
+  with no flickering or gradual drift.
+- Output one paragraph of concrete directions. No markdown, no bullet labels.
+- Start with one short clause naming the question and wrong option, then the edit details,
+  then an explicit list of what must not change.
 - Do NOT mention SAM3, masks, AI models, or datasets.
-- Keep under 150 words.
+- Keep under 200 words.
 """
 
 
@@ -604,12 +669,13 @@ def build_gemini_edit_prompt(
     clip_end_sec: float,
     model_name: str,
     object_context: Optional[str] = None,
+    keyframe_path: Optional[Path] = None,
 ) -> str:
     api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
         raise RuntimeError("Set OPENROUTER_API_KEY")
 
-    user = (
+    user_text = (
         f"Target object (segmentation prompt): {object_prompt}\n"
         f"Clip time range in source video: {clip_start_sec:.2f}s – {clip_end_sec:.2f}s\n"
         f"Multiple-choice question: {question}\n"
@@ -617,14 +683,27 @@ def build_gemini_edit_prompt(
         "Edit type: in-place recolor/modify of the existing object in the clip — do not add objects.\n"
     )
     if object_context:
-        user += f"Scene context (what is already in the video): {object_context}\n"
+        user_text += f"Scene context (what is already in the video): {object_context}\n"
+
+    if keyframe_path and keyframe_path.is_file():
+        user_text += (
+            "The reference keyframe from the clip is attached. "
+            "Use it to ground every color, material, and background detail in your instruction.\n"
+        )
+        user_content: Any = [
+            {"type": "text", "text": user_text},
+            {"type": "image_url", "image_url": {"url": image_to_data_uri(str(keyframe_path))}},
+        ]
+    else:
+        user_content = user_text
+
     payload = {
         "model": model_name,
         "messages": [
             {"role": "system", "content": GEMINI_EDIT_SYSTEM},
-            {"role": "user", "content": user},
+            {"role": "user", "content": user_content},
         ],
-        "temperature": 0.55,
+        "temperature": 0.45,
         "max_tokens": 512,
     }
     text = _openrouter_text(_openrouter_post(payload, api_key))
@@ -781,8 +860,9 @@ def main() -> None:
         "--object-context",
         default=None,
         help=(
-            "Optional scene hint for the edit prompt, e.g. "
-            "'pink pen lying on the ground — recolor that pen only, do not add a new pen'"
+            "Optional override for the scene hint fed into the Kling edit prompt. "
+            "If omitted, Gemini generates it from --question, --wrong-option, and a "
+            "reference keyframe from the chosen presence interval."
         ),
     )
     parser.add_argument(
@@ -971,6 +1051,36 @@ def main() -> None:
     raw_clips = raw_clips[: args.max_segments]
     print(f"Clips after Kling length constraints: {len(raw_clips)}")
 
+    object_context = args.object_context
+    object_context_source = "manual" if object_context else None
+    context_kf = keyframes_dir / "context_ref.png"
+    mid_sec = (chosen.start_sec + chosen.end_sec) / 2.0
+    vcap_ctx = cv2.VideoCapture(str(video_path))
+    vcap_ctx.set(cv2.CAP_PROP_POS_MSEC, mid_sec * 1000.0)
+    ok_ctx, ref_frame = vcap_ctx.read()
+    vcap_ctx.release()
+    context_kf_path: Optional[Path] = None
+    if ok_ctx and ref_frame is not None:
+        cv2.imwrite(str(context_kf), ref_frame)
+        context_kf_path = context_kf
+        print(f"Context reference keyframe @ {mid_sec:.2f}s → {context_kf.name}")
+
+    if not object_context:
+        print("No --object-context supplied; generating scene hint via LLM...")
+        try:
+            object_context = generate_object_context(
+                args.question,
+                args.wrong_option,
+                object_prompt,
+                args.gemini_model,
+                context_kf_path,
+            )
+            object_context_source = "llm_generated"
+            print(f"  LLM object context: {object_context}")
+        except Exception as e:
+            print(f"  Object context generation failed: {e}", file=sys.stderr)
+            object_context_source = "failed"
+
     manifest: dict[str, Any] = {
         "created_at": utc_now_iso(),
         "project_root": str(_PROJECT_ROOT),
@@ -988,7 +1098,9 @@ def main() -> None:
         "presence_intervals": [asdict(x) for x in intervals],
         "chosen_presence_interval": asdict(chosen),
         "interval_pick": pick_label,
-        "object_context": args.object_context,
+        "object_context": object_context,
+        "object_context_source": object_context_source,
+        "context_reference_keyframe": str(context_kf_path) if context_kf_path else None,
         "kling_endpoint": args.kling_endpoint,
         "gemini_model": args.gemini_model,
         "segments": [],
@@ -1032,7 +1144,7 @@ def main() -> None:
             cv2.imwrite(str(kf_path), fr)
             print(f"  Keyframe saved: {kf_path.name}")
 
-        # 4. Generate Kling editing instruction via Gemini
+        # 4. Generate Kling editing instruction via Gemini (with keyframe for visual grounding)
         edit_prompt = build_gemini_edit_prompt(
             args.question,
             args.wrong_option,
@@ -1040,7 +1152,8 @@ def main() -> None:
             cs,
             ce,
             args.gemini_model,
-            object_context=args.object_context,
+            object_context=object_context,
+            keyframe_path=kf_path if kf_path.exists() else None,
         )
         prompt_path = edit_prompts_dir / f"{seg_label}_edit_instruction.txt"
         prompt_path.write_text(edit_prompt, encoding="utf-8")
