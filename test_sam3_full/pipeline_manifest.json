@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-05-17T19:14:29Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/data/control.mp4",
+  "fps": 30.001,
+  "duration_sec": 8.0997300089997,
+  "question": "What color is the pen?",
+  "wrong_option": "blue",
+  "object_prompt_source": "manual",
+  "sam3_object_prompt": "pen",
+  "dry_run": false,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 0,
+      "end_frame": 45,
+      "start_sec": 0.0,
+      "end_sec": 1.533282223925869
+    },
+    {
+      "start_frame": 150,
+      "end_frame": 240,
+      "start_sec": 4.9998333388887035,
+      "end_sec": 8.033065564481184
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 150,
+    "end_frame": 240,
+    "start_sec": 4.9998333388887035,
+    "end_sec": 8.033065564481184
+  },
+  "interval_pick": "middle",
+  "object_context": null,
+  "object_context_source": "failed",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 4.9998333388887035,
+        "end": 8.033065564481184
+      },
+      "duration_sec": 3.0332322255924806,
+      "derived_from_presence_interval": {
+        "start_frame": 150,
+        "end_frame": 240,
+        "start_sec": 4.9998333388887035,
+        "end_sec": 8.033065564481184
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "The question asks about the pen's color and the wrong option is blue; modify the existing thin pen on the floor by changing its vibrant magenta plastic body to a solid deep cobalt blue with a smooth matte finish. The pen must remain in its exact position on the light oak wood-grain floor, maintaining its original size and orientation throughout the clip. Ensure perfect temporal consistency so the blue color does not flicker or shift. You must preserve everything else in the frame exactly as shown: the purple textured wall on the left, the white power outlet, the person's white long-sleeved shirt, the black hair dryer with its coiled black cord, the stack of books including the purple \"Guide to Investing\" cover, the zebra-patterned clothes hanger, and the reddish-brown wooden cabinet with its ornate bronze handles. Do not alter the lighting, shadows, or the blue and maroon bedding on the right side of the frame.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9a9b9f/2sQKLQhPJykq4MsWEv8PL_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/edited_clips_only.mp4",
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/test_sam3_full/raw_outputs/edited_intervals_concat.mp4"
+}

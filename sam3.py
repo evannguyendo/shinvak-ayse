@@ -1158,8 +1158,20 @@ def main() -> None:
         prompt_path = edit_prompts_dir / f"{seg_label}_edit_instruction.txt"
         prompt_path.write_text(edit_prompt, encoding="utf-8")
         print(f"  Edit instruction ({len(edit_prompt)} chars) — saved: {prompt_path.name}")
-        for line in textwrap.wrap(edit_prompt, width=88):
-            print(f"    {line}")
+        _indent = 4
+        try:
+            _term_cols = shutil.get_terminal_size(fallback=(100, 24)).columns
+        except OSError:
+            _term_cols = 100
+        # Wrap to terminal width minus indent so the shell does not re-break mid-word.
+        _wrap_width = max(40, min(88, _term_cols - _indent))
+        for line in textwrap.wrap(
+            edit_prompt,
+            width=_wrap_width,
+            break_long_words=False,
+            break_on_hyphens=False,
+        ):
+            print(f"{' ' * _indent}{line}")
 
         # 5. Edit the clip with Kling (or mock for dry-run)
         out_url: Optional[str] = None
