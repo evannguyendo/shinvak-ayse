@@ -543,7 +543,7 @@ def split_for_kling(
     end_sec: float,
     video_duration: float,
     min_d: float = 3.0,
-    max_d: float = 10.0,
+    max_d: float = 3.0,
 ) -> list[tuple[float, float]]:
     """Return sub-intervals each within [min_d, max_d] seconds (Kling input constraints)."""
     s = max(0.0, min(start_sec, video_duration))
@@ -840,6 +840,15 @@ def main() -> None:
         help="Max Kling clips to generate from the chosen presence interval (default: 1)",
     )
     parser.add_argument(
+        "--max-interval-sec",
+        type=float,
+        default=3.0,
+        help=(
+            "Cap the chosen presence interval to this many seconds before splitting for Kling "
+            "(default: 3.0). The midpoint of the interval is kept; excess is trimmed symmetrically."
+        ),
+    )
+    parser.add_argument(
         "--interval-pick",
         choices=["first", "last", "middle", "longest"],
         default="first",
@@ -1043,9 +1052,24 @@ def main() -> None:
         f"(frames {chosen.start_frame}–{chosen.end_frame})"
     )
 
-    # Expand only the chosen interval into Kling-sized clips (3–10 s each)
+    # Cap the interval to --max-interval-sec, centered on its midpoint.
+    clip_start = chosen.start_sec
+    clip_end = chosen.end_sec
+    interval_dur = clip_end - clip_start
+    if interval_dur > args.max_interval_sec:
+        mid = (clip_start + clip_end) / 2.0
+        half = args.max_interval_sec / 2.0
+        clip_start = max(0.0, mid - half)
+        clip_end = min(duration, clip_start + args.max_interval_sec)
+        clip_start = max(0.0, clip_end - args.max_interval_sec)
+        print(
+            f"Interval capped to {args.max_interval_sec:.1f}s "
+            f"(was {interval_dur:.2f}s): {clip_start:.2f}s – {clip_end:.2f}s"
+        )
+
+    # Split the (capped) interval into Kling-sized chunks and keep at most max_segments.
     raw_clips: list[tuple[float, float, PresenceInterval]] = []
-    for s, e in split_for_kling(chosen.start_sec, chosen.end_sec, duration):
+    for s, e in split_for_kling(clip_start, clip_end, duration, max_d=args.max_interval_sec):
         raw_clips.append((s, e, chosen))
 
     raw_clips = raw_clips[: args.max_segments]
