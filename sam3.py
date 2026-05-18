@@ -308,9 +308,23 @@ def mask_fraction(mask: np.ndarray) -> float:
 
 # --- Video / ffmpeg ---
 
-# Shared ffmpeg video-filter string: scale shortest side to 720 px, force 30 fps.
-# Used for both Kling input prep and splicing normalization so all parts match.
-VF_NORMALIZE = "scale='if(gt(iw,ih),-2,720)':'if(gt(iw,ih),720,-2)',fps=30"
+# Kling requires exactly 30 fps input.  The splice normalization uses the probed
+# source fps so there is no frame-rate discontinuity at edit boundaries.
+KLING_FPS: int = 30
+
+
+def _vf_normalize(fps: float) -> str:
+    """Return an ffmpeg -vf filter string that scales to 720p shortest-side and forces fps."""
+    fps_val = (
+        f"{fps:.3f}".rstrip("0").rstrip(".")
+        if fps != round(fps)
+        else str(int(round(fps)))
+    )
+    return f"scale='if(gt(iw,ih),-2,720)':'if(gt(iw,ih),720,-2)',fps={fps_val}"
+
+
+# Pre-built constant for the Kling upload path (always 30 fps).
+VF_NORMALIZE_KLING = _vf_normalize(KLING_FPS)
 
 
 # Resolved in main() before any ffmpeg call (default "ffmpeg" for PATH lookup).
@@ -349,11 +363,12 @@ def probe_video(path: Path) -> tuple[float, float, int, int]:
     return fps, duration, w, h
 
 
-def normalize_clip(src: Path, dst: Path) -> None:
-    """Re-encode any clip to the common 720p/30fps/yuv420p spec."""
+def normalize_clip(src: Path, dst: Path, fps: Optional[float] = None) -> None:
+    """Re-encode any clip to 720p/yuv420p at fps (defaults to KLING_FPS when omitted)."""
+    vf = _vf_normalize(fps if fps is not None else KLING_FPS)
     run_ffmpeg([
         "-i", str(src),
-        "-vf", VF_NORMALIZE,
+        "-vf", vf,
         "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
         str(dst),
     ])
@@ -361,7 +376,7 @@ def normalize_clip(src: Path, dst: Path) -> None:
 
 def ensure_kling_geometry(src: Path, dst: Path) -> None:
     """Prepare a clip for Kling: shortest side 720 px, 30 fps, no audio."""
-    normalize_clip(src, dst)
+    normalize_clip(src, dst, fps=KLING_FPS)
 
 
 def extract_clip(
@@ -369,13 +384,27 @@ def extract_clip(
     start_sec: float,
     duration_sec: float,
     out_path: Path,
+    fps: Optional[float] = None,
 ) -> None:
+    """Extract a time window from video.  Pass fps to lock the frame rate of the saved clip."""
+    vf_args = ["-vf", _vf_normalize(fps)] if fps is not None else []
     run_ffmpeg([
         "-ss", f"{start_sec:.4f}",
         "-i", str(video),
         "-t", f"{duration_sec:.4f}",
+        *vf_args,
         "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
         str(out_path),
+    ])
+
+
+def trim_clip_to_duration(src: Path, dst: Path, max_sec: float) -> None:
+    """Stream-copy src into dst, cutting at max_sec (no re-encode, very fast)."""
+    run_ffmpeg([
+        "-i", str(src),
+        "-t", f"{max_sec:.4f}",
+        "-c", "copy",
+        str(dst),
     ])
 
 
@@ -401,10 +430,12 @@ def concat_videos(clips: list[Path], out_path: Path) -> None:
         list_path.unlink(missing_ok=True)
 
 
-def concat_videos_normalize(clips: list[Path], out_path: Path) -> None:
+def concat_videos_normalize(
+    clips: list[Path], out_path: Path, fps: Optional[float] = None
+) -> None:
     """
     Concatenate clips that may differ in resolution/fps (e.g. raw Kling outputs).
-    Each clip is normalized to the shared spec before joining.
+    Each clip is normalized to fps (defaults to KLING_FPS) before joining.
     """
     if not clips:
         raise ValueError("No clips to concatenate")
@@ -413,7 +444,7 @@ def concat_videos_normalize(clips: list[Path], out_path: Path) -> None:
         normed: list[Path] = []
         for i, c in enumerate(clips):
             n = tmp_dir / f"n{i:04d}.mp4"
-            normalize_clip(c, n)
+            normalize_clip(c, n, fps=fps)
             normed.append(n)
         concat_videos(normed, out_path)
 
@@ -423,11 +454,18 @@ def build_spliced_video(
     edits: list[tuple[float, float, Path]],
     out_path: Path,
     video_duration: float,
-) -> None:
+    source_fps: float = 30.0,
+    parts_dir: Optional[Path] = None,
+) -> list[dict[str, Any]]:
     """
     Rebuild the full video by replacing each [start_sec, end_sec) window with
-    its edited clip.  All parts are normalized to the same spec before joining
-    so the concat is seamless.
+    its edited clip.  All parts are normalized to source_fps/720p/yuv420p before
+    joining so there is no codec or frame-rate discontinuity at edit boundaries.
+
+    If parts_dir is given, every normalized segment is copied there for later
+    ablation (recombine in any order without re-running ffmpeg/Kling).
+
+    Returns a list of part-metadata dicts describing each saved segment.
 
     Layout:  original[0 → edit1.start]
            + edited_clip_1
@@ -440,6 +478,11 @@ def build_spliced_video(
         raise ValueError("No edits provided for splice")
 
     edits = sorted(edits, key=lambda x: x[0])
+    vf = _vf_normalize(source_fps)
+    part_records: list[dict[str, Any]] = []
+
+    if parts_dir is not None:
+        parts_dir.mkdir(parents=True, exist_ok=True)
 
     with tempfile.TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
@@ -455,16 +498,43 @@ def build_spliced_video(
                     "-ss", f"{cursor:.4f}",
                     "-i", str(original),
                     "-t", f"{before_dur:.4f}",
-                    "-vf", VF_NORMALIZE,
+                    "-vf", vf,
                     "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
                     str(before),
                 ])
                 parts.append(before)
+                rec: dict[str, Any] = {
+                    "label": f"p{i:04d}a_orig",
+                    "type": "original",
+                    "start_sec": cursor,
+                    "end_sec": start_sec,
+                    "duration_sec": before_dur,
+                    "path": None,
+                }
+                if parts_dir is not None:
+                    dest = parts_dir / before.name
+                    shutil.copy2(before, dest)
+                    rec["path"] = str(dest)
+                part_records.append(rec)
 
             # --- normalized edited clip ---
             edit_norm = tmp_dir / f"p{i:04d}b_edit.mp4"
-            normalize_clip(edited_clip, edit_norm)
+            normalize_clip(edited_clip, edit_norm, fps=source_fps)
             parts.append(edit_norm)
+            edit_rec: dict[str, Any] = {
+                "label": f"p{i:04d}b_edit",
+                "type": "edit",
+                "start_sec": start_sec,
+                "end_sec": end_sec,
+                "duration_sec": end_sec - start_sec,
+                "source_edited_clip": str(edited_clip),
+                "path": None,
+            }
+            if parts_dir is not None:
+                dest = parts_dir / edit_norm.name
+                shutil.copy2(edit_norm, dest)
+                edit_rec["path"] = str(dest)
+            part_records.append(edit_rec)
 
             cursor = end_sec
 
@@ -476,16 +546,31 @@ def build_spliced_video(
                 "-ss", f"{cursor:.4f}",
                 "-i", str(original),
                 "-t", f"{tail_dur:.4f}",
-                "-vf", VF_NORMALIZE,
+                "-vf", vf,
                 "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
                 str(tail),
             ])
             parts.append(tail)
+            tail_rec: dict[str, Any] = {
+                "label": "ptail_orig",
+                "type": "original",
+                "start_sec": cursor,
+                "end_sec": video_duration,
+                "duration_sec": tail_dur,
+                "path": None,
+            }
+            if parts_dir is not None:
+                dest = parts_dir / tail.name
+                shutil.copy2(tail, dest)
+                tail_rec["path"] = str(dest)
+            part_records.append(tail_rec)
 
         if not parts:
             raise ValueError("Splice produced no output parts")
 
         concat_videos(parts, out_path)
+
+    return part_records
 
 
 # --- Intervals ---
@@ -959,6 +1044,7 @@ def main() -> None:
     keyframes_dir = out_root / "keyframes"
     raw_video_dir = out_root / "raw_outputs"
     edit_prompts_dir = out_root / "edit_prompts"
+    splice_parts_dir = out_root / "splice_parts"
     for d in (
         out_root,
         frames_dir,
@@ -968,6 +1054,7 @@ def main() -> None:
         keyframes_dir,
         raw_video_dir,
         edit_prompts_dir,
+        splice_parts_dir,
     ):
         d.mkdir(parents=True, exist_ok=True)
 
@@ -1130,6 +1217,8 @@ def main() -> None:
         "segments": [],
         "final_spliced_video_path": None,
         "isolated_edits_concat_path": None,
+        "splice_parts_dir": str(splice_parts_dir),
+        "splice_parts": [],
         "raw_outputs_dir": str(raw_video_dir),
         "raw_outputs_final_spliced": None,
         "raw_outputs_edited_concat": None,
@@ -1152,10 +1241,10 @@ def main() -> None:
         raw_kling_in_saved = raw_video_dir / f"{seg_label}_02_kling_input_normalized.mp4"
         raw_kling_api_saved = raw_video_dir / f"{seg_label}_03_kling_api_raw_download.mp4"
 
-        # 1. Extract the interval from the original video
-        extract_clip(video_path, cs, dur, raw_clip)
+        # 1. Extract the interval from the original video (FPS-locked to match source)
+        extract_clip(video_path, cs, dur, raw_clip, fps=fps)
         shutil.copy2(raw_clip, raw_source_saved)
-        # 2. Normalize geometry for Kling
+        # 2. Normalize geometry for Kling (always 30 fps as Kling requires)
         ensure_kling_geometry(raw_clip, kling_in)
         shutil.copy2(kling_in, raw_kling_in_saved)
 
@@ -1220,10 +1309,33 @@ def main() -> None:
                 err = str(e)
                 print(f"  ERROR (Kling): {e}")
 
+        # 5b. Duration-check: trim edited clip to the source interval length if Kling
+        #     returned a clip that is too long (prevents timeline drift in the splice).
+        edited_dur_actual: Optional[float] = None
+        duration_trimmed = False
+        if status in ("ok", "dry_run"):
+            _, edited_dur_actual, _, _ = probe_video(edited_out)
+            if edited_dur_actual > dur + 0.05:
+                trimmed_path = edited_dir / f"{seg_label}_edited_trimmed.mp4"
+                trim_clip_to_duration(edited_out, trimmed_path, dur)
+                shutil.move(str(trimmed_path), str(edited_out))
+                duration_trimmed = True
+                print(
+                    f"  Duration trimmed: {edited_dur_actual:.3f}s → {dur:.3f}s "
+                    f"(source interval length)"
+                )
+            elif edited_dur_actual < dur - 0.05:
+                print(
+                    f"  Warning: edited clip ({edited_dur_actual:.3f}s) is shorter than "
+                    f"source interval ({dur:.3f}s); splice will be shorter at this position."
+                )
+
         seg_record = {
             "segment_index": seg_i,
             "source_interval_sec": {"start": cs, "end": ce},
             "duration_sec": dur,
+            "edited_clip_duration_sec": edited_dur_actual,
+            "duration_trimmed": duration_trimmed,
             "derived_from_presence_interval": asdict(src_it),
             "keyframe_image_path": str(kf_path) if kf_path.exists() else None,
             "source_clip_path": str(raw_clip),
@@ -1257,9 +1369,18 @@ def main() -> None:
     if splice_edits:
         print(f"Splicing {len(splice_edits)} edited interval(s) back into original video...")
         try:
-            build_spliced_video(video_path, splice_edits, spliced_path, duration)
+            part_records = build_spliced_video(
+                video_path,
+                splice_edits,
+                spliced_path,
+                duration,
+                source_fps=fps,
+                parts_dir=splice_parts_dir,
+            )
             manifest["final_spliced_video_path"] = str(spliced_path)
+            manifest["splice_parts"] = part_records
             print(f"  → final_spliced.mp4  (original video with edits applied in-place)")
+            print(f"  → splice_parts/  ({len(part_records)} normalized segment(s) saved for ablation)")
             spliced_raw = raw_video_dir / "final_spliced_full_video.mp4"
             shutil.copy2(spliced_path, spliced_raw)
             manifest["raw_outputs_final_spliced"] = str(spliced_raw)
@@ -1268,7 +1389,7 @@ def main() -> None:
 
         # Also save just the edited clips concatenated (useful for quick review)
         try:
-            concat_videos_normalize([ep for _, _, ep in splice_edits], isolated_path)
+            concat_videos_normalize([ep for _, _, ep in splice_edits], isolated_path, fps=fps)
             manifest["isolated_edits_concat_path"] = str(isolated_path)
             print(f"  → edited_clips_only.mp4  (just the edited intervals, concatenated)")
             concat_raw = raw_video_dir / "edited_intervals_concat.mp4"
