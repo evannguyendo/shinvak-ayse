@@ -152,7 +152,7 @@ def ask_video_question(
     question: str,
     candidates: List[str],
     max_tokens: int = 8192,
-    temperature: float = 0.1,
+    temperature: float = 0.7,
 ) -> VideoEvalOutput:
     last = len(candidates) - 1
     numbered = "\n".join(f"  [{i}] {opt}" for i, opt in enumerate(candidates))
