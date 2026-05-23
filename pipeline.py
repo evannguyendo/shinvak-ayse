@@ -281,13 +281,23 @@ def evaluate_task(
             jobs.append((i, video_name, row["question"], row["candidates"], row["answer"], local_path))
 
         def _run_one(job: _Job) -> Tuple[int, Optional[str], Optional[VideoEvalOutput], str, str, List[str], str]:
-            idx, vn, q, cand, gt, path = job
-            try:
-                result = ask_video_question(
-                    client=client, model=model, backend=backend,
-                    video_path=Path(path), question=q, candidates=cand,
-                    max_tokens=max_tokens,
-                )
+    idx, vn, q, cand, gt, path = job
+
+    formatted_output = {
+        "video_id": vn,
+        "question": q,
+        "candidates": cand
+    }
+
+    print(formatted_output)
+
+    try:
+        result = ask_video_question(
+            client=client, model=model, backend=backend,
+            video_path=Path(path), question=q, candidates=cand,
+            max_tokens=max_tokens,
+        )
+
                 return (idx, None, result, vn, q, cand, gt)
             except Exception as e:
                 return (idx, str(e), None, vn, q, cand, gt)
