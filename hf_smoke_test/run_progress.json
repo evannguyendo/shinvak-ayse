@@ -1,0 +1,24 @@
+[
+  {
+    "id": "moving_attribute_00",
+    "split": "moving_attribute",
+    "video": "videos/video_10929.mp4",
+    "wrong_option": "cylinder",
+    "status": "failed",
+    "elapsed_sec": 3.4,
+    "output_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_smoke_test2/moving_attribute_00",
+    "log": null,
+    "returncode": 1
+  },
+  {
+    "id": "moving_attribute_01",
+    "split": "moving_attribute",
+    "video": "videos/video_11748.mp4",
+    "wrong_option": "metal",
+    "status": "failed",
+    "elapsed_sec": 2.4,
+    "output_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_smoke_test2/moving_attribute_01",
+    "log": null,
+    "returncode": 1
+  }
+]

@@ -10,11 +10,12 @@ import requests
 # use Pydantic for validation and parsing of the response
 from pydantic import BaseModel, Field, ConfigDict, ValidationError, field_validator
 
+from models_config import default_openrouter_model
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
-DEFAULT_MODEL = "google/gemini-2.5-pro"
+DEFAULT_MODEL = default_openrouter_model()
 
 APP_URL = "http://localhost"
 APP_NAME = "Temporal Conflict Benchmark"

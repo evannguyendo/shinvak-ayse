@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-05-23T06:37:42Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/5CZRC.mp4",
+  "fps": 30.0,
+  "duration_sec": 31.966666666666665,
+  "question": "Which object was taken by the person?",
+  "answer": "The cup/glass/bottle.",
+  "wrong_option": "The laptop.",
+  "object_prompt_source": "heuristic",
+  "sam3_object_prompt": "cup/glass/bottle",
+  "dry_run": false,
+  "clip_start_sec": 3.0,
+  "clip_end_sec": 11.4,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 330,
+      "end_frame": 330,
+      "start_sec": 11.0,
+      "end_sec": 11.033333333333333
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 330,
+    "end_frame": 330,
+    "start_sec": 11.0,
+    "end_sec": 11.033333333333333
+  },
+  "interval_pick": "middle",
+  "object_context": "Swap `cup/glass/bottle` -> `paper/notebook` (a wrong candidate; both portable hand-sized, takeable) during the take window 3.0-11.4s. Laptop also viable.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 9.516666666666666,
+        "end": 12.516666666666666
+      },
+      "duration_sec": 3.0,
+      "edited_clip_duration_sec": 3.0416666666666665,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 330,
+        "end_frame": 330,
+        "start_sec": 11.0,
+        "end_sec": 11.033333333333333
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "The question asks what was taken by the person and the wrong option is the laptop, so modify the clear glass cup held by the man into a small, thin white notebook with a matte paper texture. The notebook must occupy the exact same space as the glass cup, following the man's hand movements with perfect temporal consistency and no flickering. Maintain the man's dusty rose-colored t-shirt, his tan skin tone, and his facial features exactly as they appear. Preserve the entire background without any changes, including the dark black kitchen countertop, the stainless steel sink, the silver metal pot to the left, and the white shelving units filled with various containers. The window with the dark brown wooden frame and the blue and white tiled backsplash must remain identical in color and lighting. Ensure the lighting on the new notebook matches the ambient light from the window, while all other objects and the man's grip remain unchanged throughout the clip.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b5464/eT84MIxIVMnSq2ZYDfueT_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 9.516666666666666,
+      "duration_sec": 9.516666666666666,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 9.516666666666666,
+      "end_sec": 12.516666666666666,
+      "duration_sec": 3.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 12.516666666666666,
+      "end_sec": 31.966666666666665,
+      "duration_sec": 19.45,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_11/raw_outputs/edited_intervals_concat.mp4"
+}

@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-05-23T06:22:48Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/CSYES.mp4",
+  "fps": 24.0,
+  "duration_sec": 30.458333333333332,
+  "question": "Which object was put down by the person?",
+  "answer": "The towel.",
+  "wrong_option": "The bag.",
+  "object_prompt_source": "heuristic",
+  "sam3_object_prompt": "towel",
+  "dry_run": false,
+  "clip_start_sec": 9.6,
+  "clip_end_sec": 17.0,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 240,
+      "end_frame": 405,
+      "start_sec": 10.0,
+      "end_sec": 16.916666666666668
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 240,
+    "end_frame": 405,
+    "start_sec": 10.0,
+    "end_sec": 16.916666666666668
+  },
+  "interval_pick": "middle",
+  "object_context": "Swap `towel` -> `bag` (a wrong candidate; both portable cloth/soft items put-down compatible) during the put-down window 9.6-17.0s. Clothes is also a viable alternative.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 11.958333333333334,
+        "end": 14.958333333333334
+      },
+      "duration_sec": 3.0,
+      "edited_clip_duration_sec": 3.0416666666666665,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 240,
+        "end_frame": 405,
+        "start_sec": 10.0,
+        "end_sec": 16.916666666666668
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "Modify the towel into a bag to support the incorrect answer that a bag was put down, transforming the existing light peach-colored terry cloth towel on the right side of the frame into a small, structured canvas cosmetic bag of the same dimensions and position. The soft, looped texture of the towel must be replaced with a smooth, tightly woven matte canvas material in a neutral beige tone, maintaining the exact same folded shape and placement on the surface. You must preserve everything else in the frame exactly as it appears in the keyframe: the person's teal blue Michigan sweatshirt with white lettering, the pale peach-toned wall in the background, the person's natural skin tones and dark hair, the white rectangular object held in their hands, and the bright white flat surface in the foreground. Ensure perfect temporal consistency so the bag remains a stable, non-flickering object throughout the entire motion of being put down, with shadows and lighting matching the warm, indoor ambient glow of the original scene.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b540e/NtB_XW1IZKG1hy46fSSCG_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 11.958333333333334,
+      "duration_sec": 11.958333333333334,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 11.958333333333334,
+      "end_sec": 14.958333333333334,
+      "duration_sec": 3.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 14.958333333333334,
+      "end_sec": 30.458333333333332,
+      "duration_sec": 15.499999999999998,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_02/raw_outputs/edited_intervals_concat.mp4"
+}

@@ -1,0 +1,50 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'object'
+Video: 31.36s @ 29.97 fps, 480×270
+Sampling window restricted to 15.30s – 22.90s (of 31.36s total)
+SAM3 sampling every 15 frames for 'object' (frames 458–686)...
+  hit frame 465 mask=0.0068
+  hit frame 510 mask=0.0066
+  hit frame 525 mask=0.0068
+  hit frame 540 mask=0.0068
+  hit frame 555 mask=0.0067
+  hit frame 570 mask=0.0067
+  hit frame 585 mask=0.0069
+  hit frame 630 mask=0.0067
+  hit frame 645 mask=0.0066
+  hit frame 660 mask=0.0067
+Presence intervals (sampled): 3
+  [0] frames 465–465  time 15.52s–15.55s  (dur 0.03s)
+  [1] frames 510–585  time 17.02s–19.55s  (dur 2.54s)
+  [2] frames 630–660  time 21.02s–22.06s  (dur 1.03s)
+
+Chosen interval (middle): 15.52s – 15.55s (frames 465–465)
+Clips after Kling length constraints: 1
+Context reference keyframe @ 15.53s → context_ref.png
+
+[1/1] interval 14.03s – 17.03s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (983 chars) — saved: seg_000_edit_instruction.txt
+    Modify the laptop to look like a refrigerator, transforming the black laptop on the dark
+    coffee table into a miniature, upright silver-gray refrigerator with a vertical handle.
+    The object must retain its exact position and interaction with the person's hands as it
+    is closed, but its texture must shift from a thin electronic device to a dense, metallic
+    appliance finish with a slight reflective sheen. You must preserve everything else in
+    the frame exactly as seen in the keyframe: the person's light gray t-shirt and dark
+    pants, the beige fabric of the sofa, the cluttered dark brown coffee table surface, and
+    the glowing television screen to the right. Maintain the cream-colored walls, the dark
+    bookshelf filled with white papers and binders in the background, and all surrounding
+    items like the water bottle and controllers without any flickering or changes. The
+    miniature refrigerator must remain temporally consistent in color and form throughout
+    the entire three-second clip.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_00/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_00

@@ -1,0 +1,47 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'cyan object'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'cyan object' (frames 0–128)...
+  hit frame 0 mask=0.0123
+  hit frame 15 mask=0.0123
+  hit frame 30 mask=0.0123
+  hit frame 45 mask=0.0123
+  hit frame 60 mask=0.0123
+  hit frame 75 mask=0.0123
+  hit frame 90 mask=0.0123
+  hit frame 105 mask=0.0123
+  hit frame 120 mask=0.0123
+Presence intervals (sampled): 1
+  [0] frames 0–120  time 0.00s–4.84s  (dur 4.84s)
+
+Chosen interval (middle): 0.00s – 4.84s (frames 0–120)
+Interval capped to 3.0s (was 4.84s): 0.92s – 3.92s
+Clips after Kling length constraints: 1
+Context reference keyframe @ 2.42s → context_ref.png
+
+[1/1] interval 0.92s – 3.92s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (968 chars) — saved: seg_000_edit_instruction.txt
+    This edit modifies the question regarding stationary cyan objects to make "no" the
+    correct answer by recoloring the target. Recolor the matte cyan cylinder on the far
+    right of the frame to a solid, matte deep crimson red, ensuring it retains its exact
+    position and size throughout the clip. Maintain perfect temporal consistency so the
+    object remains deep crimson red from the first frame to the last without flickering. You
+    must preserve all other elements in the scene exactly as they appear in the reference
+    keyframe: the flat matte grey floor, the soft diffuse lighting, and the soft grey
+    shadows. Do not alter the other objects, including the two matte purple cylinders, the
+    metallic gold cylinder, the matte purple cube in the background, or the matte
+    ochre-brown cylinder in the foreground. The only change is the color of the cyan
+    cylinder to deep crimson red; all other colors, textures, and spatial arrangements must
+    remain identical to the original footage.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_08/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_08

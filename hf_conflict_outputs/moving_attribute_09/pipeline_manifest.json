@@ -1,0 +1,95 @@
+{
+  "created_at": "2026-05-23T07:34:52Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/video_14294.mp4",
+  "fps": 25.0,
+  "duration_sec": 5.12,
+  "question": "What shape is the moving rubber object when the video begins?",
+  "answer": "sphere",
+  "wrong_option": "cube",
+  "object_prompt_source": "manual",
+  "sam3_object_prompt": "sphere",
+  "dry_run": false,
+  "clip_start_sec": null,
+  "clip_end_sec": null,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 0,
+      "end_frame": 120,
+      "start_sec": 0.0,
+      "end_sec": 4.84
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 0,
+    "end_frame": 120,
+    "start_sec": 0.0,
+    "end_sec": 4.84
+  },
+  "interval_pick": "middle",
+  "object_context": "Shape morph on the moving rubber object (sphere -> cube/cylinder); material and motion preserved.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "duration_sec": 4.84,
+      "edited_clip_duration_sec": 4.708333333333333,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 0,
+        "end_frame": 120,
+        "start_sec": 0.0,
+        "end_sec": 4.84
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "The question asks for the shape of the moving rubber object and the wrong option is a cube, so modify the existing matte cyan rubber sphere at the center-top of the frame to be a matte cyan rubber cube from the very first frame. This modification must strictly replace the sphere's geometry with a cube while maintaining the exact same matte cyan color, rubbery texture, and its original movement path across the scene. Maintain absolute temporal consistency with no flickering or shape drifting throughout the clip. You must preserve everything else in the frame exactly as shown: the flat neutral gray floor, the soft ambient lighting, and all other static objects including the metallic red sphere on the left, the chrome cube and metallic gold sphere in the center-right, and the large polished silver sphere in the bottom-right foreground. The soft shadows cast on the gray surface must update to reflect the new cubic shape of the cyan object while remaining consistent with the existing lighting.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b55bf/sby3FMPEw7x5SEmvQ7mzV_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 0.0,
+      "end_sec": 4.84,
+      "duration_sec": 4.84,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 4.84,
+      "end_sec": 5.12,
+      "duration_sec": 0.28000000000000025,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_09/raw_outputs/edited_intervals_concat.mp4"
+}

@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-05-23T08:28:38Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/video_12449.mp4",
+  "fps": 25.0,
+  "duration_sec": 5.12,
+  "question": "Are there any stationary gray objects?",
+  "answer": "no",
+  "wrong_option": "not sure",
+  "object_prompt_source": "heuristic",
+  "sam3_object_prompt": "stationary gray object anywhere in the clip",
+  "dry_run": false,
+  "clip_start_sec": null,
+  "clip_end_sec": null,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 0,
+      "end_frame": 128,
+      "start_sec": 0.0,
+      "end_sec": 5.12
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 0,
+    "end_frame": 128,
+    "start_sec": 0.0,
+    "end_sec": 5.12
+  },
+  "interval_pick": "middle",
+  "object_context": "ADD edit. Target attributes: stationary gray object anywhere in the clip. Insert a gray object that remains stationary in a mid-clip segment. Answer flips no -> yes.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "duration_sec": 5.0,
+      "edited_clip_duration_sec": 4.708333333333333,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 0,
+        "end_frame": 128,
+        "start_sec": 0.0,
+        "end_sec": 5.12
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "The question asks if there are any stationary gray objects and the wrong option is not sure; to correct this, modify the existing small blue cube in the upper right background by changing its color from vibrant sky blue to a solid, matte neutral gray. This gray cube must remain perfectly stationary in its current position throughout the entire clip with no flickering or color drift. Maintain temporal consistency so the object is identical in every frame. You must preserve everything else in the frame exactly as seen in the keyframe: the flat light-gray surface, the soft diffused shadows, the vibrant green cylinder in the foreground, the teal cylinder, the matte brown cube, and the reflective metallic gold cube in the center. Do not alter the lighting, the grain of the surface, or the positions and textures of any other objects. Only the small blue cube in the background should be recolored to gray.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b56ff/qMijipb7379cCvDv9fq4K_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 0.0600000000000005,
+      "duration_sec": 0.0600000000000005,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 0.0600000000000005,
+      "end_sec": 5.0600000000000005,
+      "duration_sec": 5.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 5.0600000000000005,
+      "end_sec": 5.12,
+      "duration_sec": 0.05999999999999961,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_03/raw_outputs/edited_intervals_concat.mp4"
+}

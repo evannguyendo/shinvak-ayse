@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-05-23T08:05:32Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/video_13795.mp4",
+  "fps": 25.0,
+  "duration_sec": 5.12,
+  "question": "How many moving objects are there when the video ends?",
+  "answer": "4",
+  "wrong_option": "3",
+  "object_prompt_source": "fallback_shape",
+  "sam3_object_prompt": "sphere",
+  "dry_run": false,
+  "clip_start_sec": null,
+  "clip_end_sec": null,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 0,
+      "end_frame": 128,
+      "start_sec": 0.0,
+      "end_sec": 5.12
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 0,
+    "end_frame": 128,
+    "start_sec": 0.0,
+    "end_sec": 5.12
+  },
+  "interval_pick": "middle",
+  "object_context": "Removal edit: erase 1-2 moving objects mid-clip to shift count from 4 toward distractors 3, 2, or 1.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "duration_sec": 5.0,
+      "edited_clip_duration_sec": 4.708333333333333,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 0,
+        "end_frame": 128,
+        "start_sec": 0.0,
+        "end_sec": 5.12
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "This edit supports the question regarding the number of moving objects with the incorrect answer of three by removing the green sphere from the scene. Completely erase the matte green sphere located behind the purple cylinder, replacing it with the empty, neutral gray matte surface of the floor. Ensure the soft shadow cast by the sphere is also removed, maintaining a clean and consistent gray background throughout the entire clip duration. All other objects must remain exactly as they appear in the keyframe: the vibrant purple matte cylinder in the foreground, the two red cylinders (one metallic, one matte) in the middle ground, the metallic blue cube, and the metallic red cube in the background. Preserve the uniform lighting, the soft gray texture of the floor, and the specific metallic and matte finishes of the remaining five objects without any flickering or changes to their positions or motion. The area where the sphere was must blend seamlessly with the surrounding gray environment for perfect temporal consistency.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b5676/PtzwI5e7sNKbxI96xW-s2_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 0.0600000000000005,
+      "duration_sec": 0.0600000000000005,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 0.0600000000000005,
+      "end_sec": 5.0600000000000005,
+      "duration_sec": 5.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 5.0600000000000005,
+      "end_sec": 5.12,
+      "duration_sec": 0.05999999999999961,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_count_00/raw_outputs/edited_intervals_concat.mp4"
+}

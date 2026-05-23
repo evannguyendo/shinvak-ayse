@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-05-23T08:38:57Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/video_14237.mp4",
+  "fps": 25.0,
+  "duration_sec": 5.12,
+  "question": "Are there any rubber objects that exit the scene?",
+  "answer": "no",
+  "wrong_option": "not sure",
+  "object_prompt_source": "heuristic",
+  "sam3_object_prompt": "rubber (matte material) object exiting the scene",
+  "dry_run": false,
+  "clip_start_sec": null,
+  "clip_end_sec": null,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 0,
+      "end_frame": 128,
+      "start_sec": 0.0,
+      "end_sec": 5.12
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 0,
+    "end_frame": 128,
+    "start_sec": 0.0,
+    "end_sec": 5.12
+  },
+  "interval_pick": "middle",
+  "object_context": "ADD edit. Target attributes: rubber (matte material) object exiting the scene. Insert a rubber object whose trajectory carries it across the scene boundary during a mid-to-late segment. Answer flips no -> yes.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "duration_sec": 5.0,
+      "edited_clip_duration_sec": 4.708333333333333,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 0,
+        "end_frame": 128,
+        "start_sec": 0.0,
+        "end_sec": 5.12
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "This edit addresses the question of whether any rubber objects exit the scene, making \"not sure\" the incorrect option. Modify the existing small red cylinder in the background by changing its material from a slightly reflective finish to a completely flat, non-reflective matte rubber texture while maintaining its exact salmon-red color. Ensure this specific red rubber cylinder follows its original trajectory as it moves toward and fully exits the frame during the clip. You must preserve the appearance and materials of all other objects exactly as they appear in the keyframe: the metallic blue cylinder, the shiny gold cylinder, and the glossy emerald green sphere must remain unchanged. The neutral gray matte floor and the soft gradient of the light gray background must stay constant, including the soft shadows cast by the objects. Maintain perfect temporal consistency so the red object remains a matte rubber material throughout the entire motion without any flickering or change in surface quality.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b573c/Yy3BOSgmYXp_W9hLo3hcd_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 0.0600000000000005,
+      "duration_sec": 0.0600000000000005,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 0.0600000000000005,
+      "end_sec": 5.0600000000000005,
+      "duration_sec": 5.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 5.0600000000000005,
+      "end_sec": 5.12,
+      "duration_sec": 0.05999999999999961,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_12/raw_outputs/edited_intervals_concat.mp4"
+}

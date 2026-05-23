@@ -1,0 +1,46 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'cylinder'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'cylinder' (frames 0–128)...
+  hit frame 0 mask=0.0079
+  hit frame 15 mask=0.0078
+  hit frame 30 mask=0.0052
+  hit frame 45 mask=0.0057
+  hit frame 60 mask=0.0077
+  hit frame 75 mask=0.0079
+  hit frame 90 mask=0.0079
+  hit frame 105 mask=0.0079
+  hit frame 120 mask=0.0079
+Presence intervals (sampled): 1
+  [0] frames 0–120  time 0.00s–4.84s  (dur 4.84s)
+
+Chosen interval (middle): 0.00s – 4.84s (frames 0–120)
+Interval capped to 3.0s (was 4.84s): 0.92s – 3.92s
+Clips after Kling length constraints: 1
+Context reference keyframe @ 2.42s → context_ref.png
+
+[1/1] interval 0.92s – 3.92s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (903 chars) — saved: seg_000_edit_instruction.txt
+    The question is "Are there any stationary cylinders?" and the wrong answer is "not
+    sure". Modify the purple matte cylinder located in the background so that it is
+    continuously rolling across the surface from right to left throughout the entire clip,
+    ensuring it never remains stationary. The cylinder must maintain its specific purple
+    matte texture and cylindrical shape while in motion. You must preserve everything else
+    in the frame exactly as it appears in the keyframe: the flat, neutral grey matte
+    surface, the teal metallic cube, the tan matte sphere, the green metallic sphere in the
+    foreground, and all soft grey shadows cast by these objects. The lighting and the grey
+    background gradient must remain identical and flicker-free. Ensure temporal consistency
+    so the purple cylinder's rolling motion is smooth and its appearance remains stable
+    without any changes to its color or size as it moves.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_11/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_11

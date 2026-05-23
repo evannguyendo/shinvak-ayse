@@ -1,0 +1,37 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'purple object'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'purple object' (frames 0–128)...
+  hit frame 30 mask=0.0166
+Presence intervals (sampled): 1
+  [0] frames 30–30  time 1.20s–1.24s  (dur 0.04s)
+
+Chosen interval (middle): 1.20s – 1.24s (frames 30–30)
+Clips after Kling length constraints: 1
+Context reference keyframe @ 1.22s → context_ref.png
+
+[1/1] interval 0.00s – 3.00s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (896 chars) — saved: seg_000_edit_instruction.txt
+    This edit addresses the question of moving purple objects by making "yes" the correct
+    answer; modify the existing green sphere in the center-left of the frame by changing its
+    color from a matte grass green to a vibrant, solid purple with a smooth matte finish.
+    The purple sphere must maintain its exact original trajectory and rolling motion as it
+    moves across the surface. Ensure absolute temporal consistency so the purple hue remains
+    identical from the first frame to the last without flickering. All other elements in the
+    scene must remain unchanged: preserve the neutral gray flat surface, the soft overhead
+    lighting, and the distinct shadows cast by the objects. Do not alter the cyan cube on
+    the left, the metallic royal blue cube in the center, the small red cube in the
+    background, or the blue cylinder on the right. The background must remain a consistent,
+    slightly gradient light gray.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (2 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04

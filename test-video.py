@@ -7,10 +7,12 @@ from typing import Any, Dict, List, Optional
 
 import requests
 
+from models_config import default_openrouter_model
+
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
-DEFAULT_MODEL = "google/gemini-2.5-pro"
+DEFAULT_MODEL = default_openrouter_model()
 
 APP_URL = "http://localhost"
 APP_NAME = "Temporal Conflict Demo"

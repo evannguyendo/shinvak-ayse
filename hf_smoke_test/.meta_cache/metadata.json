@@ -1,0 +1,1380 @@
+[
+  {
+    "id": "moving_attribute_00",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_10929.mp4",
+    "video_path": "videos/video_10929.mp4",
+    "question": "What shape is the cyan object that is moving?",
+    "candidates": [
+      "cylinder",
+      "cube",
+      "sphere"
+    ],
+    "answer": "sphere",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Shape edit on the cyan moving object (sphere -> cube/cylinder); color referent 'cyan' preserved.",
+    "orig_mvbench_index": 163
+  },
+  {
+    "id": "moving_attribute_01",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_11748.mp4",
+    "video_path": "videos/video_11748.mp4",
+    "question": "What material is the moving object when the video begins?",
+    "candidates": [
+      "rubber",
+      "metal"
+    ],
+    "answer": "rubber",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Material/texture swap rubber -> metal on the moving object; motion state preserved.",
+    "orig_mvbench_index": 28
+  },
+  {
+    "id": "moving_attribute_02",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_12696.mp4",
+    "video_path": "videos/video_12696.mp4",
+    "question": "What material is the cylinder that is moving when the video ends?",
+    "candidates": [
+      "rubber",
+      "metal"
+    ],
+    "answer": "metal",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Material swap metal -> rubber on the moving cylinder; shape and motion preserved.",
+    "orig_mvbench_index": 6
+  },
+  {
+    "id": "moving_attribute_03",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_12175.mp4",
+    "video_path": "videos/video_12175.mp4",
+    "question": "What is the shape of the last object that enters the scene?",
+    "candidates": [
+      "sphere",
+      "cube",
+      "cylinder"
+    ],
+    "answer": "cube",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Shape morph on the last-entering object (cube -> sphere/cylinder); entry timing preserved.",
+    "orig_mvbench_index": 189
+  },
+  {
+    "id": "moving_attribute_04",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_11349.mp4",
+    "video_path": "videos/video_11349.mp4",
+    "question": "What is the color of the moving rubber object?",
+    "candidates": [
+      "purple",
+      "green",
+      "yellow",
+      "brown"
+    ],
+    "answer": "purple",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Color recolor on the moving rubber object (purple -> green/yellow/brown); material and motion preserved.",
+    "orig_mvbench_index": 70
+  },
+  {
+    "id": "moving_attribute_05",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_10979.mp4",
+    "video_path": "videos/video_10979.mp4",
+    "question": "What is the material of the object that is stationary when the video begins?",
+    "candidates": [
+      "metal",
+      "rubber"
+    ],
+    "answer": "rubber",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Material swap rubber -> metal on the initially-stationary object; motion state preserved.",
+    "orig_mvbench_index": 62
+  },
+  {
+    "id": "moving_attribute_06",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_10600.mp4",
+    "video_path": "videos/video_10600.mp4",
+    "question": "What shape is the stationary rubber object?",
+    "candidates": [
+      "cylinder",
+      "cube",
+      "sphere"
+    ],
+    "answer": "cube",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Shape morph on the stationary rubber object (cube -> cylinder/sphere); material and motion preserved.",
+    "orig_mvbench_index": 57
+  },
+  {
+    "id": "moving_attribute_07",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_13493.mp4",
+    "video_path": "videos/video_13493.mp4",
+    "question": "What is the color of the sphere that is stationary?",
+    "candidates": [
+      "brown",
+      "yellow",
+      "green",
+      "cyan"
+    ],
+    "answer": "brown",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Color recolor on the stationary sphere (brown -> yellow/green/cyan); shape and motion preserved.",
+    "orig_mvbench_index": 35
+  },
+  {
+    "id": "moving_attribute_08",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_12873.mp4",
+    "video_path": "videos/video_12873.mp4",
+    "question": "What is the material of the stationary sphere when the video begins?",
+    "candidates": [
+      "metal",
+      "rubber"
+    ],
+    "answer": "rubber",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Material swap rubber -> metal on the stationary sphere; shape and motion preserved.",
+    "orig_mvbench_index": 188
+  },
+  {
+    "id": "moving_attribute_09",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_14294.mp4",
+    "video_path": "videos/video_14294.mp4",
+    "question": "What shape is the moving rubber object when the video begins?",
+    "candidates": [
+      "cube",
+      "sphere",
+      "cylinder"
+    ],
+    "answer": "sphere",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Shape morph on the moving rubber object (sphere -> cube/cylinder); material and motion preserved.",
+    "orig_mvbench_index": 26
+  },
+  {
+    "id": "moving_attribute_10",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_10473.mp4",
+    "video_path": "videos/video_10473.mp4",
+    "question": "What color is the moving rubber object when the video begins?",
+    "candidates": [
+      "brown",
+      "red",
+      "blue",
+      "gray"
+    ],
+    "answer": "brown",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Color recolor on the moving rubber object (brown -> red/blue/gray); material and motion preserved.",
+    "orig_mvbench_index": 173
+  },
+  {
+    "id": "moving_attribute_11",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_11087.mp4",
+    "video_path": "videos/video_11087.mp4",
+    "question": "What is the material of the stationary object when the video ends?",
+    "candidates": [
+      "rubber",
+      "metal"
+    ],
+    "answer": "metal",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Material swap metal -> rubber on the stationary-at-end object; motion state preserved.",
+    "orig_mvbench_index": 139
+  },
+  {
+    "id": "moving_attribute_12",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_11343.mp4",
+    "video_path": "videos/video_11343.mp4",
+    "question": "What is the material of the last object that enters the scene?",
+    "candidates": [
+      "rubber",
+      "metal"
+    ],
+    "answer": "metal",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Material swap metal -> rubber on the last-entering object; entry timing preserved.",
+    "orig_mvbench_index": 22
+  },
+  {
+    "id": "moving_attribute_13",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_10439.mp4",
+    "video_path": "videos/video_10439.mp4",
+    "question": "What is the shape of the stationary rubber object when the video begins?",
+    "candidates": [
+      "cylinder",
+      "sphere",
+      "cube"
+    ],
+    "answer": "cylinder",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Shape morph on the stationary rubber object (cylinder -> sphere/cube); material and motion preserved.",
+    "orig_mvbench_index": 151
+  },
+  {
+    "id": "moving_attribute_14",
+    "split": "moving_attribute",
+    "source_dataset": "CLEVRER",
+    "video": "video_13518.mp4",
+    "video_path": "videos/video_13518.mp4",
+    "question": "What is the color of the stationary metal cube when the video begins?",
+    "candidates": [
+      "gray",
+      "purple",
+      "green",
+      "red"
+    ],
+    "answer": "green",
+    "conflict_mechanism": "color/shape/material attribute conflict \u2014 recolor or reshape the target object mid-clip toward a wrong-option distractor",
+    "editability_notes": "Color recolor on the stationary metal cube (green -> gray/purple/red); shape, material, and motion preserved.",
+    "orig_mvbench_index": 108
+  },
+  {
+    "id": "moving_count_00",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_13795.mp4",
+    "video_path": "videos/video_13795.mp4",
+    "question": "How many moving objects are there when the video ends?",
+    "candidates": [
+      "3",
+      "4",
+      "1",
+      "2"
+    ],
+    "answer": "4",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Removal edit: erase 1-2 moving objects mid-clip to shift count from 4 toward distractors 3, 2, or 1.",
+    "orig_mvbench_index": 150
+  },
+  {
+    "id": "moving_count_01",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_11926.mp4",
+    "video_path": "videos/video_11926.mp4",
+    "question": "How many moving metal objects are there?",
+    "candidates": [
+      "3",
+      "1",
+      "2",
+      "0"
+    ],
+    "answer": "0",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone an existing stationary metal object and animate it to shift count from 0 toward 1, 2, or 3.",
+    "orig_mvbench_index": 71
+  },
+  {
+    "id": "moving_count_02",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_10947.mp4",
+    "video_path": "videos/video_10947.mp4",
+    "question": "How many moving cylinders are there?",
+    "candidates": [
+      "3",
+      "0",
+      "2",
+      "1"
+    ],
+    "answer": "0",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone an existing stationary cylinder and animate it to shift count from 0 toward 1, 2, or 3.",
+    "orig_mvbench_index": 1
+  },
+  {
+    "id": "moving_count_03",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12980.mp4",
+    "video_path": "videos/video_12980.mp4",
+    "question": "How many cubes are moving when the video begins?",
+    "candidates": [
+      "0",
+      "2",
+      "1",
+      "3"
+    ],
+    "answer": "1",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: duplicate the moving cube at the start to shift count from 1 toward 2 or 3.",
+    "orig_mvbench_index": 194
+  },
+  {
+    "id": "moving_count_04",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_10504.mp4",
+    "video_path": "videos/video_10504.mp4",
+    "question": "How many stationary red objects are there when the video begins?",
+    "candidates": [
+      "0",
+      "3",
+      "1",
+      "2"
+    ],
+    "answer": "0",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone any existing red object as a stationary instance at the start to shift count from 0 toward 1, 2, or 3.",
+    "orig_mvbench_index": 178
+  },
+  {
+    "id": "moving_count_05",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12713.mp4",
+    "video_path": "videos/video_12713.mp4",
+    "question": "How many stationary objects are there when the video ends?",
+    "candidates": [
+      "7",
+      "4",
+      "6",
+      "5"
+    ],
+    "answer": "4",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone 1-3 stationary objects before video ends to shift count from 4 toward 5, 6, or 7.",
+    "orig_mvbench_index": 108
+  },
+  {
+    "id": "moving_count_06",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_14869.mp4",
+    "video_path": "videos/video_14869.mp4",
+    "question": "How many moving rubber objects are there?",
+    "candidates": [
+      "1",
+      "3",
+      "4",
+      "2"
+    ],
+    "answer": "4",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Removal edit: erase 1-3 moving rubber objects to shift count from 4 toward 3, 2, or 1.",
+    "orig_mvbench_index": 87
+  },
+  {
+    "id": "moving_count_07",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_14888.mp4",
+    "video_path": "videos/video_14888.mp4",
+    "question": "How many moving objects are there when the video ends?",
+    "candidates": [
+      "4",
+      "5",
+      "3",
+      "6"
+    ],
+    "answer": "3",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone 1-3 moving objects before video ends to shift count from 3 toward 4, 5, or 6.",
+    "orig_mvbench_index": 198
+  },
+  {
+    "id": "moving_count_08",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12889.mp4",
+    "video_path": "videos/video_12889.mp4",
+    "question": "How many gray spheres enter the scene?",
+    "candidates": [
+      "5",
+      "3",
+      "2",
+      "4"
+    ],
+    "answer": "2",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone entering gray spheres mid-clip to shift count from 2 toward 3, 4, or 5.",
+    "orig_mvbench_index": 39
+  },
+  {
+    "id": "moving_count_09",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_11958.mp4",
+    "video_path": "videos/video_11958.mp4",
+    "question": "How many objects are stationary when the video ends?",
+    "candidates": [
+      "1",
+      "2",
+      "0",
+      "3"
+    ],
+    "answer": "0",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone any moving object as a stationary instance at video end to shift count from 0 toward 1, 2, or 3.",
+    "orig_mvbench_index": 55
+  },
+  {
+    "id": "moving_count_10",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12846.mp4",
+    "video_path": "videos/video_12846.mp4",
+    "question": "How many objects are moving when the video ends?",
+    "candidates": [
+      "2",
+      "1",
+      "3",
+      "0"
+    ],
+    "answer": "1",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone the moving object near video end to shift count from 1 toward 2 or 3; or removal edit toward 0.",
+    "orig_mvbench_index": 86
+  },
+  {
+    "id": "moving_count_11",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12108.mp4",
+    "video_path": "videos/video_12108.mp4",
+    "question": "How many moving objects are there when the video ends?",
+    "candidates": [
+      "3",
+      "6",
+      "5",
+      "4"
+    ],
+    "answer": "3",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone 1-3 moving objects before video ends to shift count from 3 toward 4, 5, or 6.",
+    "orig_mvbench_index": 26
+  },
+  {
+    "id": "moving_count_12",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_14090.mp4",
+    "video_path": "videos/video_14090.mp4",
+    "question": "How many stationary metal objects are there when the video ends?",
+    "candidates": [
+      "2",
+      "1",
+      "3",
+      "0"
+    ],
+    "answer": "2",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone a stationary metal object to shift count from 2 toward 3; or removal edit toward 1 or 0.",
+    "orig_mvbench_index": 23
+  },
+  {
+    "id": "moving_count_13",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12027.mp4",
+    "video_path": "videos/video_12027.mp4",
+    "question": "How many objects enter the scene?",
+    "candidates": [
+      "1",
+      "0",
+      "2",
+      "3"
+    ],
+    "answer": "2",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone an entering object to shift count from 2 toward 3; or removal edit toward 1 or 0.",
+    "orig_mvbench_index": 97
+  },
+  {
+    "id": "moving_count_14",
+    "split": "moving_count",
+    "source_dataset": "CLEVRER",
+    "video": "video_12512.mp4",
+    "video_path": "videos/video_12512.mp4",
+    "question": "How many purple objects are stationary?",
+    "candidates": [
+      "1",
+      "4",
+      "2",
+      "3"
+    ],
+    "answer": "2",
+    "conflict_mechanism": "object multiplication/removal conflict \u2014 clone or remove objects mid-clip to shift count toward a wrong-option distractor",
+    "editability_notes": "Multiplication edit: clone stationary purple objects to shift count from 2 toward 3 or 4; or removal edit toward 1.",
+    "orig_mvbench_index": 24
+  },
+  {
+    "id": "object_existence_00",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_14368.mp4",
+    "video_path": "videos/video_14368.mp4",
+    "question": "Are there any blue cubes that exit the scene?",
+    "candidates": [
+      "no",
+      "not sure",
+      "yes"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: blue cube(s) that exit the scene. Edit the video to remove the blue cube(s) before they exit (e.g., make them disappear or remain in frame), so no blue cube exits. Answer flips yes -> no.",
+    "orig_mvbench_index": 92
+  },
+  {
+    "id": "object_existence_01",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_13133.mp4",
+    "video_path": "videos/video_13133.mp4",
+    "question": "Are there any stationary yellow objects when the video ends?",
+    "candidates": [
+      "not sure",
+      "no",
+      "yes"
+    ],
+    "answer": "no",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "ADD edit. Target attributes: stationary yellow object present in final frames. Insert a stationary yellow object (e.g., yellow cube/sphere/cylinder) into the last segment of the clip so it is visible and not moving when the video ends. Answer flips no -> yes.",
+    "orig_mvbench_index": 147
+  },
+  {
+    "id": "object_existence_02",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_10721.mp4",
+    "video_path": "videos/video_10721.mp4",
+    "question": "Are there any moving red objects when the video ends?",
+    "candidates": [
+      "yes",
+      "not sure",
+      "no"
+    ],
+    "answer": "no",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "ADD edit. Target attributes: moving red object in the final frames. Insert a red object that is moving during the last segment of the clip so it is visibly in motion at video end. Answer flips no -> yes.",
+    "orig_mvbench_index": 49
+  },
+  {
+    "id": "object_existence_03",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_12449.mp4",
+    "video_path": "videos/video_12449.mp4",
+    "question": "Are there any stationary gray objects?",
+    "candidates": [
+      "not sure",
+      "no",
+      "yes"
+    ],
+    "answer": "no",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "ADD edit. Target attributes: stationary gray object anywhere in the clip. Insert a gray object that remains stationary in a mid-clip segment. Answer flips no -> yes.",
+    "orig_mvbench_index": 180
+  },
+  {
+    "id": "object_existence_04",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_12611.mp4",
+    "video_path": "videos/video_12611.mp4",
+    "question": "Are there any moving purple objects when the video begins?",
+    "candidates": [
+      "yes",
+      "not sure",
+      "no"
+    ],
+    "answer": "no",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "ADD edit. Target attributes: moving purple object visible in the opening frames. Insert a purple object that is in motion during the first segment of the clip. Answer flips no -> yes.",
+    "orig_mvbench_index": 17
+  },
+  {
+    "id": "object_existence_05",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_10984.mp4",
+    "video_path": "videos/video_10984.mp4",
+    "question": "Are there any moving cylinders when the video ends?",
+    "candidates": [
+      "not sure",
+      "yes",
+      "no"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: moving cylinder(s) present near the end of the clip. Edit the video to stop the moving cylinder(s) (freeze them to stationary) or remove them mid-clip so no cylinder is moving at video end. Verify other moving objects remain to avoid breaking physics. Answer flips yes -> no.",
+    "orig_mvbench_index": 11
+  },
+  {
+    "id": "object_existence_06",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_13760.mp4",
+    "video_path": "videos/video_13760.mp4",
+    "question": "Are there any moving yellow objects when the video ends?",
+    "candidates": [
+      "yes",
+      "no",
+      "not sure"
+    ],
+    "answer": "no",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "ADD edit. Target attributes: moving yellow object in the final frames. Insert a yellow object that is in motion during the last segment of the clip. Answer flips no -> yes.",
+    "orig_mvbench_index": 58
+  },
+  {
+    "id": "object_existence_07",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_12747.mp4",
+    "video_path": "videos/video_12747.mp4",
+    "question": "Are there any moving brown objects when the video begins?",
+    "candidates": [
+      "yes",
+      "not sure",
+      "no"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: moving brown object visible in opening frames. Edit the opening segment to remove the brown object or make it stationary so no brown object is moving when the video begins. Answer flips yes -> no.",
+    "orig_mvbench_index": 74
+  },
+  {
+    "id": "object_existence_08",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_13748.mp4",
+    "video_path": "videos/video_13748.mp4",
+    "question": "Are there any stationary cyan objects when the video ends?",
+    "candidates": [
+      "no",
+      "yes",
+      "not sure"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: stationary cyan object at end of clip. Edit the final segment to remove the cyan object or put it in motion so no stationary cyan object remains at video end. Answer flips yes -> no.",
+    "orig_mvbench_index": 20
+  },
+  {
+    "id": "object_existence_09",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_12802.mp4",
+    "video_path": "videos/video_12802.mp4",
+    "question": "Are there any stationary metal objects?",
+    "candidates": [
+      "yes",
+      "not sure",
+      "no"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: stationary metal (shiny material) object anywhere in clip. Edit the clip to either remove the metal object or set it in motion throughout, so no stationary metal object appears. Answer flips yes -> no.",
+    "orig_mvbench_index": 59
+  },
+  {
+    "id": "object_existence_10",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_11929.mp4",
+    "video_path": "videos/video_11929.mp4",
+    "question": "Are there any moving spheres?",
+    "candidates": [
+      "no",
+      "not sure",
+      "yes"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: moving sphere(s) anywhere in clip. Edit the clip to remove the sphere(s) or freeze them as stationary. Caveat: ensure other moving objects (cubes/cylinders) remain to avoid breaking physics; only edit out spheres specifically. Answer flips yes -> no.",
+    "orig_mvbench_index": 25
+  },
+  {
+    "id": "object_existence_11",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_11083.mp4",
+    "video_path": "videos/video_11083.mp4",
+    "question": "Are there any stationary cylinders?",
+    "candidates": [
+      "not sure",
+      "no",
+      "yes"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: stationary cylinder(s) anywhere in clip. Edit to remove the cylinder(s) or set them in motion throughout the clip, so no stationary cylinder exists. Answer flips yes -> no.",
+    "orig_mvbench_index": 97
+  },
+  {
+    "id": "object_existence_12",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_14237.mp4",
+    "video_path": "videos/video_14237.mp4",
+    "question": "Are there any rubber objects that exit the scene?",
+    "candidates": [
+      "not sure",
+      "no",
+      "yes"
+    ],
+    "answer": "no",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "ADD edit. Target attributes: rubber (matte material) object exiting the scene. Insert a rubber object whose trajectory carries it across the scene boundary during a mid-to-late segment. Answer flips no -> yes.",
+    "orig_mvbench_index": 71
+  },
+  {
+    "id": "object_existence_13",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_11740.mp4",
+    "video_path": "videos/video_11740.mp4",
+    "question": "Are there any purple objects that exit the scene?",
+    "candidates": [
+      "not sure",
+      "yes",
+      "no"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: purple object exiting the scene. Edit the clip so the purple object either stays in frame or is removed before exiting, preventing any purple object from leaving the scene. Answer flips yes -> no.",
+    "orig_mvbench_index": 116
+  },
+  {
+    "id": "object_existence_14",
+    "split": "object_existence",
+    "source_dataset": "CLEVRER",
+    "video": "video_14700.mp4",
+    "video_path": "videos/video_14700.mp4",
+    "question": "Are there any red objects that enter the scene?",
+    "candidates": [
+      "not sure",
+      "no",
+      "yes"
+    ],
+    "answer": "yes",
+    "conflict_mechanism": "existence flip conflict \u2014 add or remove the queried object class mid-clip to flip yes/no",
+    "editability_notes": "REMOVE edit. Target attributes: red object entering the scene. Edit the clip to remove the red object entirely or have it already present at frame 0 (no entry event), so no red object enters mid-clip. Answer flips yes -> no.",
+    "orig_mvbench_index": 162
+  },
+  {
+    "id": "moving_direction_00",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_14717.mp4",
+    "video_path": "videos/video_14717.mp4",
+    "question": "In which direction does the gray sphere move in the video?",
+    "candidates": [
+      "Down and to the right.",
+      "Down and to the left.",
+      "Up and to the right.",
+      "The object is stationary."
+    ],
+    "answer": "Down and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor gray sphere -> red sphere mid-clip (or reshape sphere -> cube); question now has two candidate referents (original gray sphere moving down-left vs. post-edit red sphere). Tests whether VLM tracks the original referent's direction or follows the renamed attribute.",
+    "orig_mvbench_index": 186
+  },
+  {
+    "id": "moving_direction_01",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_14259.mp4",
+    "video_path": "videos/video_14259.mp4",
+    "question": "Can you identify the direction of the green sphere's movement in the video?",
+    "candidates": [
+      "Down and to the right.",
+      "Down and to the left.",
+      "The object is stationary.",
+      "Up and to the left."
+    ],
+    "answer": "Up and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor green sphere -> yellow sphere mid-clip; creates conflict between original green-referent direction (up-left) and post-edit appearance. Probes referent tracking under attribute drift.",
+    "orig_mvbench_index": 62
+  },
+  {
+    "id": "moving_direction_02",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_11661.mp4",
+    "video_path": "videos/video_11661.mp4",
+    "question": "In which direction does the red sphere move in the video?",
+    "candidates": [
+      "The object is stationary.",
+      "Up and to the left.",
+      "Down and to the right.",
+      "Down and to the left."
+    ],
+    "answer": "Down and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Reshape red sphere -> red cube mid-clip; two candidate referents now (original red sphere vs. post-edit red cube). Tests shape-vs-trajectory binding for direction tracking.",
+    "orig_mvbench_index": 41
+  },
+  {
+    "id": "moving_direction_03",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_12687.mp4",
+    "video_path": "videos/video_12687.mp4",
+    "question": "Can you identify the direction of the purple sphere's movement in the video?",
+    "candidates": [
+      "Up and to the right.",
+      "Down and to the right.",
+      "The object is stationary.",
+      "Down and to the left."
+    ],
+    "answer": "Up and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor purple sphere -> cyan sphere mid-clip; question must resolve which sphere is 'the purple sphere'. Direction answer (up-right) remains tied to original referent.",
+    "orig_mvbench_index": 118
+  },
+  {
+    "id": "moving_direction_04",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_10572.mp4",
+    "video_path": "videos/video_10572.mp4",
+    "question": "In which direction does the blue sphere move in the video?",
+    "candidates": [
+      "Up and to the left.",
+      "Down and to the left.",
+      "The object is stationary.",
+      "Up and to the right."
+    ],
+    "answer": "Down and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor blue sphere -> green sphere mid-clip; tests whether VLM associates the direction (down-left) with the original blue-referent or with whichever sphere is blue at probe time.",
+    "orig_mvbench_index": 97
+  },
+  {
+    "id": "moving_direction_05",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_11093.mp4",
+    "video_path": "videos/video_11093.mp4",
+    "question": "What direction is the brown cylinder moving in within the video?",
+    "candidates": [
+      "Up and to the right.",
+      "Up and to the left.",
+      "Down and to the right.",
+      "Down and to the left."
+    ],
+    "answer": "Down and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor brown cylinder -> gray cylinder mid-clip; rare shape (cylinder) makes the referent visually salient. Tests color-attribute drift on a non-sphere referent.",
+    "orig_mvbench_index": 69
+  },
+  {
+    "id": "moving_direction_06",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_11318.mp4",
+    "video_path": "videos/video_11318.mp4",
+    "question": "In which direction does the red cylinder move in the video?",
+    "candidates": [
+      "Up and to the left.",
+      "Down and to the left.",
+      "The object is stationary.",
+      "Down and to the right."
+    ],
+    "answer": "Down and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Reshape red cylinder -> red sphere mid-clip; creates two candidate red referents differing in shape. Probes shape-tracking vs. color-tracking under conflict.",
+    "orig_mvbench_index": 163
+  },
+  {
+    "id": "moving_direction_07",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_13616.mp4",
+    "video_path": "videos/video_13616.mp4",
+    "question": "In which direction does the green cube move in the video?",
+    "candidates": [
+      "Up and to the right.",
+      "Up and to the left.",
+      "Down and to the right.",
+      "The object is stationary."
+    ],
+    "answer": "Down and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor green cube -> blue cube mid-clip; cube referent is shape-rare so motion trajectory is easy to track. Tests color-drift on a cube referent.",
+    "orig_mvbench_index": 176
+  },
+  {
+    "id": "moving_direction_08",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_11560.mp4",
+    "video_path": "videos/video_11560.mp4",
+    "question": "Can you identify the direction of the blue sphere's movement in the video?",
+    "candidates": [
+      "Up and to the left.",
+      "Down and to the right.",
+      "The object is stationary.",
+      "Down and to the left."
+    ],
+    "answer": "Down and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Reshape blue sphere -> blue cube mid-clip; same color, different shape creates a clean shape-binding test for direction tracking.",
+    "orig_mvbench_index": 56
+  },
+  {
+    "id": "moving_direction_09",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_10995.mp4",
+    "video_path": "videos/video_10995.mp4",
+    "question": "What direction is the red cylinder moving in within the video?",
+    "candidates": [
+      "Up and to the right.",
+      "Down and to the right.",
+      "Up and to the left.",
+      "Down and to the left."
+    ],
+    "answer": "Down and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor red cylinder -> yellow cylinder mid-clip; cylinder shape ensures salient referent. No 'stationary' distractor in candidates so the test is purely directional.",
+    "orig_mvbench_index": 58
+  },
+  {
+    "id": "moving_direction_10",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_12806.mp4",
+    "video_path": "videos/video_12806.mp4",
+    "question": "What direction is the blue cube moving in within the video?",
+    "candidates": [
+      "Up and to the right.",
+      "The object is stationary.",
+      "Down and to the left.",
+      "Down and to the right."
+    ],
+    "answer": "Down and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor blue cube -> green cube mid-clip; cube-shaped referent makes attribute edit visually clean. Probes color-vs-trajectory binding.",
+    "orig_mvbench_index": 145
+  },
+  {
+    "id": "moving_direction_11",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_10314.mp4",
+    "video_path": "videos/video_10314.mp4",
+    "question": "What direction is the gray cylinder moving in within the video?",
+    "candidates": [
+      "Down and to the right.",
+      "Up and to the right.",
+      "Down and to the left.",
+      "The object is stationary."
+    ],
+    "answer": "Down and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Reshape gray cylinder -> gray cube mid-clip; same color, new shape creates two candidate gray referents in conflict. Tests shape-tracking under attribute edit.",
+    "orig_mvbench_index": 184
+  },
+  {
+    "id": "moving_direction_12",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_12521.mp4",
+    "video_path": "videos/video_12521.mp4",
+    "question": "In which direction does the cyan sphere move in the video?",
+    "candidates": [
+      "Up and to the left.",
+      "Down and to the right.",
+      "Down and to the left.",
+      "Up and to the right."
+    ],
+    "answer": "Down and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor cyan sphere -> purple sphere mid-clip; question now has two candidate spheres of different colors. Tests referent tracking across color-edit. No stationary distractor.",
+    "orig_mvbench_index": 180
+  },
+  {
+    "id": "moving_direction_13",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_13978.mp4",
+    "video_path": "videos/video_13978.mp4",
+    "question": "In which direction does the green cube move in the video?",
+    "candidates": [
+      "Down and to the right.",
+      "The object is stationary.",
+      "Up and to the right.",
+      "Up and to the left."
+    ],
+    "answer": "Up and to the left.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Reshape green cube -> green sphere mid-clip; same color, new shape. Cube is a rarer referent so attribute drift is salient.",
+    "orig_mvbench_index": 164
+  },
+  {
+    "id": "moving_direction_14",
+    "split": "moving_direction",
+    "source_dataset": "CLEVRER",
+    "video": "video_13027.mp4",
+    "video_path": "videos/video_13027.mp4",
+    "question": "In which direction does the purple sphere move in the video?",
+    "candidates": [
+      "Down and to the right.",
+      "Up and to the left.",
+      "Up and to the right.",
+      "The object is stationary."
+    ],
+    "answer": "Down and to the right.",
+    "conflict_mechanism": "referent-tracking conflict \u2014 recolor or reshape the named referent mid-clip; original direction question now has two candidate referents",
+    "editability_notes": "Recolor purple sphere -> blue sphere mid-clip; question must arbitrate which sphere is 'the purple sphere'. Direction (down-right) ties to original referent.",
+    "orig_mvbench_index": 36
+  },
+  {
+    "id": "object_interaction_00",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "KZODG.mp4",
+    "video_path": "videos/KZODG.mp4",
+    "question": "Which object was closed by the person?",
+    "candidates": [
+      "The laptop.",
+      "The refrigerator.",
+      "The box.",
+      "The book."
+    ],
+    "answer": "The laptop.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `laptop` -> `book` (a wrong candidate; both are closeable, hand-sized) during the close window 15.3-22.9s. Box is also a viable alternative swap target.",
+    "orig_mvbench_index": 63,
+    "start": 11.3,
+    "end": 25.9,
+    "accurate_start": 15.3,
+    "accurate_end": 22.9
+  },
+  {
+    "id": "object_interaction_01",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "5NG6Q.mp4",
+    "video_path": "videos/5NG6Q.mp4",
+    "question": "Which object was taken by the person?",
+    "candidates": [
+      "The paper/notebook.",
+      "The dish.",
+      "The broom.",
+      "The book."
+    ],
+    "answer": "The dish.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `dish` -> `book` (a wrong candidate; both portable hand-sized objects, takeable) during the take window 9.9-18.1s. Paper/notebook is also a viable alternative.",
+    "orig_mvbench_index": 67,
+    "start": 6.9,
+    "end": 22.1,
+    "accurate_start": 9.9,
+    "accurate_end": 18.1
+  },
+  {
+    "id": "object_interaction_02",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "CSYES.mp4",
+    "video_path": "videos/CSYES.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The towel.",
+      "The bag.",
+      "The cup/glass/bottle.",
+      "The clothes."
+    ],
+    "answer": "The towel.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `towel` -> `bag` (a wrong candidate; both portable cloth/soft items put-down compatible) during the put-down window 9.6-17.0s. Clothes is also a viable alternative.",
+    "orig_mvbench_index": 191,
+    "start": 6.6,
+    "end": 21.0,
+    "accurate_start": 9.6,
+    "accurate_end": 17.0
+  },
+  {
+    "id": "object_interaction_03",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "BZD0Q.mp4",
+    "video_path": "videos/BZD0Q.mp4",
+    "question": "Which object was taken by the person?",
+    "candidates": [
+      "The paper/notebook.",
+      "The bag.",
+      "The dish.",
+      "The clothes."
+    ],
+    "answer": "The bag.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `bag` -> `paper/notebook` (a wrong candidate; both portable, takeable) during the take window 12.9-22.8s. Clothes/dish also viable.",
+    "orig_mvbench_index": 109,
+    "start": 6.9,
+    "end": 23.8,
+    "accurate_start": 12.9,
+    "accurate_end": 22.8
+  },
+  {
+    "id": "object_interaction_04",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "3T785.mp4",
+    "video_path": "videos/3T785.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The book.",
+      "The pillow.",
+      "The towel.",
+      "The laptop."
+    ],
+    "answer": "The laptop.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `laptop` -> `book` (a wrong candidate; both flat hand-sized, put-down compatible) during the put-down window 16.1-24.1s. Pillow/towel also viable.",
+    "orig_mvbench_index": 102,
+    "start": 13.100000000000001,
+    "end": 28.1,
+    "accurate_start": 16.1,
+    "accurate_end": 24.1
+  },
+  {
+    "id": "object_interaction_05",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "QLAS7.mp4",
+    "video_path": "videos/QLAS7.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The laptop.",
+      "The paper/notebook.",
+      "The picture.",
+      "The box."
+    ],
+    "answer": "The picture.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `picture` -> `box` (a wrong candidate; both portable hand-sized, put-down compatible) during the put-down window 8.5-16.6s. Paper/notebook also viable.",
+    "orig_mvbench_index": 92,
+    "start": 8.5,
+    "end": 23.6,
+    "accurate_start": 8.5,
+    "accurate_end": 16.6
+  },
+  {
+    "id": "object_interaction_06",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "FM078.mp4",
+    "video_path": "videos/FM078.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The sandwich.",
+      "The laptop.",
+      "The pillow.",
+      "The box."
+    ],
+    "answer": "The box.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `box` -> `pillow` (a wrong candidate; both portable hand-sized, put-down compatible) during the put-down window 12.3-19.4s. Laptop/sandwich also viable.",
+    "orig_mvbench_index": 56,
+    "start": 9.3,
+    "end": 23.4,
+    "accurate_start": 12.3,
+    "accurate_end": 19.4
+  },
+  {
+    "id": "object_interaction_07",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "5657O.mp4",
+    "video_path": "videos/5657O.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The cup/glass/bottle.",
+      "The laptop.",
+      "The clothes.",
+      "The bag."
+    ],
+    "answer": "The clothes.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `clothes` -> `bag` (a wrong candidate; both portable soft items, put-down compatible) during the put-down window 6.4-13.8s. Cup/glass/bottle also viable.",
+    "orig_mvbench_index": 199,
+    "start": 0.0,
+    "end": 14.4,
+    "accurate_start": 6.4,
+    "accurate_end": 13.8
+  },
+  {
+    "id": "object_interaction_08",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "J7BOV.mp4",
+    "video_path": "videos/J7BOV.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The laptop.",
+      "The food.",
+      "The clothes.",
+      "The phone/camera."
+    ],
+    "answer": "The phone/camera.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `phone/camera` -> `food` (a wrong candidate; both small portable, put-down compatible) during the put-down window 4.6-11.9s. Laptop/clothes also viable.",
+    "orig_mvbench_index": 130,
+    "start": 0.0,
+    "end": 14.3,
+    "accurate_start": 4.6,
+    "accurate_end": 11.9
+  },
+  {
+    "id": "object_interaction_09",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "84893.mp4",
+    "video_path": "videos/84893.mp4",
+    "question": "Which object was tidied up by the person?",
+    "candidates": [
+      "The table.",
+      "The blanket.",
+      "The broom.",
+      "The clothes."
+    ],
+    "answer": "The blanket.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `blanket` -> `clothes` (a wrong candidate; both portable soft fabric, tidy-able) during the tidy window 7.8-15.3s. Broom also viable swap target.",
+    "orig_mvbench_index": 28,
+    "start": 5.8,
+    "end": 20.3,
+    "accurate_start": 7.8,
+    "accurate_end": 15.3
+  },
+  {
+    "id": "object_interaction_10",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "5K0KJ.mp4",
+    "video_path": "videos/5K0KJ.mp4",
+    "question": "Which object was taken by the person?",
+    "candidates": [
+      "The phone/camera.",
+      "The cup/glass/bottle.",
+      "The towel.",
+      "The sandwich."
+    ],
+    "answer": "The phone/camera.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `phone/camera` -> `cup/glass/bottle` (a wrong candidate; both small portable hand-sized, takeable) during the take window 18.0-25.3s. Towel/sandwich also viable.",
+    "orig_mvbench_index": 160,
+    "start": 14.0,
+    "end": 28.3,
+    "accurate_start": 18.0,
+    "accurate_end": 25.3
+  },
+  {
+    "id": "object_interaction_11",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "5CZRC.mp4",
+    "video_path": "videos/5CZRC.mp4",
+    "question": "Which object was taken by the person?",
+    "candidates": [
+      "The laptop.",
+      "The paper/notebook.",
+      "The cup/glass/bottle.",
+      "The broom."
+    ],
+    "answer": "The cup/glass/bottle.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `cup/glass/bottle` -> `paper/notebook` (a wrong candidate; both portable hand-sized, takeable) during the take window 3.0-11.4s. Laptop also viable.",
+    "orig_mvbench_index": 40,
+    "start": 0.0,
+    "end": 15.4,
+    "accurate_start": 3.0,
+    "accurate_end": 11.4
+  },
+  {
+    "id": "object_interaction_12",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "6VF2L.mp4",
+    "video_path": "videos/6VF2L.mp4",
+    "question": "Which object was taken by the person?",
+    "candidates": [
+      "The pillow.",
+      "The broom.",
+      "The bag.",
+      "The blanket."
+    ],
+    "answer": "The blanket.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `blanket` -> `pillow` (a wrong candidate; both portable soft items, takeable) during the take window 23.1-30.9s. Bag also viable.",
+    "orig_mvbench_index": 174,
+    "start": 18.1,
+    "end": 32.9,
+    "accurate_start": 23.1,
+    "accurate_end": 30.9
+  },
+  {
+    "id": "object_interaction_13",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "VS7VS.mp4",
+    "video_path": "videos/VS7VS.mp4",
+    "question": "Which object was put down by the person?",
+    "candidates": [
+      "The clothes.",
+      "The towel.",
+      "The blanket.",
+      "The book."
+    ],
+    "answer": "The book.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `book` -> `towel` (a wrong candidate; both portable hand-sized, put-down compatible) during the put-down window 12.0-19.1s. Blanket/clothes also viable.",
+    "orig_mvbench_index": 108,
+    "start": 6.0,
+    "end": 20.1,
+    "accurate_start": 12.0,
+    "accurate_end": 19.1
+  },
+  {
+    "id": "object_interaction_14",
+    "split": "object_interaction",
+    "source_dataset": "Charades/STAR",
+    "video": "PV745.mp4",
+    "video_path": "videos/PV745.mp4",
+    "question": "Which object was taken by the person?",
+    "candidates": [
+      "The sandwich.",
+      "The book.",
+      "The box.",
+      "The cup/glass/bottle."
+    ],
+    "answer": "The box.",
+    "conflict_mechanism": "real-world object swap conflict \u2014 replace the held/interacted object with a wrong-option distractor within the action window",
+    "editability_notes": "Swap `box` -> `book` (a wrong candidate; both portable hand-sized, takeable) during the take window 7.2-14.8s. Sandwich/cup also viable.",
+    "orig_mvbench_index": 119,
+    "start": 5.2,
+    "end": 19.8,
+    "accurate_start": 7.2,
+    "accurate_end": 14.8
+  }
+]

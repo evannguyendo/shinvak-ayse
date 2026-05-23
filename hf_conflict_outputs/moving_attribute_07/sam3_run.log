@@ -1,0 +1,46 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'sphere'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'sphere' (frames 0–128)...
+  hit frame 0 mask=0.0093
+  hit frame 15 mask=0.0093
+  hit frame 30 mask=0.0088
+  hit frame 45 mask=0.0093
+  hit frame 60 mask=0.0093
+  hit frame 75 mask=0.0093
+  hit frame 90 mask=0.0093
+  hit frame 105 mask=0.0093
+  hit frame 120 mask=0.0093
+Presence intervals (sampled): 1
+  [0] frames 0–120  time 0.00s–4.84s  (dur 4.84s)
+
+Chosen interval (middle): 0.00s – 4.84s (frames 0–120)
+Interval capped to 3.0s (was 4.84s): 0.92s – 3.92s
+Clips after Kling length constraints: 1
+Context reference keyframe @ 2.42s → context_ref.png
+
+[1/1] interval 0.92s – 3.92s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (907 chars) — saved: seg_000_edit_instruction.txt
+    The question asks for the color of the stationary sphere and the wrong option is yellow;
+    modify the existing metallic bronze sphere on the right side of the frame to be a solid,
+    vibrant yellow with a smooth matte finish. Ensure the sphere's exact position, size, and
+    stationary state remain identical to the original clip. You must preserve everything
+    else in the frame exactly as shown in the keyframe: the flat gray surface, the soft
+    overhead lighting, and the dark contact shadows beneath the objects. Do not change the
+    metallic gold cube on the left, the teal metallic sphere behind it, the blue metallic
+    sphere in the center, the purple matte sphere in the background, or the yellow textured
+    cube in the foreground. Maintain absolute temporal consistency so the new yellow color
+    of the rightmost sphere remains perfectly stable without flickering or shifting
+    throughout the entire duration of the clip.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_07/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_attribute_07

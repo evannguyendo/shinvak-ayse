@@ -1,0 +1,77 @@
+{
+  "created_at": "2026-05-23T09:33:55Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/6VF2L.mp4",
+  "fps": 29.364,
+  "duration_sec": 34.60019070971257,
+  "question": "Which object was taken by the person?",
+  "answer": "The blanket.",
+  "wrong_option": "The pillow.",
+  "object_prompt_source": "manual",
+  "sam3_object_prompt": "blanket",
+  "dry_run": false,
+  "clip_start_sec": 23.1,
+  "clip_end_sec": 30.9,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 765,
+      "end_frame": 810,
+      "start_sec": 26.052308949734368,
+      "end_sec": 27.618853017300093
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 765,
+    "end_frame": 810,
+    "start_sec": 26.052308949734368,
+    "end_sec": 27.618853017300093
+  },
+  "interval_pick": "middle",
+  "object_context": "Swap `blanket` -> `pillow` (a wrong candidate; both portable soft items, takeable) during the take window 23.1-30.9s. Bag also viable.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 25.28558098351723,
+        "end": 28.385580983517233
+      },
+      "duration_sec": 3.1000000000000014,
+      "edited_clip_duration_sec": null,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 765,
+        "end_frame": 810,
+        "start_sec": 26.052308949734368,
+        "end_sec": 27.618853017300093
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "Modify the blanket into a pillow to support the incorrect answer that the person took a pillow, transforming the large textured tan and white patterned blanket into a plump, rectangular bed pillow with a smooth white cotton finish while maintaining its exact movement and position in the person's hands. The new pillow must retain the same volume and physics as the original object but appear as a singular soft cushion. You must preserve everything else in the frame exactly as shown: the man's orange t-shirt and dark trousers, his skin tone, the white plastic chairs, the grey marbled floor, the beige walls, and the shelving unit on the left filled with colorful items and books. The green and yellow floral decorations on the doorway and the lighting from the window must remain unchanged. Ensure perfect temporal consistency so the pillow texture and white color do not flicker or morph throughout the entire clip duration.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": null,
+      "kling_output_url": null,
+      "status": "error",
+      "error": "[{'loc': ['body'], 'msg': 'Failed to load video.', 'type': 'input_value_error', 'url': 'https://docs.fal.ai/errors#input_value_error', 'input': {'prompt': \"Modify the blanket into a pillow to support the incorrect answer that the person took a pillow, transforming the large textured tan and white patterned blanket into a plump, rectangular bed pillow with a smooth white cotton finish while maintaining its exact movement and position in the person's hands. The new pillow must retain the same volume and physics as the original object but appear as a singular soft cushion. You must preserve everything else in the frame exactly as shown: the man's orange t-shirt and dark trousers, his skin tone, the white plastic chairs, the grey marbled floor, the beige walls, and the shelving unit on the left filled with colorful items and books. The green and yellow floral decorations on the doorway and the lighting from the window must remain unchanged. Ensure perfect temporal consistency so the pillow texture and white color do not flicker or morph throughout the entire clip duration.\", 'video_url': 'https://v3b.fal.media/files/b/0a9b5874/IphboW4v-sqSK_7-l28y-_seg_000_kling.mp4', 'keep_audio': False, 'image_urls': None, 'elements': None}}]",
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": null
+      }
+    }
+  ],
+  "final_spliced_video_path": null,
+  "isolated_edits_concat_path": null,
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/splice_parts",
+  "splice_parts": [],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/raw_outputs",
+  "raw_outputs_final_spliced": null,
+  "raw_outputs_edited_concat": null
+}

@@ -1,0 +1,94 @@
+{
+  "created_at": "2026-05-22T23:32:06Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/video_12611.mp4",
+  "fps": 25.0,
+  "duration_sec": 5.12,
+  "question": "Are there any moving purple objects when the video begins?",
+  "wrong_option": "yes",
+  "object_prompt_source": "llm_extracted",
+  "sam3_object_prompt": "purple object",
+  "dry_run": false,
+  "clip_start_sec": null,
+  "clip_end_sec": null,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 30,
+      "end_frame": 30,
+      "start_sec": 1.2,
+      "end_sec": 1.24
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 30,
+    "end_frame": 30,
+    "start_sec": 1.2,
+    "end_sec": 1.24
+  },
+  "interval_pick": "middle",
+  "object_context": "ADD edit. Target attributes: moving purple object visible in the opening frames. Insert a purple object that is in motion during the first segment of the clip. Answer flips no -> yes.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 0.0,
+        "end": 3.0
+      },
+      "duration_sec": 3.0,
+      "edited_clip_duration_sec": 3.0416666666666665,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 30,
+        "end_frame": 30,
+        "start_sec": 1.2,
+        "end_sec": 1.24
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "This edit addresses the question of moving purple objects by making \"yes\" the correct answer; modify the existing green sphere in the center-left of the frame by changing its color from a matte grass green to a vibrant, solid purple with a smooth matte finish. The purple sphere must maintain its exact original trajectory and rolling motion as it moves across the surface. Ensure absolute temporal consistency so the purple hue remains identical from the first frame to the last without flickering. All other elements in the scene must remain unchanged: preserve the neutral gray flat surface, the soft overhead lighting, and the distinct shadows cast by the objects. Do not alter the cyan cube on the left, the metallic royal blue cube in the center, the small red cube in the background, or the blue cylinder on the right. The background must remain a consistent, slightly gradient light gray.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b4a6b/qLnqJSHs15A7i2sfaph6m_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 0.0,
+      "end_sec": 3.0,
+      "duration_sec": 3.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 3.0,
+      "end_sec": 5.12,
+      "duration_sec": 2.12,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_04/raw_outputs/edited_intervals_concat.mp4"
+}

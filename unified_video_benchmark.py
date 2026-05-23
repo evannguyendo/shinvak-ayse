@@ -24,6 +24,8 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_valida
 _PROJECT_ROOT = Path(__file__).resolve().parent
 load_dotenv(_PROJECT_ROOT / ".env", override=True)
 
+from models_config import default_openrouter_model
+
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -46,7 +48,7 @@ OPENROUTER_URL = f"{OPENROUTER_BASE_URL}/chat/completions"
 APP_URL = "https://github.com/evannguyendo"
 APP_NAME = "Video Benchmark"
 
-DEFAULT_MODEL = "google/gemini-3-flash-preview"
+DEFAULT_MODEL = default_openrouter_model()
 
 
 def _openrouter_provider_extensions(model: str) -> Dict[str, Any]:

@@ -20,6 +20,8 @@ from pydantic import BaseModel, Field, ConfigDict, field_validator
 _PROJECT_ROOT = Path(__file__).resolve().parent
 load_dotenv(_PROJECT_ROOT / ".env", override=True)
 
+from models_config import default_openrouter_model
+
 
 def _openrouter_api_key() -> str:
     key = (os.environ.get("OPENROUTER_API_KEY") or "").strip()
@@ -341,8 +343,9 @@ def main() -> None:
         description="MVBench evaluation via OpenRouter (video + multiple choice)."
     )
     parser.add_argument(
-        "--model", default="google/gemini-3.1-pro-preview",
-        help="OpenRouter model id (video-capable, e.g. google/gemini-3.1-pro-preview).",
+        "--model",
+        default=default_openrouter_model(),
+        help="OpenRouter model id (default: first enabled model in models.json).",
     )
     parser.add_argument(
         "--num-samples", type=int, default=3,

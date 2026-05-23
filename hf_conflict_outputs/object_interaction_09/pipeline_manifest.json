@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-05-23T09:20:29Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/84893.mp4",
+  "fps": 30.0,
+  "duration_sec": 30.5,
+  "question": "Which object was tidied up by the person?",
+  "answer": "The blanket.",
+  "wrong_option": "The table.",
+  "object_prompt_source": "manual",
+  "sam3_object_prompt": "blanket",
+  "dry_run": false,
+  "clip_start_sec": 7.8,
+  "clip_end_sec": 15.3,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 315,
+      "end_frame": 360,
+      "start_sec": 10.5,
+      "end_sec": 12.033333333333333
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 315,
+    "end_frame": 360,
+    "start_sec": 10.5,
+    "end_sec": 12.033333333333333
+  },
+  "interval_pick": "middle",
+  "object_context": "Swap `blanket` -> `clothes` (a wrong candidate; both portable soft fabric, tidy-able) during the tidy window 7.8-15.3s. Broom also viable swap target.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 9.716666666666665,
+        "end": 12.816666666666666
+      },
+      "duration_sec": 3.1000000000000014,
+      "edited_clip_duration_sec": 3.0416666666666665,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 315,
+        "end_frame": 360,
+        "start_sec": 10.5,
+        "end_sec": 12.033333333333333
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "Regarding the question of which object was tidied up versus the incorrect table option, modify the existing blue patterned blanket being held by the man into a pile of folded laundry clothes. Change the blue fabric with thin white stripes into a stack of various garments, including a white cotton shirt and dark denim trousers, ensuring they maintain the exact same volume and movement as the original blanket. The man's tan skin tone, his greyish-blue button-down shirt, and his physical interaction with the fabric must remain identical. Preserve the bright red translucent curtains with their grid pattern, the white bedsheets with black circular patterns, and the white shelving unit containing books and a yellow folder in the background. The lighting from the window and the shadows cast on the wall must be perfectly consistent. The transformation of the blanket into clothes must be temporally stable throughout the entire clip without any flickering or texture drifting.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b583c/3dw8dTyBOm2cLND4Du9eF_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 9.716666666666665,
+      "duration_sec": 9.716666666666665,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 9.716666666666665,
+      "end_sec": 12.816666666666666,
+      "duration_sec": 3.1000000000000014,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 12.816666666666666,
+      "end_sec": 30.5,
+      "duration_sec": 17.683333333333334,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_09/raw_outputs/edited_intervals_concat.mp4"
+}

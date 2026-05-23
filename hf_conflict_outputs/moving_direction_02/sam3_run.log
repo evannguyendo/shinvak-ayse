@@ -1,0 +1,40 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'red sphere'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'red sphere' (frames 0–128)...
+  hit frame 30 mask=0.0030
+  hit frame 45 mask=0.0038
+  hit frame 60 mask=0.0021
+Presence intervals (sampled): 1
+  [0] frames 30–60  time 1.20s–2.44s  (dur 1.24s)
+
+Chosen interval (middle): 1.20s – 2.44s (frames 30–60)
+Clips after Kling length constraints: 1
+Context reference keyframe @ 1.82s → context_ref.png
+
+[1/1] interval 0.32s – 3.32s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (977 chars) — saved: seg_000_edit_instruction.txt
+    Identify the direction of the red sphere while the distractor suggests it is stationary;
+    modify the existing metallic red sphere in the background to seamlessly transform into a
+    sharp-edged red cube midway through the clip while maintaining its original trajectory.
+    The red sphere must retain its glossy metallic finish and deep crimson color, then morph
+    into a red cube of the same material and color without any change in its path of motion.
+    All other elements from the keyframe must remain perfectly unchanged throughout the
+    entire video: the matte light gray floor, the soft diffused shadows, the bright yellow
+    metallic sphere in the foreground, the matte green cube, the golden metallic cylinder,
+    the matte orange cube, and the matte gray cylinder. Ensure temporal consistency so the
+    transformation is fluid with no flickering or color drifting. The background lighting
+    and the positions of all other static objects must stay exactly as they appear in the
+    reference image.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_direction_02/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_direction_02

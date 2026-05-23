@@ -1,0 +1,77 @@
+{
+  "created_at": "2026-05-23T09:11:52Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/FM078.mp4",
+  "fps": 29.88,
+  "duration_sec": 39.0896921017403,
+  "question": "Which object was put down by the person?",
+  "answer": "The box.",
+  "wrong_option": "The sandwich.",
+  "object_prompt_source": "manual",
+  "sam3_object_prompt": "box",
+  "dry_run": false,
+  "clip_start_sec": 12.3,
+  "clip_end_sec": 19.4,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 405,
+      "end_frame": 435,
+      "start_sec": 13.55421686746988,
+      "end_sec": 14.591700133868809
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 405,
+    "end_frame": 435,
+    "start_sec": 13.55421686746988,
+    "end_sec": 14.591700133868809
+  },
+  "interval_pick": "middle",
+  "object_context": "Swap `box` -> `pillow` (a wrong candidate; both portable hand-sized, put-down compatible) during the put-down window 12.3-19.4s. Laptop/sandwich also viable.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 12.522958500669343,
+        "end": 15.622958500669345
+      },
+      "duration_sec": 3.1000000000000014,
+      "edited_clip_duration_sec": null,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 405,
+        "end_frame": 435,
+        "start_sec": 13.55421686746988,
+        "end_sec": 14.591700133868809
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "The question asks what object was put down and the sandwich is the wrong option, so modify the cardboard box held by the man into a small, handheld crustless sandwich with a light beige bread texture and visible dark brown filling. The sandwich must occupy the exact same spatial volume and track the man's hand movements perfectly as he places it down. Maintain total temporal consistency with no flickering of the bread texture. You must preserve everything else in the frame exactly as shown: the man's olive-drab long-sleeve shirt, his blue jeans, white socks, and black baseball cap with a white logo. The background environment must remain unchanged, including the vertical light-wood paneled walls, the white kitchen cabinets with silver handles, the tan countertop, the white trash can, and the light-colored wooden chair by the window. The lighting and shadows on the man's back and the floor must stay identical to the original footage throughout the entire clip.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": null,
+      "kling_output_url": null,
+      "status": "error",
+      "error": "[{'loc': ['body'], 'msg': 'Failed to load video.', 'type': 'input_value_error', 'url': 'https://docs.fal.ai/errors#input_value_error', 'input': {'prompt': \"The question asks what object was put down and the sandwich is the wrong option, so modify the cardboard box held by the man into a small, handheld crustless sandwich with a light beige bread texture and visible dark brown filling. The sandwich must occupy the exact same spatial volume and track the man's hand movements perfectly as he places it down. Maintain total temporal consistency with no flickering of the bread texture. You must preserve everything else in the frame exactly as shown: the man's olive-drab long-sleeve shirt, his blue jeans, white socks, and black baseball cap with a white logo. The background environment must remain unchanged, including the vertical light-wood paneled walls, the white kitchen cabinets with silver handles, the tan countertop, the white trash can, and the light-colored wooden chair by the window. The lighting and shadows on the man's back and the floor must stay identical to the original footage throughout the entire clip.\", 'video_url': 'https://v3b.fal.media/files/b/0a9b57ef/lXBMq2vL-Ma78I8zCJnXC_seg_000_kling.mp4', 'keep_audio': False, 'image_urls': None, 'elements': None}}]",
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": null
+      }
+    }
+  ],
+  "final_spliced_video_path": null,
+  "isolated_edits_concat_path": null,
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/splice_parts",
+  "splice_parts": [],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_06/raw_outputs",
+  "raw_outputs_final_spliced": null,
+  "raw_outputs_edited_concat": null
+}

@@ -1,0 +1,115 @@
+{
+  "created_at": "2026-05-23T06:42:22Z",
+  "project_root": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse",
+  "video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/hf_videos/PV745.mp4",
+  "fps": 29.454048140043763,
+  "duration_sec": 73.23271795252776,
+  "question": "Which object was taken by the person?",
+  "answer": "The box.",
+  "wrong_option": "The sandwich.",
+  "object_prompt_source": "heuristic",
+  "sam3_object_prompt": "box",
+  "dry_run": false,
+  "clip_start_sec": 7.2,
+  "clip_end_sec": 14.8,
+  "sample_stride_frames": 15,
+  "merge_gap_frames": 30,
+  "min_mask_fraction": 0.002,
+  "presence_intervals": [
+    {
+      "start_frame": 225,
+      "end_frame": 285,
+      "start_sec": 7.639017867092605,
+      "end_sec": 9.710040488837711
+    },
+    {
+      "start_frame": 345,
+      "end_frame": 345,
+      "start_sec": 11.713160729541993,
+      "end_sec": 11.747111920062405
+    },
+    {
+      "start_frame": 420,
+      "end_frame": 420,
+      "start_sec": 14.259500018572862,
+      "end_sec": 14.293451209093273
+    }
+  ],
+  "chosen_presence_interval": {
+    "start_frame": 420,
+    "end_frame": 420,
+    "start_sec": 14.259500018572862,
+    "end_sec": 14.293451209093273
+  },
+  "interval_pick": "middle",
+  "object_context": "Swap `box` -> `book` (a wrong candidate; both portable hand-sized, takeable) during the take window 7.2-14.8s. Sandwich/cup also viable.",
+  "object_context_source": "manual",
+  "context_reference_keyframe": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/keyframes/context_ref.png",
+  "kling_endpoint": "fal-ai/kling-video/o1/standard/video-to-video/edit",
+  "gemini_model": "google/gemini-3-flash-preview",
+  "segments": [
+    {
+      "segment_index": 0,
+      "source_interval_sec": {
+        "start": 12.776475613833068,
+        "end": 15.776475613833068
+      },
+      "duration_sec": 3.0,
+      "edited_clip_duration_sec": 3.0416666666666665,
+      "duration_trimmed": false,
+      "derived_from_presence_interval": {
+        "start_frame": 420,
+        "end_frame": 420,
+        "start_sec": 14.259500018572862,
+        "end_sec": 14.293451209093273
+      },
+      "keyframe_image_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/keyframes/seg_000_ref.png",
+      "source_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/source_clips/seg_000_src.mp4",
+      "kling_input_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/kling_input_clips/seg_000_kling.mp4",
+      "gemini_edit_instruction": "Modify the box into a sandwich, where the large cardboard box held by the person is transformed into a thick, handheld sandwich with visible layers of bread and fillings, maintaining the exact same hand positioning and movement as the person interacts with it. The transformation must be temporally consistent across the entire clip with no flickering. Preserve everything else in the frame exactly as seen in the keyframe: the person's white long-sleeved shirt, blue jeans, and white socks must remain unchanged. The kitchen environment must stay identical, including the off-white refrigerator on the left, the brown wooden cabinetry on the right, the tan tiled floor, the bright overhead ceiling light, and the pink shoes on the floor. Ensure the skin tones of the person and the neutral beige walls in the background do not shift in color or texture. The lighting and shadows cast by the person and the object must remain consistent with the original footage.",
+      "gemini_edit_instruction_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/edit_prompts/seg_000_edit_instruction.txt",
+      "edited_clip_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/edited_clips/seg_000_edited.mp4",
+      "kling_output_url": "https://v3b.fal.media/files/b/0a9b5482/y_03HrOsBQaBoKhPze2GZ_output.mp4",
+      "status": "ok",
+      "error": null,
+      "raw_outputs": {
+        "source_interval_extract": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/raw_outputs/seg_000_01_source_interval_extract.mp4",
+        "kling_input_normalized": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/raw_outputs/seg_000_02_kling_input_normalized.mp4",
+        "kling_api_raw_download": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/raw_outputs/seg_000_03_kling_api_raw_download.mp4"
+      }
+    }
+  ],
+  "final_spliced_video_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/final_spliced.mp4",
+  "isolated_edits_concat_path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/edited_clips_only.mp4",
+  "splice_parts_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/splice_parts",
+  "splice_parts": [
+    {
+      "label": "p0000a_orig",
+      "type": "original",
+      "start_sec": 0.0,
+      "end_sec": 12.776475613833068,
+      "duration_sec": 12.776475613833068,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/splice_parts/p0000a_orig.mp4"
+    },
+    {
+      "label": "p0000b_edit",
+      "type": "edit",
+      "start_sec": 12.776475613833068,
+      "end_sec": 15.776475613833068,
+      "duration_sec": 3.0,
+      "source_edited_clip": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/edited_clips/seg_000_edited.mp4",
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/splice_parts/p0000b_edit.mp4"
+    },
+    {
+      "label": "ptail_orig",
+      "type": "original",
+      "start_sec": 15.776475613833068,
+      "end_sec": 73.23271795252776,
+      "duration_sec": 57.45624233869469,
+      "path": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/splice_parts/ptail_orig.mp4"
+    }
+  ],
+  "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/raw_outputs",
+  "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/raw_outputs/final_spliced_full_video.mp4",
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_14/raw_outputs/edited_intervals_concat.mp4"
+}

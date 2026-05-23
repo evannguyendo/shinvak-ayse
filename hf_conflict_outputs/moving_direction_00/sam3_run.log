@@ -1,0 +1,47 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'gray sphere'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'gray sphere' (frames 0–128)...
+  hit frame 0 mask=0.0046
+  hit frame 15 mask=0.0036
+  hit frame 30 mask=0.0054
+  hit frame 45 mask=0.0054
+  hit frame 60 mask=0.0055
+  hit frame 75 mask=0.0056
+  hit frame 90 mask=0.0055
+  hit frame 105 mask=0.0056
+  hit frame 120 mask=0.0057
+Presence intervals (sampled): 1
+  [0] frames 0–120  time 0.00s–4.84s  (dur 4.84s)
+
+Chosen interval (middle): 0.00s – 4.84s (frames 0–120)
+Interval capped to 3.0s (was 4.84s): 0.92s – 3.92s
+Clips after Kling length constraints: 1
+Context reference keyframe @ 2.42s → context_ref.png
+
+[1/1] interval 0.92s – 3.92s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (953 chars) — saved: seg_000_edit_instruction.txt
+    The question asks for the gray sphere's direction, and the wrong option is "Down and to
+    the right." Recolor the small, metallic gray sphere located in the upper right
+    background to a vibrant, matte crimson red, ensuring it maintains its exact size,
+    spherical shape, and original movement path throughout the entire clip. You must
+    preserve all other elements in the scene exactly as they appear in the reference frame:
+    the light gray matte floor and background, the soft diffuse shadows, the metallic blue
+    sphere on the left, the matte blue sphere on the right, and the solid gray cylinder in
+    the center foreground. The new crimson red color must be temporally consistent with no
+    flickering or variations in shade as the sphere moves. Do not add any new objects or
+    change the positions of the existing blue spheres or the gray cylinder. The lighting on
+    the newly red sphere should match the ambient cool-toned studio lighting of the original
+    environment.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_direction_00/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/moving_direction_00

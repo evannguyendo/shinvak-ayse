@@ -1,0 +1,47 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'metal object'
+Video: 5.12s @ 25.00 fps, 480×320
+SAM3 sampling every 15 frames for 'metal object' (frames 0–128)...
+  hit frame 0 mask=0.0223
+  hit frame 15 mask=0.0223
+  hit frame 30 mask=0.0224
+  hit frame 45 mask=0.0224
+  hit frame 60 mask=0.0223
+  hit frame 75 mask=0.0223
+  hit frame 90 mask=0.0223
+  hit frame 105 mask=0.0223
+  hit frame 120 mask=0.0206
+Presence intervals (sampled): 1
+  [0] frames 0–120  time 0.00s–4.84s  (dur 4.84s)
+
+Chosen interval (middle): 0.00s – 4.84s (frames 0–120)
+Interval capped to 3.0s (was 4.84s): 0.92s – 3.92s
+Clips after Kling length constraints: 1
+Context reference keyframe @ 2.42s → context_ref.png
+
+[1/1] interval 0.92s – 3.92s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (1001 chars) — saved: seg_000_edit_instruction.txt
+    The question asks if there are stationary metal objects and the wrong answer is not
+    sure; modify the existing gold-colored metallic cylinder in the foreground and the
+    metallic green cube in the background to lose all metallic properties. Change the gold
+    metallic cylinder into a matte, non-reflective mustard yellow plastic material and the
+    shiny green cube into a flat, matte forest green rubber texture. Ensure these two
+    objects remain in their exact positions and maintain their original shapes without any
+    flickering or texture drift throughout the clip. You must preserve everything else in
+    the frame exactly as shown: the neutral grey matte floor, the soft diffuse shadows, the
+    matte purple sphere, the matte green cube on the left, and the matte purple cylinder in
+    the center. The lighting and the grainy texture of the grey surface must remain
+    consistent across all frames, ensuring the only change is the removal of the metallic
+    sheen and reflections from the targeted gold and green objects.
+  Kling edit saved: seg_000_edited.mp4 (raw API file: seg_000_03_kling_api_raw_download.mp4)
+
+────────────────────────────────────────────────────────────
+Splicing 1 edited interval(s) back into original video...
+  → final_spliced.mp4  (original video with edits applied in-place)
+  → splice_parts/  (3 normalized segment(s) saved for ablation)
+  → edited_clips_only.mp4  (just the edited intervals, concatenated)
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_09/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_09

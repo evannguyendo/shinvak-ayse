@@ -1,0 +1,36 @@
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'object'
+Video: 34.60s @ 29.36 fps, 270×480
+Sampling window restricted to 23.10s – 30.90s (of 34.60s total)
+SAM3 sampling every 15 frames for 'object' (frames 678–907)...
+  hit frame 840 mask=0.0048
+  hit frame 885 mask=0.0047
+Presence intervals (sampled): 2
+  [0] frames 840–840  time 28.61s–28.64s  (dur 0.03s)
+  [1] frames 885–885  time 30.14s–30.17s  (dur 0.03s)
+
+Chosen interval (middle): 28.61s – 28.64s (frames 840–840)
+Clips after Kling length constraints: 1
+Context reference keyframe @ 28.62s → context_ref.png
+
+[1/1] interval 27.12s – 30.12s  (duration 3.00s)
+  Keyframe saved: seg_000_ref.png
+  Edit instruction (840 chars) — saved: seg_000_edit_instruction.txt
+    The question asks which object was taken and the wrong option is the pillow, so modify
+    the textured grey blanket being held by the man into a soft rectangular pillow with a
+    smooth white cotton finish while maintaining its exact position and movement. The man's
+    orange polo shirt, his dark trousers, and his skin tones must remain completely
+    unchanged. Preserve the white plastic chairs, the stacked white chairs in the
+    background, and the beige walls of the room exactly as they appear. The shelving unit on
+    the left with its various colorful items, the grey and white marbled floor, and the
+    lighting and shadows must stay consistent throughout the clip. Ensure the pillow texture
+    is uniform and does not flicker or change shape as the man moves, keeping the temporal
+    consistency of the white fabric perfectly stable against the background.
+  ERROR (Kling): [{'loc': ['body'], 'msg': 'Failed to load video.', 'type': 'input_value_error', 'url': 'https://docs.fal.ai/errors#input_value_error', 'input': {'prompt': "The question asks which object was taken and the wrong option is the pillow, so modify the textured grey blanket being held by the man into a soft rectangular pillow with a smooth white cotton finish while maintaining its exact position and movement. The man's orange polo shirt, his dark trousers, and his skin tones must remain completely unchanged. Preserve the white plastic chairs, the stacked white chairs in the background, and the beige walls of the room exactly as they appear. The shelving unit on the left with its various colorful items, the grey and white marbled floor, and the lighting and shadows must stay consistent throughout the clip. Ensure the pillow texture is uniform and does not flicker or change shape as the man moves, keeping the temporal consistency of the white fabric perfectly stable against the background.", 'video_url': 'https://v3b.fal.media/files/b/0a9b4c19/DrdjVhBEK9fDJ1-mha5qk_seg_000_kling.mp4', 'keep_audio': False, 'image_urls': None, 'elements': None}}]
+
+────────────────────────────────────────────────────────────
+No successful edits — skipping splice and concat.
+
+Manifest: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12/pipeline_manifest.json
+Output directory: /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_interaction_12

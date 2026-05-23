@@ -37,6 +37,7 @@ import base64
 import json
 import math
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -50,6 +51,8 @@ from typing import Any, Optional
 import cv2
 import numpy as np
 import requests
+
+from models_config import default_openrouter_model
 
 _PROJECT_ROOT = Path(__file__).resolve().parent
 
@@ -160,16 +163,241 @@ question so it can be used as a segmentation target.
 
 Rules:
 - Return ONLY the object noun (1–4 words, lowercase), nothing else.
-- Pick the object whose presence/absence/appearance the question is directly testing.
+- Never return generic words alone: object, thing, item, entity, moving object.
+- Pick the concrete object whose presence/absence/appearance the question is directly testing.
+- If an edit hint or correct answer names a specific object, prefer that (e.g. laptop, cyan sphere).
 - Examples:
     Q: "What color is the pen?" → pen
-    Q: "How many dogs are in the frame?" → dog
-    Q: "Is the person holding an umbrella?" → umbrella
-    Q: "What sport is being played?" → ball
+    Q: "How many moving cylinders are there?" → cylinder
+    Q: "Which object was taken by the person?" + answer "The dish." → dish
+    Q: "What shape is the cyan object that is moving?" → cyan sphere
+    Q: "In which direction does the gray sphere move?" → gray sphere
 """
 
+_GENERIC_OBJECT_PROMPTS = frozenset({
+    "object", "objects", "thing", "things", "item", "items", "entity", "entities",
+    "moving object", "moving objects", "stationary object", "stationary objects",
+    "rubber object", "metal object", "red object", "gray object", "grey object",
+    "brown object", "yellow object", "cyan object", "purple object", "green object",
+    "blue object", "orange object", "pink object", "white object", "black object",
+    "last object", "moving", "stationary", "metal", "rubber",
+})
 
-def extract_object_from_question(question: str, model_name: str) -> str:
+# Concrete nouns SAM3 can segment in Charades-style clips.
+_CHARADES_NOUNS = frozenset({
+    "laptop", "book", "dish", "towel", "bag", "blanket", "pillow", "box", "picture",
+    "phone", "camera", "food", "clothes", "broom", "table", "sandwich", "refrigerator",
+})
+
+# Ordered list of bare shape prompts used as SAM3 fallbacks for CLEVRER-style videos.
+_CLEVRER_SHAPES = ["sphere", "cube", "cylinder"]
+
+# Colors that can appear in CLEVRER questions.
+_CLEVRER_COLORS = frozenset({
+    "red", "blue", "green", "gray", "grey", "brown", "yellow", "cyan",
+    "purple", "orange", "pink", "white", "black",
+})
+
+
+def _extract_color_from_text(text: str) -> Optional[str]:
+    """Return the first CLEVRER color word found in text, or None."""
+    for word in re.findall(r"\b\w+\b", text.lower()):
+        if word in _CLEVRER_COLORS:
+            return word
+    return None
+
+
+def _get_sam3_fallback_prompts(
+    initial_prompt: str,
+    question: str,
+    object_context: Optional[str] = None,
+) -> list[str]:
+    """
+    Build an ordered list of alternative SAM3 prompts to try when the initial
+    prompt yields no segmentation hits.  The list has no duplicates and excludes
+    the initial prompt itself.
+
+    Order priority:
+      Charades videos (person-centric): specific object nouns → person → shapes
+      CLEVRER videos:                   color+shape → bare shapes
+    """
+    seen: set[str] = {initial_prompt}
+    prompts: list[str] = []
+
+    def _add(p: str) -> None:
+        p = _normalize_object_prompt(p)
+        if p and p not in seen:
+            seen.add(p)
+            prompts.append(p)
+
+    is_person_video = bool(re.search(r"\bperson\b", question, re.IGNORECASE))
+
+    # ── Charades / real-world videos ──────────────────────────────────────
+    if is_person_video:
+        # 1. Specific Charades nouns extracted from editability notes and answer.
+        notes = (object_context or "").strip()
+        # Pull all backtick-quoted tokens from the notes (e.g. `box`, `pillow`).
+        for token in re.findall(r"`([^`]+)`", notes):
+            noun = _normalize_object_prompt(token)
+            if noun in _CHARADES_NOUNS:
+                _add(noun)
+        # Pull any Charades noun that appears directly in the question.
+        for word in re.findall(r"\b\w+\b", question.lower()):
+            if word in _CHARADES_NOUNS:
+                _add(word)
+        # "person" catches hands, body, held objects (SAM3 handles context).
+        _add("person")
+        # "hand" and "person holding object" also work for held-item segmentation.
+        _add("hand")
+        return prompts
+
+    # ── CLEVRER / synthetic videos ────────────────────────────────────────
+    # 1. If the initial prompt contains a specific shape, try it bare first.
+    for shape in _CLEVRER_SHAPES:
+        if shape in initial_prompt.split():
+            _add(shape)
+
+    # 2. Color + shape combinations (color from both prompt and question).
+    color = _extract_color_from_text(initial_prompt) or _extract_color_from_text(question)
+    if color:
+        for shape in _CLEVRER_SHAPES:
+            _add(f"{color} {shape}")
+
+    # 3. Bare shapes.
+    for shape in _CLEVRER_SHAPES:
+        _add(shape)
+
+    return prompts
+
+
+def _normalize_object_prompt(text: str) -> str:
+    s = text.strip().lower().strip(".")
+    s = re.sub(r"^the\s+", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def _is_usable_object_prompt(prompt: str) -> bool:
+    """True when the prompt names something SAM3 can visually segment."""
+    p = _normalize_object_prompt(prompt)
+    if not p or p in _GENERIC_OBJECT_PROMPTS:
+        return False
+    # Bare colors are not segmentable (e.g. answer "brown" for a color question).
+    if p in _CLEVRER_COLORS:
+        return False
+    if re.search(r"\bobjects?\b", p):
+        has_shape = any(s in p.split() for s in _CLEVRER_SHAPES)
+        has_noun = any(n in p.split() for n in _CHARADES_NOUNS)
+        if has_shape or has_noun:
+            return True
+        # Allow multi-word descriptors: "moving rubber object", "stationary metal cube".
+        words = p.replace(" objects", " object").split()
+        if "object" in words and len(words) >= 3:
+            return True
+        # Reject single vague modifier + object: "moving object", "rubber object".
+        return False
+    return True
+
+
+def _answer_looks_like_object_name(answer: str) -> bool:
+    """True when the MCQ answer names a physical object (not a color/material/count)."""
+    a = _normalize_object_prompt(answer)
+    if not a or a in ("yes", "no", "not sure"):
+        return False
+    if re.fullmatch(r"[\d.]+", a):
+        return False
+    if a in _CLEVRER_COLORS:
+        return False
+    if a in ("rubber", "metal", "sphere", "cube", "cylinder"):
+        return False
+    if " and to the " in a or a.startswith("the object is"):
+        return False
+    return len(a.split()) <= 5
+
+
+def derive_object_prompt_heuristic(
+    question: str,
+    answer: Optional[str] = None,
+    object_context: Optional[str] = None,
+) -> Optional[str]:
+    """
+    Derive a SAM3 text prompt from editability notes and/or the MCQ answer
+  without calling an LLM. Returns None if nothing specific enough is found.
+    """
+    notes = (object_context or "").strip()
+    if notes:
+        swap = re.search(r"Swap\s+`([^`]+)`", notes, re.IGNORECASE)
+        if swap:
+            p = _normalize_object_prompt(swap.group(1))
+            if _is_usable_object_prompt(p):
+                return p
+
+        for term in re.findall(r"`([^`]+)`", notes):
+            p = _normalize_object_prompt(term)
+            if _is_usable_object_prompt(p):
+                return p
+
+        target = re.search(r"Target attributes:\s*([^.]+)", notes, re.IGNORECASE)
+        if target:
+            p = _normalize_object_prompt(target.group(1))
+            if _is_usable_object_prompt(p):
+                return p
+
+        on_the = re.search(
+            r"\b(?:on|to)\s+the\s+([\w\s-]+?\s+"
+            r"(?:object|cube|sphere|cylinder|pen|laptop|blanket|book|towel|bag|"
+            r"dish|phone|camera|box|picture|pillow|food|clothes|broom|table|sandwich)s?)\b",
+            notes,
+            re.IGNORECASE,
+        )
+        if on_the:
+            p = _normalize_object_prompt(on_the.group(1))
+            if _is_usable_object_prompt(p):
+                return p
+
+    if answer and _answer_looks_like_object_name(answer):
+        raw = _normalize_object_prompt(answer)
+        for part in re.split(r"\s*/\s*", raw):
+            part = part.strip()
+            if _is_usable_object_prompt(part):
+                return part
+
+    q_patterns = [
+        r"\b((?:gray|green|red|blue|purple|cyan|brown|yellow|pink|orange|white|black|metal|rubber)\s+"
+        r"(?:sphere|cube|cylinder))\b",
+        r"\b((?:sphere|cube|cylinder)s?)\b",
+    ]
+    for pat in q_patterns:
+        m = re.search(pat, question, re.IGNORECASE)
+        if m:
+            p = _normalize_object_prompt(m.group(1))
+            if _is_usable_object_prompt(p):
+                return p
+
+    how_many = re.search(
+        r"how many\s+(.+?)\s+(?:are|is|were|was|enter|exit|there)\b",
+        question,
+        re.IGNORECASE,
+    )
+    if how_many:
+        phrase = _normalize_object_prompt(how_many.group(1))
+        phrase = re.sub(r"\s+objects?$", "", phrase).strip()
+        if phrase.endswith("s") and not phrase.endswith("ss"):
+            phrase = phrase[:-1]
+        if _is_usable_object_prompt(phrase):
+            return phrase
+
+    if re.search(r"\bperson\b", question, re.IGNORECASE):
+        return "person"
+
+    return None
+
+
+def extract_object_from_question(
+    question: str,
+    model_name: str,
+    answer: Optional[str] = None,
+    object_context: Optional[str] = None,
+) -> str:
     """
     Ask the LLM to pull the key visual object out of the benchmark question.
     Returns a short lowercase noun suitable for SAM3's text prompt.
@@ -178,20 +406,65 @@ def extract_object_from_question(question: str, model_name: str) -> str:
     if not api_key:
         raise RuntimeError("Set OPENROUTER_API_KEY")
 
+    user_lines = [f"Question: {question}"]
+    if answer:
+        user_lines.append(f"Correct answer: {answer}")
+    if object_context:
+        user_lines.append(f"Edit hint: {object_context}")
+
     payload = {
         "model": model_name,
         "messages": [
             {"role": "system", "content": OBJECT_EXTRACT_SYSTEM},
-            {"role": "user", "content": f"Question: {question}"},
+            {"role": "user", "content": "\n".join(user_lines)},
         ],
         "temperature": 0.0,
         "max_tokens": 20,
     }
     data = _openrouter_post(payload, api_key)
-    obj = _openrouter_text(data).lower().strip().strip(".")
+    obj = _normalize_object_prompt(_openrouter_text(data))
     if not obj:
         raise RuntimeError("LLM returned empty object extraction")
+    if not _is_usable_object_prompt(obj):
+        raise RuntimeError(f"LLM returned overly generic object: {obj!r}")
     return obj
+
+
+def resolve_object_prompt(
+    *,
+    manual: Optional[str],
+    question: str,
+    answer: Optional[str],
+    object_context: Optional[str],
+    model_name: str,
+) -> tuple[str, str]:
+    """
+    Choose the SAM3 segmentation prompt and a short label for logging/manifest.
+    Returns (prompt, source) where source is manual|heuristic|llm|fallback.
+    """
+    if manual:
+        p = _normalize_object_prompt(manual)
+        if _is_usable_object_prompt(p):
+            return p, "manual"
+
+    derived = derive_object_prompt_heuristic(question, answer, object_context)
+    if derived:
+        return derived, "heuristic"
+
+    try:
+        return extract_object_from_question(
+            question, model_name, answer=answer, object_context=object_context
+        ), "llm_extracted"
+    except Exception:
+        if re.search(r"\bperson\b", question, re.IGNORECASE):
+            return "person", "fallback_person"
+        # CLEVRER / shape videos: never fall back to "person".
+        color = _extract_color_from_text(question) or _extract_color_from_text(
+            object_context or ""
+        )
+        if color:
+            return f"{color} sphere", "fallback_color_shape"
+        return "sphere", "fallback_shape"
 
 
 OBJECT_CONTEXT_SYSTEM = """\
@@ -361,6 +634,35 @@ def probe_video(path: Path) -> tuple[float, float, int, int]:
     cap.release()
     duration = n / fps if fps > 0 else 0.0
     return fps, duration, w, h
+
+
+def pad_clip_to_min_duration(src: Path, dst: Path, min_sec: float = 3.1) -> None:
+    """
+    If src is shorter than min_sec, extend it to min_sec by looping its content.
+    This prevents Kling's 3.0s minimum-duration rejection caused by frame-quantization
+    when re-encoding a short source (e.g. 5.12s @ 25fps → 30fps produces ~2.97s clips).
+    Always writes to a temp file first so src and dst may be the same path.
+    """
+    _, actual_dur, _, _ = probe_video(src)
+    if actual_dur >= min_sec:
+        if src.resolve() != dst.resolve():
+            shutil.copy2(str(src), str(dst))
+        return
+    tmp = dst.with_suffix(".pad_tmp.mp4")
+    try:
+        run_ffmpeg([
+            "-stream_loop", "-1",
+            "-i", str(src),
+            "-t", f"{min_sec:.4f}",
+            "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an",
+            str(tmp),
+        ])
+        shutil.move(str(tmp), str(dst))
+    finally:
+        if tmp.exists():
+            tmp.unlink(missing_ok=True)
+    _, padded_dur, _, _ = probe_video(dst)
+    print(f"  Clip padded: {actual_dur:.3f}s → {padded_dur:.3f}s (min={min_sec:.1f}s)")
 
 
 def normalize_clip(src: Path, dst: Path, fps: Optional[float] = None) -> None:
@@ -627,10 +929,13 @@ def split_for_kling(
     start_sec: float,
     end_sec: float,
     video_duration: float,
-    min_d: float = 3.0,
-    max_d: float = 3.0,
+    min_d: float = 3.1,
+    max_d: float = 5.0,
 ) -> list[tuple[float, float]]:
-    """Return sub-intervals each within [min_d, max_d] seconds (Kling input constraints)."""
+    """Return sub-intervals each within [min_d, max_d] seconds (Kling input constraints).
+    min_d is 3.1 (not 3.0) to absorb frame-quantization rounding that can shave ~34ms
+    off a nominally 3.0s clip after re-encoding, triggering Kling's 3.0s minimum rejection.
+    """
     s = max(0.0, min(start_sec, video_duration))
     e = max(s, min(end_sec, video_duration))
     if e - s <= 1e-9:
@@ -804,18 +1109,62 @@ def kling_edit(
     prompt: str,
     endpoint: str,
     keep_audio: bool,
+    max_retries: int = 3,
+    retry_delay: float = 15.0,
+    local_video_path: Optional[Path] = None,
 ) -> str:
-    args: dict[str, Any] = {
-        "prompt": prompt,
-        "video_url": video_url,
-        "keep_audio": keep_audio,
-    }
-    result = _fal_client().subscribe(endpoint, arguments=args)
-    vid = result.get("video") or {}
-    url = vid.get("url")
-    if not url:
-        raise RuntimeError(f"Kling returned no video URL: {result!r}")
-    return url
+    """Submit to Kling with automatic retry on transient errors.
+
+    ``local_video_path`` is the on-disk video file.  When the fal.ai upload URL
+    goes stale (indicated by a "Failed to load video" error), the file is
+    re-uploaded before each subsequent attempt so the URL is always fresh.
+    """
+    import time as _time
+
+    current_url = video_url
+    last_exc: Exception = RuntimeError("no attempt made")
+    for attempt in range(1, max_retries + 1):
+        fal_args: dict[str, Any] = {
+            "prompt": prompt,
+            "video_url": current_url,
+            "keep_audio": keep_audio,
+        }
+        try:
+            result = _fal_client().subscribe(endpoint, arguments=fal_args)
+            vid = result.get("video") or {}
+            url = vid.get("url")
+            if not url:
+                raise RuntimeError(f"Kling returned no video URL: {result!r}")
+            if attempt > 1:
+                print(f"  Kling succeeded on attempt {attempt}.")
+            return url
+        except Exception as exc:
+            last_exc = exc
+            err_str = str(exc)
+            # Do not retry permanent auth / format errors.
+            if any(k in err_str for k in ("401", "403", "invalid_api_key")):
+                raise
+            if attempt < max_retries:
+                wait = retry_delay * attempt
+                # If fal.ai says it can't load the video, the upload URL may have
+                # expired.  Re-upload the local file to get a fresh URL.
+                if "Failed to load video" in err_str and local_video_path is not None:
+                    print(
+                        f"  Kling attempt {attempt}/{max_retries} — upload URL stale, "
+                        f"re-uploading {local_video_path.name}..."
+                    )
+                    try:
+                        current_url = _fal_client().upload_file(str(local_video_path))
+                        print(f"  Re-uploaded → {current_url[:80]}...")
+                    except Exception as up_exc:
+                        print(f"  Re-upload failed: {up_exc}", file=sys.stderr)
+                else:
+                    print(
+                        f"  Kling attempt {attempt}/{max_retries} failed: {exc!s:.120} "
+                        f"— retrying in {wait:.0f}s..."
+                    )
+                _time.sleep(wait)
+    raise last_exc
 
 
 def download_url(url: str, dest: Path) -> None:
@@ -870,6 +1219,11 @@ def main() -> None:
     )
     parser.add_argument("--question", required=True, help="Benchmark question text")
     parser.add_argument(
+        "--answer",
+        default=None,
+        help="Correct MCQ answer (helps derive SAM3 object prompt for interaction/existence rows)",
+    )
+    parser.add_argument(
         "--wrong-option",
         required=True,
         help="The incorrect answer option to realize visually (distractor)",
@@ -901,6 +1255,16 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--skip-sam3",
+        action="store_true",
+        help=(
+            "Skip SAM3 segmentation entirely and treat the whole clip window "
+            "(--clip-start-sec to --clip-end-sec, or full video) as the editing interval. "
+            "Use for ADD-existence rows (object not yet in clip) and count rows "
+            "(edit is a clone/removal across the whole scene)."
+        ),
+    )
+    parser.add_argument(
         "--sample-stride-frames",
         type=int,
         default=15,
@@ -927,10 +1291,10 @@ def main() -> None:
     parser.add_argument(
         "--max-interval-sec",
         type=float,
-        default=3.0,
+        default=5.0,
         help=(
             "Cap the chosen presence interval to this many seconds before splitting for Kling "
-            "(default: 3.0). The midpoint of the interval is kept; excess is trimmed symmetrically."
+            "(default: 5.0). The midpoint of the interval is kept; excess is trimmed symmetrically."
         ),
     )
     parser.add_argument(
@@ -960,14 +1324,35 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--clip-start-sec",
+        type=float,
+        default=None,
+        metavar="SEC",
+        help=(
+            "Only sample frames at or after this timestamp (seconds). "
+            "Use with --clip-end-sec to restrict SAM3 to a specific action window "
+            "(e.g. the accurate_start/accurate_end from the HF dataset)."
+        ),
+    )
+    parser.add_argument(
+        "--clip-end-sec",
+        type=float,
+        default=None,
+        metavar="SEC",
+        help="Only sample frames at or before this timestamp (seconds).",
+    )
+    parser.add_argument(
         "--kling-endpoint",
         default="fal-ai/kling-video/o1/standard/video-to-video/edit",
         help="fal model id for Kling video edit",
     )
     parser.add_argument(
         "--gemini-model",
-        default="google/gemini-3-flash-preview",
-        help="OpenRouter model id used to generate edit prompts",
+        default=None,
+        help=(
+            "OpenRouter model id used to generate edit prompts "
+            "(default: first enabled model in models.json)"
+        ),
     )
     parser.add_argument(
         "--keep-audio",
@@ -981,6 +1366,8 @@ def main() -> None:
         help="Path to ffmpeg binary (default: look on PATH, then /opt/homebrew/bin/ffmpeg, /usr/local/bin/ffmpeg)",
     )
     args = parser.parse_args()
+    if not args.gemini_model:
+        args.gemini_model = default_openrouter_model()
 
     ffmpeg_bin = args.ffmpeg or _find_ffmpeg()
     if not ffmpeg_bin:
@@ -1010,18 +1397,22 @@ def main() -> None:
         )
         sys.exit(1)
 
-    # --- Resolve object prompt (auto-extract if not supplied) ---
-    object_prompt = args.object_prompt
-    if not object_prompt:
-        print(f"No --object-prompt supplied; asking LLM to extract object from question...")
-        try:
-            object_prompt = extract_object_from_question(args.question, args.gemini_model)
-            print(f"  LLM extracted object: '{object_prompt}'")
-        except Exception as e:
-            print(f"  Object extraction failed: {e}\n  Falling back to 'person'.", file=sys.stderr)
-            object_prompt = "person"
-    else:
+    # --- Resolve object prompt (heuristic → LLM → fallback) ---
+    object_prompt, object_prompt_source = resolve_object_prompt(
+        manual=args.object_prompt,
+        question=args.question,
+        answer=args.answer,
+        object_context=args.object_context,
+        model_name=args.gemini_model,
+    )
+    if object_prompt_source == "manual":
         print(f"Object prompt (manual): '{object_prompt}'")
+    elif object_prompt_source == "heuristic":
+        print(f"Object prompt (from answer/edit hint): '{object_prompt}'")
+    elif object_prompt_source == "llm_extracted":
+        print(f"Object prompt (LLM): '{object_prompt}'")
+    else:
+        print(f"Object prompt (fallback): '{object_prompt}'", file=sys.stderr)
 
     video_path = _resolve_input_path(args.video)
     if not video_path.is_file():
@@ -1061,61 +1452,153 @@ def main() -> None:
     fps, duration, vw, vh = probe_video(video_path)
     print(f"Video: {duration:.2f}s @ {fps:.2f} fps, {vw}×{vh}")
 
-    cap = cv2.VideoCapture(str(video_path))
-    if not cap.isOpened():
-        print("Could not open video", file=sys.stderr)
-        sys.exit(1)
-
-    sampled_hits: list[tuple[int, float]] = []
-    frame_idx = 0
-    if args.dry_run:
-        print(f"[DRY-RUN] Mocking SAM3 — treating every {args.sample_stride_frames}-th frame as a hit...")
-    else:
-        print(f"SAM3 sampling every {args.sample_stride_frames} frames for '{object_prompt}'...")
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        if frame_idx % args.sample_stride_frames != 0:
-            frame_idx += 1
-            continue
-
-        fp = frames_dir / f"frame_{frame_idx:06d}.png"
-        cv2.imwrite(str(fp), frame)
-
-        if args.dry_run:
-            # Mock: every sampled frame is a hit with a synthetic mask fraction
-            sampled_hits.append((frame_idx, 0.05))
-            print(f"  [mock] hit frame {frame_idx}")
-        else:
-            mask = segment_frame(str(fp), object_prompt, None, None)
-            if mask is not None:
-                frac = mask_fraction(mask)
-                if frac >= args.min_mask_fraction:
-                    sampled_hits.append((frame_idx, frac))
-                    print(f"  hit frame {frame_idx} mask={frac:.4f}")
-
-        frame_idx += 1
-
-    cap.release()
-
-    if not sampled_hits:
-        print(
-            "No frames passed SAM3 threshold. Lower --min-mask-fraction or adjust --object-prompt.",
-            file=sys.stderr,
-        )
-        sys.exit(2)
-
-    intervals = build_presence_intervals(
-        sampled_hits, fps, args.sample_stride_frames, merge_gap
+    # Clamp clip window to actual video duration.
+    clip_start_sec: float = max(0.0, args.clip_start_sec) if args.clip_start_sec is not None else 0.0
+    clip_end_sec: float = (
+        min(duration, args.clip_end_sec) if args.clip_end_sec is not None else duration
     )
-    print(f"Presence intervals (sampled): {len(intervals)}")
-    for i, it in enumerate(intervals):
+    if clip_start_sec > 0.0 or clip_end_sec < duration:
         print(
-            f"  [{i}] frames {it.start_frame}–{it.end_frame}  "
-            f"time {it.start_sec:.2f}s–{it.end_sec:.2f}s  "
-            f"(dur {it.end_sec - it.start_sec:.2f}s)"
+            f"Sampling window restricted to {clip_start_sec:.2f}s – {clip_end_sec:.2f}s "
+            f"(of {duration:.2f}s total)"
         )
+
+    start_frame_idx = int(clip_start_sec * fps)
+    end_frame_idx = int(clip_end_sec * fps)
+
+    # ── --skip-sam3: treat the whole clip window as one presence interval ────
+    if args.skip_sam3:
+        print(
+            f"[--skip-sam3] Bypassing SAM3 — using full clip window "
+            f"{clip_start_sec:.2f}s – {clip_end_sec:.2f}s as editing interval."
+        )
+        intervals = [
+            PresenceInterval(
+                start_frame=start_frame_idx,
+                end_frame=end_frame_idx,
+                start_sec=clip_start_sec,
+                end_sec=clip_end_sec,
+            )
+        ]
+        # Jump straight to interval selection; skip all SAM3 code.
+        print(f"Presence intervals (skip-sam3): 1")
+        print(
+            f"  [0] frames {start_frame_idx}–{end_frame_idx}  "
+            f"time {clip_start_sec:.2f}s–{clip_end_sec:.2f}s  "
+            f"(dur {clip_end_sec - clip_start_sec:.2f}s)"
+        )
+    else:
+        cap = cv2.VideoCapture(str(video_path))
+        if not cap.isOpened():
+            print("Could not open video", file=sys.stderr)
+            sys.exit(1)
+
+        # Seek to the start of the sampling window for speed on long videos.
+        if start_frame_idx > 0:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, start_frame_idx)
+
+    if not args.skip_sam3:
+        sampled_hits = []
+        frame_idx = start_frame_idx
+        if args.dry_run:
+            print(
+                f"[DRY-RUN] Mocking SAM3 — treating every {args.sample_stride_frames}-th frame "
+                f"as a hit (frames {start_frame_idx}–{end_frame_idx})..."
+            )
+        else:
+            print(
+                f"SAM3 sampling every {args.sample_stride_frames} frames for '{object_prompt}' "
+                f"(frames {start_frame_idx}–{end_frame_idx})..."
+            )
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+            if frame_idx > end_frame_idx:
+                break
+            if frame_idx % args.sample_stride_frames != 0:
+                frame_idx += 1
+                continue
+            fp = frames_dir / f"frame_{frame_idx:06d}.png"
+            cv2.imwrite(str(fp), frame)
+            if args.dry_run:
+                sampled_hits.append((frame_idx, 0.05))
+                print(f"  [mock] hit frame {frame_idx}")
+            else:
+                mask = segment_frame(str(fp), object_prompt, None, None)
+                if mask is not None:
+                    frac = mask_fraction(mask)
+                    if frac >= args.min_mask_fraction:
+                        sampled_hits.append((frame_idx, frac))
+                        print(f"  hit frame {frame_idx} mask={frac:.4f}")
+            frame_idx += 1
+        cap.release()
+
+        # ── Multi-prompt fallback ────────────────────────────────────────────
+        if not sampled_hits and not args.dry_run:
+            fallbacks = _get_sam3_fallback_prompts(object_prompt, args.question, args.object_context)
+            for fb_prompt in fallbacks:
+                print(f"  0 hits with '{object_prompt}' — retrying SAM3 with '{fb_prompt}'...")
+                for fp in sorted(frames_dir.glob("frame_*.png")):
+                    frame_n = int(fp.stem.split("_")[1])
+                    if frame_n < start_frame_idx or frame_n > end_frame_idx:
+                        continue
+                    mask = segment_frame(str(fp), fb_prompt, None, None)
+                    if mask is not None:
+                        frac = mask_fraction(mask)
+                        if frac >= args.min_mask_fraction:
+                            sampled_hits.append((frame_n, frac))
+                            print(f"    hit frame {frame_n} mask={frac:.4f}")
+                if sampled_hits:
+                    object_prompt = fb_prompt
+                    print(f"  Using fallback prompt: '{object_prompt}' ({len(sampled_hits)} hits)")
+                    break
+
+        # ── Lower-threshold last resort ──────────────────────────────────────
+        if not sampled_hits and not args.dry_run:
+            lower_thresh = args.min_mask_fraction / 2.0
+            all_prompts = [object_prompt] + _get_sam3_fallback_prompts(object_prompt, args.question, args.object_context)
+            print(
+                f"  All prompts exhausted at threshold {args.min_mask_fraction:.4f}. "
+                f"Retrying with lower threshold {lower_thresh:.4f}..."
+            )
+            for fb_prompt in all_prompts:
+                for fp in sorted(frames_dir.glob("frame_*.png")):
+                    frame_n = int(fp.stem.split("_")[1])
+                    if frame_n < start_frame_idx or frame_n > end_frame_idx:
+                        continue
+                    mask = segment_frame(str(fp), fb_prompt, None, None)
+                    if mask is not None:
+                        frac = mask_fraction(mask)
+                        if frac >= lower_thresh:
+                            sampled_hits.append((frame_n, frac))
+                if sampled_hits:
+                    object_prompt = fb_prompt
+                    print(
+                        f"  Lower-threshold hit: '{object_prompt}' "
+                        f"(thresh={lower_thresh:.4f}, {len(sampled_hits)} hits)"
+                    )
+                    break
+
+        # ── Last resort: use full clip window so Kling still runs ────────────
+        if not sampled_hits:
+            print(
+                "  No frames passed SAM3 threshold after all fallback prompts. "
+                "Falling back to full clip window as editing interval.",
+                file=sys.stderr,
+            )
+            sampled_hits = [(start_frame_idx, 0.001), (end_frame_idx, 0.001)]
+
+        intervals = build_presence_intervals(
+            sampled_hits, fps, args.sample_stride_frames, merge_gap
+        )
+        print(f"Presence intervals (sampled): {len(intervals)}")
+        for i, it in enumerate(intervals):
+            print(
+                f"  [{i}] frames {it.start_frame}–{it.end_frame}  "
+                f"time {it.start_sec:.2f}s–{it.end_sec:.2f}s  "
+                f"(dur {it.end_sec - it.start_sec:.2f}s)"
+            )
 
     try:
         chosen = select_presence_interval(
@@ -1152,6 +1635,20 @@ def main() -> None:
         print(
             f"Interval capped to {args.max_interval_sec:.1f}s "
             f"(was {interval_dur:.2f}s): {clip_start:.2f}s – {clip_end:.2f}s"
+        )
+
+    # Guarantee the editing interval is at least 3.1s so Kling never rejects
+    # it for being too short (Kling minimum is 3.0s; 0.1s buffer absorbs
+    # frame-quantization rounding during re-encode).
+    KLING_MIN_SEC = 3.1
+    if clip_end - clip_start < KLING_MIN_SEC:
+        mid = (clip_start + clip_end) / 2.0
+        clip_start = max(0.0, mid - KLING_MIN_SEC / 2.0)
+        clip_end = min(duration, clip_start + KLING_MIN_SEC)
+        clip_start = max(0.0, clip_end - KLING_MIN_SEC)
+        print(
+            f"Interval padded to minimum {KLING_MIN_SEC:.1f}s: "
+            f"{clip_start:.2f}s – {clip_end:.2f}s"
         )
 
     # Split the (capped) interval into Kling-sized chunks and keep at most max_segments.
@@ -1199,10 +1696,13 @@ def main() -> None:
         "fps": fps,
         "duration_sec": duration,
         "question": args.question,
+        "answer": args.answer,
         "wrong_option": args.wrong_option,
-        "object_prompt_source": "manual" if args.object_prompt else "llm_extracted",
+        "object_prompt_source": object_prompt_source,
         "sam3_object_prompt": object_prompt,
         "dry_run": args.dry_run,
+        "clip_start_sec": clip_start_sec if args.clip_start_sec is not None else None,
+        "clip_end_sec": clip_end_sec if args.clip_end_sec is not None else None,
         "sample_stride_frames": args.sample_stride_frames,
         "merge_gap_frames": merge_gap,
         "min_mask_fraction": args.min_mask_fraction,
@@ -1241,94 +1741,93 @@ def main() -> None:
         raw_kling_in_saved = raw_video_dir / f"{seg_label}_02_kling_input_normalized.mp4"
         raw_kling_api_saved = raw_video_dir / f"{seg_label}_03_kling_api_raw_download.mp4"
 
-        # 1. Extract the interval from the original video (FPS-locked to match source)
-        extract_clip(video_path, cs, dur, raw_clip, fps=fps)
-        shutil.copy2(raw_clip, raw_source_saved)
-        # 2. Normalize geometry for Kling (always 30 fps as Kling requires)
-        ensure_kling_geometry(raw_clip, kling_in)
-        shutil.copy2(kling_in, raw_kling_in_saved)
-
-        # 3. Save a keyframe (middle of the interval) for reference
-        vcap = cv2.VideoCapture(str(video_path))
-        vcap.set(cv2.CAP_PROP_POS_MSEC, ((cs + ce) / 2.0) * 1000.0)
-        ok, fr = vcap.read()
-        vcap.release()
-        if ok and fr is not None:
-            cv2.imwrite(str(kf_path), fr)
-            print(f"  Keyframe saved: {kf_path.name}")
-
-        # 4. Generate Kling editing instruction via Gemini (with keyframe for visual grounding)
-        edit_prompt = build_gemini_edit_prompt(
-            args.question,
-            args.wrong_option,
-            object_prompt,
-            cs,
-            ce,
-            args.gemini_model,
-            object_context=object_context,
-            keyframe_path=kf_path if kf_path.exists() else None,
-        )
-        prompt_path = edit_prompts_dir / f"{seg_label}_edit_instruction.txt"
-        prompt_path.write_text(edit_prompt, encoding="utf-8")
-        print(f"  Edit instruction ({len(edit_prompt)} chars) — saved: {prompt_path.name}")
-        _indent = 4
-        try:
-            _term_cols = shutil.get_terminal_size(fallback=(100, 24)).columns
-        except OSError:
-            _term_cols = 100
-        # Wrap to terminal width minus indent so the shell does not re-break mid-word.
-        _wrap_width = max(40, min(88, _term_cols - _indent))
-        for line in textwrap.wrap(
-            edit_prompt,
-            width=_wrap_width,
-            break_long_words=False,
-            break_on_hyphens=False,
-        ):
-            print(f"{' ' * _indent}{line}")
-
-        # 5. Edit the clip with Kling (or mock for dry-run)
+        status = "error"
+        err: Optional[str] = None
         out_url: Optional[str] = None
-        if args.dry_run:
-            shutil.copy2(kling_in, edited_out)
-            shutil.copy2(kling_in, raw_kling_api_saved)
-            print(f"  [DRY-RUN] Skipped Kling — using source clip as stand-in")
-            status = "dry_run"
-            err = None
-        else:
+        edited_dur_actual: Optional[float] = None
+        duration_trimmed = False
+
+        edit_prompt = ""
+        prompt_path = edit_prompts_dir / f"{seg_label}_edit_instruction.txt"
+        try:
+            extract_clip(video_path, cs, dur, raw_clip, fps=fps)
+            shutil.copy2(raw_clip, raw_source_saved)
+            ensure_kling_geometry(raw_clip, kling_in)
+            pad_clip_to_min_duration(kling_in, kling_in, min_sec=3.1)
+            shutil.copy2(kling_in, raw_kling_in_saved)
+
+            vcap = cv2.VideoCapture(str(video_path))
+            vcap.set(cv2.CAP_PROP_POS_MSEC, ((cs + ce) / 2.0) * 1000.0)
+            ok, fr = vcap.read()
+            vcap.release()
+            if ok and fr is not None:
+                cv2.imwrite(str(kf_path), fr)
+                print(f"  Keyframe saved: {kf_path.name}")
+
+            edit_prompt = build_gemini_edit_prompt(
+                args.question,
+                args.wrong_option,
+                object_prompt,
+                cs,
+                ce,
+                args.gemini_model,
+                object_context=object_context,
+                keyframe_path=kf_path if kf_path.exists() else None,
+            )
+            prompt_path.write_text(edit_prompt, encoding="utf-8")
+            print(f"  Edit instruction ({len(edit_prompt)} chars) — saved: {prompt_path.name}")
+            _indent = 4
             try:
+                _term_cols = shutil.get_terminal_size(fallback=(100, 24)).columns
+            except OSError:
+                _term_cols = 100
+            _wrap_width = max(40, min(88, _term_cols - _indent))
+            for line in textwrap.wrap(
+                edit_prompt,
+                width=_wrap_width,
+                break_long_words=False,
+                break_on_hyphens=False,
+            ):
+                print(f"{' ' * _indent}{line}")
+
+            if args.dry_run:
+                shutil.copy2(kling_in, edited_out)
+                shutil.copy2(kling_in, raw_kling_api_saved)
+                print("  [DRY-RUN] Skipped Kling — using source clip as stand-in")
+                status = "dry_run"
+                err = None
+            else:
                 ku = _fal_client().upload_file(str(kling_in))
-                out_url = kling_edit(ku, edit_prompt, args.kling_endpoint, args.keep_audio)
-                # Save exact bytes from Kling URL into raw_outputs, then mirror to edited_clips/
+                out_url = kling_edit(
+                    ku, edit_prompt, args.kling_endpoint, args.keep_audio,
+                    local_video_path=kling_in,
+                )
                 download_url(out_url, raw_kling_api_saved)
                 shutil.copy2(raw_kling_api_saved, edited_out)
                 print(f"  Kling edit saved: {edited_out.name} (raw API file: {raw_kling_api_saved.name})")
                 status = "ok"
                 err = None
-            except Exception as e:
-                status = "error"
-                err = str(e)
-                print(f"  ERROR (Kling): {e}")
 
-        # 5b. Duration-check: trim edited clip to the source interval length if Kling
-        #     returned a clip that is too long (prevents timeline drift in the splice).
-        edited_dur_actual: Optional[float] = None
-        duration_trimmed = False
-        if status in ("ok", "dry_run"):
-            _, edited_dur_actual, _, _ = probe_video(edited_out)
-            if edited_dur_actual > dur + 0.05:
-                trimmed_path = edited_dir / f"{seg_label}_edited_trimmed.mp4"
-                trim_clip_to_duration(edited_out, trimmed_path, dur)
-                shutil.move(str(trimmed_path), str(edited_out))
-                duration_trimmed = True
-                print(
-                    f"  Duration trimmed: {edited_dur_actual:.3f}s → {dur:.3f}s "
-                    f"(source interval length)"
-                )
-            elif edited_dur_actual < dur - 0.05:
-                print(
-                    f"  Warning: edited clip ({edited_dur_actual:.3f}s) is shorter than "
-                    f"source interval ({dur:.3f}s); splice will be shorter at this position."
-                )
+            if status in ("ok", "dry_run"):
+                _, edited_dur_actual, _, _ = probe_video(edited_out)
+                if edited_dur_actual > dur + 0.05:
+                    trimmed_path = edited_dir / f"{seg_label}_edited_trimmed.mp4"
+                    trim_clip_to_duration(edited_out, trimmed_path, dur)
+                    shutil.move(str(trimmed_path), str(edited_out))
+                    duration_trimmed = True
+                    print(
+                        f"  Duration trimmed: {edited_dur_actual:.3f}s → {dur:.3f}s "
+                        f"(source interval length)"
+                    )
+                elif edited_dur_actual < dur - 0.05:
+                    print(
+                        f"  Warning: edited clip ({edited_dur_actual:.3f}s) is shorter than "
+                        f"source interval ({dur:.3f}s); splice will be shorter at this position."
+                    )
+        except Exception as exc:
+            status = "error"
+            err = str(exc)
+            print(f"  ERROR (segment): {exc}", file=sys.stderr)
 
         seg_record = {
             "segment_index": seg_i,
@@ -1405,6 +1904,19 @@ def main() -> None:
     print(f"\nManifest: {manifest_path}")
     print(f"Output directory: {out_root}")
 
+    if not args.dry_run and not manifest.get("final_spliced_video_path"):
+        print(
+            "Pipeline finished without final_spliced.mp4 (SAM3 or Kling step failed).",
+            file=sys.stderr,
+        )
+        sys.exit(3)
+
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as exc:
+        print(f"Fatal error: {exc}", file=sys.stderr)
+        sys.exit(1)

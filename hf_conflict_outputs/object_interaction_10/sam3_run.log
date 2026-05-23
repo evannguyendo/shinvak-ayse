@@ -1,0 +1,7 @@
+No frames passed SAM3 threshold. Lower --min-mask-fraction or adjust --object-prompt.
+Using ffmpeg: /opt/homebrew/bin/ffmpeg
+No --object-prompt supplied; asking LLM to extract object from question...
+  LLM extracted object: 'object'
+Video: 29.53s @ 29.97 fps, 480×360
+Sampling window restricted to 18.00s – 25.30s (of 29.53s total)
+SAM3 sampling every 15 frames for 'object' (frames 539–758)...
