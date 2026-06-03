@@ -3,14 +3,19 @@ import json
 import base64
 import argparse
 import re
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional, Type, TypeVar
 
 import requests
+from dotenv import load_dotenv
 # use Pydantic for validation and parsing of the response
 from pydantic import BaseModel, Field, ConfigDict, ValidationError, field_validator
 
-from models_config import default_openrouter_model
+from models_config import default_openrouter_model, openrouter_provider_extensions
+
+_PROJECT_ROOT = Path(__file__).resolve().parent
+load_dotenv(_PROJECT_ROOT / ".env", override=True)
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
@@ -118,19 +123,36 @@ def openrouter_chat(
     if response_format is not None:
         payload["response_format"] = response_format
 
-    resp = requests.post(
-        OPENROUTER_URL,
-        headers=headers,
-        json=payload,
-        timeout=300,
-    )
+    provider_extra = openrouter_provider_extensions(model)
+    if provider_extra:
+        payload.update(provider_extra)
 
-    if resp.status_code != 200:
-        raise RuntimeError(
-            f"OpenRouter error {resp.status_code}\n{resp.text[:4000]}"
+    last_error: Optional[str] = None
+    for attempt in range(5):
+        resp = requests.post(
+            OPENROUTER_URL,
+            headers=headers,
+            json=payload,
+            timeout=300,
         )
+        if resp.status_code == 200:
+            return resp.json()
 
-    return resp.json()
+        last_error = f"OpenRouter error {resp.status_code}\n{resp.text[:4000]}"
+        if resp.status_code in (429, 502, 503) and attempt < 4:
+            wait_sec = 5.0
+            try:
+                meta = resp.json().get("error", {}).get("metadata", {})
+                raw_wait = meta.get("retry_after_seconds")
+                if raw_wait is not None:
+                    wait_sec = max(2.0, float(raw_wait))
+            except Exception:
+                pass
+            time.sleep(wait_sec)
+            continue
+        break
+
+    raise RuntimeError(last_error or "OpenRouter request failed")
 
 # for JSON formatting - could possibly use Instructor library later if failing to parse
 def parse_json_text(text: str) -> Dict[str, Any]:
@@ -166,32 +188,49 @@ def validate_model(model_cls: Type[ModelT], text: str) -> ModelT:
         ) from e
 
 
-def ask_video_question(
+def call_video_api_raw(
     *,
     model: str,
     video_data_url: str,
     question: str,
+    options: Optional[List[str]] = None,
     max_tokens: int = 1200,
-    temperature: float = 0.1,
-) -> tuple[QAResult, str]:
-    prompt = f"""
-Answer the user's question about the video using only what is visually observable.
-
-Question:
-{question}
-
-Return ONLY valid JSON:
-{{
-  "answer": "your answer",
-  "confidence": "high|medium|low|unknown",
-  "evidence": ["timestamps in MM:SS format"]
-}}
-
-Rules:
-- Base the answer only on the video
-- Evidence must be timestamps in MM:SS format
-- Do not include any other keys
-""".strip()
+    temperature: float = 0.7,
+) -> str:
+    """Single-pass video inference: send video + question (+ options if given) and return
+    the raw response text from the model. Raises RuntimeError only on API/network failure,
+    NOT on parse failure — so callers always get the raw text back for saving."""
+    prompt_lines = [
+        "Answer the user's question about the video using only what is visually observable.",
+        "",
+        f"Question:\n{question}",
+    ]
+    if options:
+        opts = "\n".join(f"- {o}" for o in options)
+        prompt_lines += [
+            "",
+            f"Answer choices:\n{opts}",
+            "- none of these",
+            "",
+            "You MUST pick exactly one of the listed choices above.",
+            "If none of the choices match what you observe, answer \"none of these\".",
+            "Do not give any other answer.",
+        ]
+    prompt_lines += [
+        "",
+        "Return ONLY valid JSON:",
+        '{',
+        '  "answer": "your answer",',
+        '  "confidence": "high|medium|low|unknown",',
+        '  "evidence": ["timestamps in MM:SS format"]',
+        '}',
+        "",
+        "Rules:",
+        "- Base the answer only on the video",
+        "- Evidence must be timestamps in MM:SS format",
+        "- Do not include any other keys",
+    ]
+    prompt = "\n".join(prompt_lines)
 
     messages = [
         {
@@ -214,7 +253,26 @@ Rules:
         response_format={"type": "json_object"},
     )
 
-    raw_text = extract_message_text(response)
+    return extract_message_text(response)
+
+
+def ask_video_question(
+    *,
+    model: str,
+    video_data_url: str,
+    question: str,
+    options: Optional[List[str]] = None,
+    max_tokens: int = 1200,
+    temperature: float = 0.7,
+) -> tuple[QAResult, str]:
+    raw_text = call_video_api_raw(
+        model=model,
+        video_data_url=video_data_url,
+        question=question,
+        options=options,
+        max_tokens=max_tokens,
+        temperature=temperature,
+    )
     parsed = validate_model(QAResult, raw_text)
     return parsed, raw_text
 

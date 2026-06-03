@@ -1,0 +1,27 @@
+*Video inference suite complete* — `runs/hf_inference_smoke3`
+
+Single-pass Q&A on original (`control`) vs edited (`conflict` / final_spliced).
+
+*gemini-3.5-flash*
+  • original: 1/1 (100.0%)
+  • edited:   0/1 (0.0%)
+
+*gemma_4*
+  • original: 0/1 (0.0%)
+  • edited:   0/1 (0.0%)
+  • errors: moving_attribute_00:control → OpenRouter error 400
+{"error":{"message":"Provider returned error","code":400,"metadata":{"raw":"{\"code\":400,\"reason\
+
+*glm_5v_turbo*
+  • original: 0/1 (0.0%)
+  • edited:   0/1 (0.0%)
+  • errors: moving_attribute_00:control → OpenRouter error 404
+{"error":{"message":"No allowed providers are available for the selected model.","code":404,"metada
+
+*qwen_3.5_flash*
+  • original: 0/1 (0.0%)
+  • edited:   0/1 (0.0%)
+  • errors: moving_attribute_00:control → OpenRouter error 429
+{"error":{"message":"Provider returned error","code":429,"metadata":{"raw":"qwen/qwen3.5-flash-02-2
+
+Raw responses: `<run_dir>/<model_id>/responses.jsonl` (field `raw_response_text`).

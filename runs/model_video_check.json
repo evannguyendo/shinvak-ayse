@@ -1,0 +1,30 @@
+[
+  {
+    "id": "gemini-3.5-flash",
+    "model": "google/gemini-3.5-flash",
+    "runnable": false,
+    "status": "failed",
+    "error": "Model returned invalid JSON. Raw text: {   \""
+  },
+  {
+    "id": "gemma_4",
+    "model": "google/gemma-4-26b-a4b-it",
+    "runnable": false,
+    "status": "failed",
+    "error": "OpenRouter error 400 {\"error\":{\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"{\\\"code\\\":400,\\\"reason\\\":\\\"INVALID_REQUEST_BODY\\\",\\\"message\\\":\\\"model features video not support\\\",\\\"metadata\\\":{}}\",\"provi..."
+  },
+  {
+    "id": "qwen_3.5_flash",
+    "model": "qwen/qwen3.5-flash-02-23",
+    "runnable": false,
+    "status": "failed",
+    "error": "OpenRouter error 429 {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3.5-flash-02-23 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your..."
+  },
+  {
+    "id": "glm_5v_turbo",
+    "model": "z-ai/glm-5v-turbo",
+    "runnable": false,
+    "status": "failed",
+    "error": "OpenRouter error 404 {\"error\":{\"message\":\"No allowed providers are available for the selected model.\",\"code\":404,\"metadata\":{\"available_providers\":[\"z-ai\"],\"requested_providers\":[\"xai\",\"wandb\",\"novita\",\"openai\",\"alibaba\"..."
+  }
+]

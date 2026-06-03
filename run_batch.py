@@ -10,7 +10,9 @@ import re
 from run_single_video_question import (
     QAResult,
     ask_video_question,
+    call_video_api_raw,
     encode_video_to_data_url,
+    validate_model,
 )
 
 TIMESTAMP_RE = re.compile(r"^\d{2}:\d{2}$")
@@ -23,6 +25,7 @@ class QuestionSpec(BaseModel):
     question_text: str = Field(min_length=1)
     expected_answer_control: str = Field(min_length=1)
     expected_answer_conflict: str = Field(min_length=1)
+    options: List[str] = Field(default_factory=list)  # answer choices to include in prompt
 
 
 class ExampleRecord(BaseModel):
@@ -225,52 +228,41 @@ def run_example(
     model: str,
     responses_path: str | Path,
     max_tokens: int = 1200,
-    temperature: float = 0.1,
+    temperature: float = 0.7,
 ) -> None:
     for variant in ["control", "conflict"]:
         video_path = example.control_path if variant == "control" else example.conflict_path
 
         for question in example.questions:
             expected_answer = get_expected_answer(question, variant)
+            opts = question.options if question.options else None
 
+            # Step 1: make the API call — get raw text back.
+            # We separate this from parsing so the raw model response is always saved cleanly.
+            raw_text: Optional[str] = None
+            api_error: Optional[str] = None
             try:
                 video_data_url = encode_video_to_data_url(Path(video_path))
-                result, raw_text = ask_video_question(
+                raw_text = call_video_api_raw(
                     model=model,
                     video_data_url=video_data_url,
                     question=question.question_text,
+                    options=opts,
                     max_tokens=max_tokens,
                     temperature=temperature,
                 )
-
-                record = build_response_record(
-                    model=model,
-                    video_id=example.video_id,
-                    variant=variant,
-                    video_path=video_path,
-                    conflict_type=example.conflict_type,
-                    question_id=question.question_id,
-                    question_text=question.question_text,
-                    expected_answer=expected_answer,
-                    raw_response_text=raw_text,
-                    parsed_result=to_parsed_result(result),
-                    status="ok",
-                    error=None,
-                )
-
             except RuntimeError as e:
-                error_text = str(e)
-                lowered = error_text.lower()
+                api_error = str(e)
 
-                if "invalid json" in lowered or "validation failed" in lowered:
-                    status = "parse_error"
+            if api_error is not None:
+                # API/network failure — no model response text to save
+                lowered = api_error.lower()
+                if "openrouter error" in lowered:
+                    status = "api_error"
                 elif "timeout" in lowered:
                     status = "timeout"
-                elif "openrouter error" in lowered:
-                    status = "api_error"
                 else:
-                    status = "validation_error"
-
+                    status = "api_error"
                 record = build_response_record(
                     model=model,
                     video_id=example.video_id,
@@ -280,11 +272,46 @@ def run_example(
                     question_id=question.question_id,
                     question_text=question.question_text,
                     expected_answer=expected_answer,
-                    raw_response_text=error_text[:4000],
+                    raw_response_text=api_error[:4000],
                     parsed_result=None,
                     status=status,
-                    error=error_text[:4000],
+                    error=api_error[:4000],
                 )
+            else:
+                # Step 2: we have the raw API text — try to parse it.
+                # Even if parsing fails, raw_text is saved as-is.
+                assert raw_text is not None
+                try:
+                    result = validate_model(QAResult, raw_text)
+                    record = build_response_record(
+                        model=model,
+                        video_id=example.video_id,
+                        variant=variant,
+                        video_path=video_path,
+                        conflict_type=example.conflict_type,
+                        question_id=question.question_id,
+                        question_text=question.question_text,
+                        expected_answer=expected_answer,
+                        raw_response_text=raw_text,
+                        parsed_result=to_parsed_result(result),
+                        status="ok",
+                        error=None,
+                    )
+                except RuntimeError as e:
+                    record = build_response_record(
+                        model=model,
+                        video_id=example.video_id,
+                        variant=variant,
+                        video_path=video_path,
+                        conflict_type=example.conflict_type,
+                        question_id=question.question_id,
+                        question_text=question.question_text,
+                        expected_answer=expected_answer,
+                        raw_response_text=raw_text,  # clean API text, not the error message
+                        parsed_result=None,
+                        status="parse_error",
+                        error=str(e)[:4000],
+                    )
 
             append_response_record(responses_path, record)
             print(
@@ -322,6 +349,8 @@ def main() -> None:
             example=example,
             model=args.model,
             responses_path=args.responses,
+            max_tokens=args.max_tokens,
+            temperature=args.temperature,
         )
 
     print("Done.")

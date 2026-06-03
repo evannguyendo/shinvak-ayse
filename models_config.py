@@ -33,3 +33,14 @@ def default_openrouter_model(path: Path | None = None) -> str:
         return str(load_enabled_models(path)[0]["openrouter_model"])
     except (OSError, json.JSONDecodeError, KeyError, RuntimeError, IndexError):
         return _FALLBACK_MODEL
+
+
+def openrouter_provider_extensions(model: str) -> dict[str, Any]:
+    """OpenRouter routing hints so video requests hit capable providers."""
+    m = (model or "").strip().lower()
+    if m.startswith("z-ai/") or "/z-ai/" in m:
+        return {"provider": {"only": ["z-ai"], "allow_fallbacks": False}}
+    # Gemma on DeepInfra/Novita often rejects video_url; skip those hosts.
+    if "gemma" in m:
+        return {"provider": {"ignore": ["DeepInfra", "Novita"], "allow_fallbacks": True}}
+    return {}

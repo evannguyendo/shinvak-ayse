@@ -1,0 +1,86 @@
+{
+  "run_dir": "runs/hf_inference_smoke3",
+  "models": {
+    "gemini-3.5-flash": {
+      "status_counts": {
+        "ok": 2
+      },
+      "accuracy_by_variant": {
+        "conflict": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        },
+        "control": {
+          "correct": 1,
+          "total": 1,
+          "pct": 100.0
+        }
+      },
+      "sample_errors": []
+    },
+    "gemma_4": {
+      "status_counts": {
+        "api_error": 2
+      },
+      "accuracy_by_variant": {
+        "conflict": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        },
+        "control": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        }
+      },
+      "sample_errors": [
+        "moving_attribute_00:control \u2192 OpenRouter error 400\n{\"error\":{\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"{\\\"code\\\":400,\\\"reason\\",
+        "moving_attribute_00:conflict \u2192 OpenRouter error 400\n{\"error\":{\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"{\\\"code\\\":400,\\\"reason\\"
+      ]
+    },
+    "glm_5v_turbo": {
+      "status_counts": {
+        "api_error": 2
+      },
+      "accuracy_by_variant": {
+        "conflict": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        },
+        "control": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        }
+      },
+      "sample_errors": [
+        "moving_attribute_00:control \u2192 OpenRouter error 404\n{\"error\":{\"message\":\"No allowed providers are available for the selected model.\",\"code\":404,\"metada",
+        "moving_attribute_00:conflict \u2192 OpenRouter error 404\n{\"error\":{\"message\":\"No allowed providers are available for the selected model.\",\"code\":404,\"metada"
+      ]
+    },
+    "qwen_3.5_flash": {
+      "status_counts": {
+        "api_error": 2
+      },
+      "accuracy_by_variant": {
+        "conflict": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        },
+        "control": {
+          "correct": 0,
+          "total": 1,
+          "pct": 0.0
+        }
+      },
+      "sample_errors": [
+        "moving_attribute_00:control \u2192 OpenRouter error 429\n{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3.5-flash-02-2",
+        "moving_attribute_00:conflict \u2192 OpenRouter error 429\n{\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"qwen/qwen3.5-flash-02-2"
+      ]
+    }
+  }
+}

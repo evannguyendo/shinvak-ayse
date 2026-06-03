@@ -9,14 +9,14 @@
     },
     {
       "id": "gemma_4",
-      "openrouter_model": "google/gemma-4-26b-a4b-it",
+      "openrouter_model": "google/gemma-4-31b-it",
       "max_tokens": 1200,
       "temperature": 0.7,
       "enabled": true
     },
     {
       "id": "qwen_3.5_flash",
-      "openrouter_model": "qwen/qwen3.5-flash-02-23",
+      "openrouter_model": "qwen/qwen3.6-flash",
       "max_tokens": 1200,
       "temperature": 0.7,
       "enabled": true
@@ -26,7 +26,7 @@
       "openrouter_model": "z-ai/glm-5v-turbo",
       "max_tokens": 1200,
       "temperature": 0.7,
-      "enabled": true
+      "enabled": false
     }
   ]
 }

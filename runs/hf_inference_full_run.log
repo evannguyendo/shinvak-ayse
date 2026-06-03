@@ -1,0 +1,199 @@
+=== Building examples from hf_conflict_outputs ===
+Wrote 72 examples → hf_conflict_outputs/inference_examples.jsonl
+
+=== Suite: all enabled models in models.json ===
+Output: runs/hf_inference_20260528T223308Z
+Loaded 72 examples
+Running model: google/gemini-3.5-flash
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_00 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_attribute_00 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_01 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_01 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_02 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_02 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_03 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_03 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_04 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_04 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_05 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_attribute_05 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_06 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_06 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_attribute_07 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_07 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_08 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_08 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_09 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_attribute_09 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_10 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_10 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_11 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_11 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_12 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_12 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_13 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_13 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_14 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_attribute_14 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_00 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_00 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_01 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_count_01 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_02 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_02 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_03 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_03 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_04 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_04 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_05 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_05 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_06 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_06 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_07 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_07 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_08 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_08 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_count_09 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_09 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_10 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_10 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_11 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_11 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_12 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_12 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_13 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_count_13 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_14 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_count_14 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_00 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_00 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_01 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_01 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_02 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_direction_02 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_03 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_03 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_04 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_04 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_05 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_05 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_06 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_06 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_07 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_direction_07 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_08 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_08 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_09 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_09 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_10 variant=control question_id=hf_main
+[validation_error] model=google/gemini-3.5-flash video_id=moving_direction_10 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_11 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_11 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_12 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_12 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_13 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=moving_direction_13 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_14 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=moving_direction_14 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_00 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_00 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_01 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_01 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_02 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_02 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_03 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_03 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_04 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_04 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_05 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_05 variant=conflict question_id=hf_main
+[validation_error] model=google/gemini-3.5-flash video_id=object_existence_06 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_06 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_07 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_07 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_08 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_08 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=object_existence_09 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_09 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_10 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_10 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_11 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_11 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_12 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_12 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_13 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_13 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_14 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_existence_14 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_00 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_00 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=object_interaction_01 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_01 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_02 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_02 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=object_interaction_03 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_03 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_04 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_04 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=object_interaction_05 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_05 variant=conflict question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=object_interaction_07 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_07 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_08 variant=control question_id=hf_main
+[parse_error] model=google/gemini-3.5-flash video_id=object_interaction_08 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_09 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_09 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_10 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_10 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_11 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_11 variant=conflict question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_14 variant=control question_id=hf_main
+[ok] model=google/gemini-3.5-flash video_id=object_interaction_14 variant=conflict question_id=hf_main
+Done.
+Traceback (most recent call last):
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 360, in <module>
+    main()
+    ~~~~^^
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 339, in main
+    examples = load_examples_jsonl(args.examples)
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 120, in load_examples_jsonl
+    raise FileNotFoundError(f"Examples file not found: {path}")
+FileNotFoundError: Examples file not found: hf_conflict_outputs/inference_examples.jsonl
+Traceback (most recent call last):
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 360, in <module>
+    main()
+    ~~~~^^
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 339, in main
+    examples = load_examples_jsonl(args.examples)
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 120, in load_examples_jsonl
+    raise FileNotFoundError(f"Examples file not found: {path}")
+FileNotFoundError: Examples file not found: hf_conflict_outputs/inference_examples.jsonl
+Traceback (most recent call last):
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 360, in <module>
+    main()
+    ~~~~^^
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 339, in main
+    examples = load_examples_jsonl(args.examples)
+  File "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py", line 120, in load_examples_jsonl
+    raise FileNotFoundError(f"Examples file not found: {path}")
+FileNotFoundError: Examples file not found: hf_conflict_outputs/inference_examples.jsonl
+Loaded 4 enabled models
+
+=== Running gemini-3.5-flash (google/gemini-3.5-flash) ===
+/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/.venv/bin/python /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py --examples hf_conflict_outputs/inference_examples.jsonl --responses runs/hf_inference_20260528T223308Z/gemini-3.5-flash/responses.jsonl --model google/gemini-3.5-flash --max-tokens 1200 --temperature 0.7
+[done] model=gemini-3.5-flash responses=runs/hf_inference_20260528T223308Z/gemini-3.5-flash/responses.jsonl
+
+=== Running gemma_4 (google/gemma-4-26b-a4b-it) ===
+/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/.venv/bin/python /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py --examples hf_conflict_outputs/inference_examples.jsonl --responses runs/hf_inference_20260528T223308Z/gemma_4/responses.jsonl --model google/gemma-4-26b-a4b-it --max-tokens 1200 --temperature 0.7
+[failed] model=gemma_4 exit_code=1
+
+=== Running qwen_3.5_flash (qwen/qwen3.5-flash-02-23) ===
+/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/.venv/bin/python /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py --examples hf_conflict_outputs/inference_examples.jsonl --responses runs/hf_inference_20260528T223308Z/qwen_3.5_flash/responses.jsonl --model qwen/qwen3.5-flash-02-23 --max-tokens 1200 --temperature 0.7
+[failed] model=qwen_3.5_flash exit_code=1
+
+=== Running glm_5v_turbo (z-ai/glm-5v-turbo) ===
+/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/.venv/bin/python /Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/run_batch.py --examples hf_conflict_outputs/inference_examples.jsonl --responses runs/hf_inference_20260528T223308Z/glm_5v_turbo/responses.jsonl --model z-ai/glm-5v-turbo --max-tokens 1200 --temperature 0.7
+[failed] model=glm_5v_turbo exit_code=1
+
+=== Summary (paste to Slack) ===
+/opt/homebrew/Cellar/python@3.13/3.13.13_1/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/summarize_inference_run.py': [Errno 2] No such file or directory
