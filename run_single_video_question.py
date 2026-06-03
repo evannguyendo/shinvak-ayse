@@ -2,15 +2,16 @@ import os
 import json
 import base64
 import argparse
-import re
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional, Type, TypeVar
 
 import requests
+import instructor
+from openai import OpenAI
 from dotenv import load_dotenv
 # use Pydantic for validation and parsing of the response
-from pydantic import BaseModel, Field, ConfigDict, ValidationError, field_validator
+from pydantic import BaseModel, Field, ConfigDict, ValidationError
 
 from models_config import default_openrouter_model, openrouter_provider_extensions
 
@@ -18,15 +19,14 @@ _PROJECT_ROOT = Path(__file__).resolve().parent
 load_dotenv(_PROJECT_ROOT / ".env", override=True)
 
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
-OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+OPENROUTER_URL = f"{OPENROUTER_BASE_URL}/chat/completions"
 
 DEFAULT_MODEL = default_openrouter_model()
 
 APP_URL = "http://localhost"
 APP_NAME = "Temporal Conflict Benchmark"
 
-# to match MM:SS format for evidence later
-TIMESTAMP_RE = re.compile(r"^\d{2}:\d{2}$")
 ModelT = TypeVar("ModelT", bound=BaseModel)
 
 # schema for the response
@@ -35,18 +35,6 @@ class QAResult(BaseModel):
 
     answer: str = Field(min_length=1)
     confidence: Literal["high", "medium", "low", "unknown"]
-    evidence: List[str] = Field(default_factory=list)
-
-    # validate the evidence timestamps
-    @field_validator("evidence")
-    @classmethod
-    def validate_timestamps(cls, v: List[str]) -> List[str]:
-        for item in v:
-            if not TIMESTAMP_RE.match(item):
-                raise ValueError(
-                    f"Invalid timestamp '{item}'. Expected MM:SS format."
-                )
-        return v
 
 
 def require_api_key() -> None:
@@ -221,13 +209,11 @@ def call_video_api_raw(
         "Return ONLY valid JSON:",
         '{',
         '  "answer": "your answer",',
-        '  "confidence": "high|medium|low|unknown",',
-        '  "evidence": ["timestamps in MM:SS format"]',
+        '  "confidence": "high|medium|low|unknown"',
         '}',
         "",
         "Rules:",
         "- Base the answer only on the video",
-        "- Evidence must be timestamps in MM:SS format",
         "- Do not include any other keys",
     ]
     prompt = "\n".join(prompt_lines)
@@ -275,6 +261,103 @@ def ask_video_question(
     )
     parsed = validate_model(QAResult, raw_text)
     return parsed, raw_text
+
+
+def build_instructor_client() -> instructor.Instructor:
+    """Instructor-patched OpenAI client pointed at OpenRouter, using JSON mode.
+
+    JSON mode (not TOOLS / function-calling) because the video models we target
+    (gemini, qwen, gemma) don't reliably support tool calls. Instructor validates
+    each response against the response_model and automatically re-asks the model
+    with the validation error fed back, up to max_retries — which is what removes
+    the manual parse_error / validation_error handling."""
+    require_api_key()
+    return instructor.from_openai(
+        OpenAI(
+            api_key=OPENROUTER_API_KEY,
+            base_url=OPENROUTER_BASE_URL,
+            default_headers={"HTTP-Referer": APP_URL, "X-Title": APP_NAME},
+            max_retries=4,  # transport-level backoff on 429/5xx — matters under concurrency
+        ),
+        mode=instructor.Mode.JSON,
+    )
+
+
+def ask_video_question_structured(
+    *,
+    client: instructor.Instructor,
+    model: str,
+    video_data_url: str,
+    question: str,
+    options: Optional[List[str]] = None,
+    max_tokens: int = 4000,
+    temperature: float = 0.7,
+    include_none_option: bool = True,
+) -> tuple[QAResult, str]:
+    """Single-pass video inference via Instructor. Returns (validated QAResult, raw text).
+
+    include_none_option: when True (default), append a "none of these" choice and the
+    fallback instruction. Set False when the caller already includes it in `options`
+    (e.g. so it can be shuffled in), to avoid listing it twice.
+
+    The prompt deliberately does NOT restate a JSON schema or say "return JSON":
+    Instructor (Mode.JSON) injects the QAResult schema itself, so restating it here
+    would give the model two conflicting sets of format instructions."""
+    prompt_lines = [
+        "Answer the user's question about the video using only what is visually observable.",
+        "",
+        f"Question:\n{question}",
+    ]
+    if options:
+        opts = "\n".join(f"- {o}" for o in options)
+        block = ["", f"Answer choices:\n{opts}"]
+        if include_none_option:
+            block += [
+                "- none of these",
+                "",
+                "Pick exactly one of the listed choices above. "
+                "If none match what you observe, answer \"none of these\".",
+            ]
+        else:
+            block += [
+                "",
+                "Pick exactly one of the listed choices above (answer with its exact text).",
+            ]
+        prompt_lines += block
+    prompt_lines += [
+        "",
+        "Base the answer only on the video.",
+    ]
+    prompt = "\n".join(prompt_lines)
+
+    messages = [
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": prompt},
+                {"type": "video_url", "video_url": {"url": video_data_url}},
+            ],
+        }
+    ]
+
+    create_kw: Dict[str, Any] = dict(
+        model=model,
+        response_model=QAResult,
+        messages=messages,
+        max_tokens=max_tokens,
+        temperature=temperature,
+        max_retries=3,
+    )
+    provider_extra = openrouter_provider_extensions(model)
+    if provider_extra:
+        create_kw["extra_body"] = provider_extra
+
+    result, completion = client.chat.completions.create_with_completion(**create_kw)
+    try:
+        raw_text = completion.choices[0].message.content or result.model_dump_json()
+    except (AttributeError, IndexError):
+        raw_text = result.model_dump_json()
+    return result, raw_text
 
 
 def main() -> None:

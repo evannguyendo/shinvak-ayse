@@ -9,12 +9,12 @@ import re
 
 from run_single_video_question import (
     QAResult,
-    ask_video_question,
-    call_video_api_raw,
+    ask_video_question_structured,
+    build_instructor_client,
     encode_video_to_data_url,
-    validate_model,
 )
 
+# Strict MM:SS for dataset-controlled edit timestamps (input data).
 TIMESTAMP_RE = re.compile(r"^\d{2}:\d{2}$")
 
 # schema for the question
@@ -57,17 +57,6 @@ class ParsedResult(BaseModel):
 
     answer: str = Field(min_length=1)
     confidence: Literal["high", "medium", "low", "unknown"]
-    evidence: List[str] = Field(default_factory=list)
-
-    @field_validator("evidence")
-    @classmethod
-    def validate_evidence_timestamps(cls, v: List[str]) -> List[str]:
-        for item in v:
-            if not TIMESTAMP_RE.match(item):
-                raise ValueError(
-                    f"Invalid evidence timestamp '{item}'. Expected MM:SS format."
-                )
-        return v
 
 
 # schema for the response
@@ -221,13 +210,14 @@ def get_expected_answer(question: QuestionSpec, variant: str) -> str:
 def to_parsed_result(result: QAResult) -> ParsedResult:
     return ParsedResult.model_validate(result.model_dump())
 
-# loop over variants, choose video, loop over questions, ask the question, build the response record, append the response record
+# loop over variants, choose video, loop over questions, ask via Instructor, build + append the record
 def run_example(
     *,
     example: ExampleRecord,
+    client,
     model: str,
     responses_path: str | Path,
-    max_tokens: int = 1200,
+    max_tokens: int = 4000,
     temperature: float = 0.7,
 ) -> None:
     for variant in ["control", "conflict"]:
@@ -237,13 +227,13 @@ def run_example(
             expected_answer = get_expected_answer(question, variant)
             opts = question.options if question.options else None
 
-            # Step 1: make the API call — get raw text back.
-            # We separate this from parsing so the raw model response is always saved cleanly.
-            raw_text: Optional[str] = None
-            api_error: Optional[str] = None
+            # Instructor validates against QAResult and re-asks on schema failure
+            # (max_retries), so we no longer hand-parse. We still split the success
+            # path from the error path so a clean run records the raw model text.
             try:
                 video_data_url = encode_video_to_data_url(Path(video_path))
-                raw_text = call_video_api_raw(
+                result, raw_text = ask_video_question_structured(
+                    client=client,
                     model=model,
                     video_data_url=video_data_url,
                     question=question.question_text,
@@ -251,18 +241,6 @@ def run_example(
                     max_tokens=max_tokens,
                     temperature=temperature,
                 )
-            except RuntimeError as e:
-                api_error = str(e)
-
-            if api_error is not None:
-                # API/network failure — no model response text to save
-                lowered = api_error.lower()
-                if "openrouter error" in lowered:
-                    status = "api_error"
-                elif "timeout" in lowered:
-                    status = "timeout"
-                else:
-                    status = "api_error"
                 record = build_response_record(
                     model=model,
                     video_id=example.video_id,
@@ -272,46 +250,37 @@ def run_example(
                     question_id=question.question_id,
                     question_text=question.question_text,
                     expected_answer=expected_answer,
-                    raw_response_text=api_error[:4000],
+                    raw_response_text=raw_text,
+                    parsed_result=to_parsed_result(result),
+                    status="ok",
+                    error=None,
+                )
+            except Exception as e:
+                err = str(e) or type(e).__name__
+                name = type(e).__name__.lower()
+                low = err.lower()
+                if "incompleteoutput" in name or "max_tokens" in low or "length" in low:
+                    status = "parse_error"        # output truncated — raise --max-tokens
+                elif "instructorretry" in name or "validation" in low or "invalid json" in low:
+                    status = "validation_error"   # never produced schema-valid JSON within retries
+                elif "timeout" in low or "timed out" in low:
+                    status = "timeout"
+                else:
+                    status = "api_error"          # network / HTTP (401/404/429/5xx)
+                record = build_response_record(
+                    model=model,
+                    video_id=example.video_id,
+                    variant=variant,
+                    video_path=video_path,
+                    conflict_type=example.conflict_type,
+                    question_id=question.question_id,
+                    question_text=question.question_text,
+                    expected_answer=expected_answer,
+                    raw_response_text=err[:4000],
                     parsed_result=None,
                     status=status,
-                    error=api_error[:4000],
+                    error=err[:4000],
                 )
-            else:
-                # Step 2: we have the raw API text — try to parse it.
-                # Even if parsing fails, raw_text is saved as-is.
-                assert raw_text is not None
-                try:
-                    result = validate_model(QAResult, raw_text)
-                    record = build_response_record(
-                        model=model,
-                        video_id=example.video_id,
-                        variant=variant,
-                        video_path=video_path,
-                        conflict_type=example.conflict_type,
-                        question_id=question.question_id,
-                        question_text=question.question_text,
-                        expected_answer=expected_answer,
-                        raw_response_text=raw_text,
-                        parsed_result=to_parsed_result(result),
-                        status="ok",
-                        error=None,
-                    )
-                except RuntimeError as e:
-                    record = build_response_record(
-                        model=model,
-                        video_id=example.video_id,
-                        variant=variant,
-                        video_path=video_path,
-                        conflict_type=example.conflict_type,
-                        question_id=question.question_id,
-                        question_text=question.question_text,
-                        expected_answer=expected_answer,
-                        raw_response_text=raw_text,  # clean API text, not the error message
-                        parsed_result=None,
-                        status="parse_error",
-                        error=str(e)[:4000],
-                    )
 
             append_response_record(responses_path, record)
             print(
@@ -325,9 +294,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--examples", required=True, help="Path to examples.jsonl")
     parser.add_argument("--responses", required=True, help="Path to responses.jsonl")
-    parser.add_argument("--model", required=True, help="Model name, e.g. google/gemini-2.5-pro")
-    parser.add_argument("--max-tokens", type=int, default=1200)
-    parser.add_argument("--temperature", type=float, default=0.1)
+    parser.add_argument("--model", required=True, help="Model name, e.g. google/gemini-3-flash-preview")
+    parser.add_argument("--max-tokens", type=int, default=4000)
+    parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument(
         "--limit",
         type=int,
@@ -335,6 +304,10 @@ def main() -> None:
         help="Optional number of examples to run",
     )
     args = parser.parse_args()
+
+    # Fail fast if the key is missing (build_instructor_client calls require_api_key),
+    # instead of silently producing a full run of 401 "Missing Authentication" errors.
+    client = build_instructor_client()
 
     examples = load_examples_jsonl(args.examples)
 
@@ -347,6 +320,7 @@ def main() -> None:
     for example in examples:
         run_example(
             example=example,
+            client=client,
             model=args.model,
             responses_path=args.responses,
             max_tokens=args.max_tokens,

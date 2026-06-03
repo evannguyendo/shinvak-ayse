@@ -98,5 +98,6 @@
   ],
   "raw_outputs_dir": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_05/raw_outputs",
   "raw_outputs_final_spliced": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_05/raw_outputs/final_spliced_full_video.mp4",
-  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_05/raw_outputs/edited_intervals_concat.mp4"
+  "raw_outputs_edited_concat": "/Users/evannguyendo/Algoverse AI (shivank-ayse)/shivank-ayse/hf_conflict_outputs/object_existence_05/raw_outputs/edited_intervals_concat.mp4",
+  "answer": "yes"
 }

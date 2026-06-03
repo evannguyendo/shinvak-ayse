@@ -1,1 +1,4 @@
 .env
+
+# Original videos downloaded from HF for the baseline run (large; re-fetched on demand)
+results/baseline_results/_orig_videos/
