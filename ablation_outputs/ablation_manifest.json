@@ -1,0 +1,3903 @@
+{
+  "generated_by": "frame_ablation.py",
+  "fractions": [
+    "1frame",
+    "10",
+    "20",
+    "50",
+    "100"
+  ],
+  "anchor": "start",
+  "n_samples": 72,
+  "n_skipped": 3,
+  "samples": {
+    "moving_attribute_00": {
+      "id": "moving_attribute_00",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What shape is the cyan object that is moving?",
+      "answer": "sphere",
+      "wrong_option": "cylinder",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_00/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_00/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_00/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_00/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_00/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_01": {
+      "id": "moving_attribute_01",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What material is the moving object when the video begins?",
+      "answer": "rubber",
+      "wrong_option": "metal",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_01/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 148
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_01/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 148
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_01/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 148
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_01/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 148
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_01/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 148
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_02": {
+      "id": "moving_attribute_02",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What material is the cylinder that is moving when the video ends?",
+      "answer": "metal",
+      "wrong_option": "rubber",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_02/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_02/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_02/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_02/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_02/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_03": {
+      "id": "moving_attribute_03",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the shape of the last object that enters the scene?",
+      "answer": "cube",
+      "wrong_option": "sphere",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_03/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_03/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_03/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_03/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_03/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_04": {
+      "id": "moving_attribute_04",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the color of the moving rubber object?",
+      "answer": "purple",
+      "wrong_option": "green",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_04/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_04/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_04/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_04/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_04/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 125
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_05": {
+      "id": "moving_attribute_05",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the material of the object that is stationary when the video begins?",
+      "answer": "rubber",
+      "wrong_option": "metal",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_05/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_05/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_05/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_05/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_05/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_06": {
+      "id": "moving_attribute_06",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What shape is the stationary rubber object?",
+      "answer": "cube",
+      "wrong_option": "cylinder",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_06/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_06/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_06/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_06/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_06/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 125
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_07": {
+      "id": "moving_attribute_07",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the color of the sphere that is stationary?",
+      "answer": "brown",
+      "wrong_option": "yellow",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_07/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_07/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_07/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_07/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_07/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_08": {
+      "id": "moving_attribute_08",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the material of the stationary sphere when the video begins?",
+      "answer": "rubber",
+      "wrong_option": "metal",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_08/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_08/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_08/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_08/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_08/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 125
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_09": {
+      "id": "moving_attribute_09",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What shape is the moving rubber object when the video begins?",
+      "answer": "sphere",
+      "wrong_option": "cube",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_09/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_09/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_09/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_09/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_09/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 125
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_10": {
+      "id": "moving_attribute_10",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What color is the moving rubber object when the video begins?",
+      "answer": "brown",
+      "wrong_option": "red",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_10/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_10/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_10/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_10/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_10/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 125
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_11": {
+      "id": "moving_attribute_11",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the material of the stationary object when the video ends?",
+      "answer": "metal",
+      "wrong_option": "rubber",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_11/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_11/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_11/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_11/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_11/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_12": {
+      "id": "moving_attribute_12",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the material of the last object that enters the scene?",
+      "answer": "metal",
+      "wrong_option": "rubber",
+      "edit_interval_sec": {
+        "start": 2.02,
+        "end": 5.12
+      },
+      "prefix_frames": 51,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 77,
+      "tail_frames": 0,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_12/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 127
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_12/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 127
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_12/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 127
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_12/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 127
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_12/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 127
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_13": {
+      "id": "moving_attribute_13",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the shape of the stationary rubber object when the video begins?",
+      "answer": "cylinder",
+      "wrong_option": "sphere",
+      "edit_interval_sec": {
+        "start": 1.2,
+        "end": 4.84
+      },
+      "prefix_frames": 30,
+      "segment_frames_edited": 84,
+      "segment_frames_source": 91,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_13/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 84,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_13/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 84,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_13/splice_20.mp4",
+          "edited_frames": 17,
+          "segment_frames": 84,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_13/splice_50.mp4",
+          "edited_frames": 42,
+          "segment_frames": 84,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_13/splice_100.mp4",
+          "edited_frames": 84,
+          "segment_frames": 84,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_attribute_14": {
+      "id": "moving_attribute_14",
+      "split": "moving_attribute",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What is the color of the stationary metal cube when the video begins?",
+      "answer": "green",
+      "wrong_option": "gray",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.24
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 101,
+      "segment_frames_source": 106,
+      "tail_frames": 22,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_attribute_14/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "10": {
+          "path": "ablation_outputs/moving_attribute_14/splice_10.mp4",
+          "edited_frames": 10,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "20": {
+          "path": "ablation_outputs/moving_attribute_14/splice_20.mp4",
+          "edited_frames": 20,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "50": {
+          "path": "ablation_outputs/moving_attribute_14/splice_50.mp4",
+          "edited_frames": 50,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "100": {
+          "path": "ablation_outputs/moving_attribute_14/splice_100.mp4",
+          "edited_frames": 101,
+          "segment_frames": 101,
+          "total_frames": 123
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_00": {
+      "id": "moving_count_00",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many moving objects are there when the video ends?",
+      "answer": "4",
+      "wrong_option": "3",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_00/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_00/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_00/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_00/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_00/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_01": {
+      "id": "moving_count_01",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many moving metal objects are there?",
+      "answer": "0",
+      "wrong_option": "3",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_01/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_01/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_01/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_01/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_01/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_02": {
+      "id": "moving_count_02",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many moving cylinders are there?",
+      "answer": "0",
+      "wrong_option": "3",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_02/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_02/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_02/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_02/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_02/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_03": {
+      "id": "moving_count_03",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many cubes are moving when the video begins?",
+      "answer": "1",
+      "wrong_option": "0",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_03/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_03/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_03/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_03/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_03/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_04": {
+      "id": "moving_count_04",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many stationary red objects are there when the video begins?",
+      "answer": "0",
+      "wrong_option": "3",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_04/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_04/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_04/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_04/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_04/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_05": {
+      "id": "moving_count_05",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many stationary objects are there when the video ends?",
+      "answer": "4",
+      "wrong_option": "7",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_05/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_05/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_05/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_05/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_05/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_06": {
+      "id": "moving_count_06",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many moving rubber objects are there?",
+      "answer": "4",
+      "wrong_option": "1",
+      "edit_interval_sec": {
+        "start": 1.52,
+        "end": 4.52
+      },
+      "prefix_frames": 38,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 15,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_06/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_06/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_06/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_06/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_06/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_07": {
+      "id": "moving_count_07",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many moving objects are there when the video ends?",
+      "answer": "3",
+      "wrong_option": "4",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_07/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_07/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_07/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_07/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_07/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_08": {
+      "id": "moving_count_08",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many gray spheres enter the scene?",
+      "answer": "2",
+      "wrong_option": "5",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_08/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_08/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_08/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_08/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_08/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_09": {
+      "id": "moving_count_09",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many objects are stationary when the video ends?",
+      "answer": "0",
+      "wrong_option": "1",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_09/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_09/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_09/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_09/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_09/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_10": {
+      "id": "moving_count_10",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many objects are moving when the video ends?",
+      "answer": "1",
+      "wrong_option": "2",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_10/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_10/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_10/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_10/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_10/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_11": {
+      "id": "moving_count_11",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many moving objects are there when the video ends?",
+      "answer": "3",
+      "wrong_option": "6",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_11/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_11/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_11/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_11/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_11/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_12": {
+      "id": "moving_count_12",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many stationary metal objects are there when the video ends?",
+      "answer": "2",
+      "wrong_option": "1",
+      "edit_interval_sec": {
+        "start": 1.5199999999999996,
+        "end": 4.52
+      },
+      "prefix_frames": 38,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 15,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_12/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_12/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_12/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_12/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_12/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_13": {
+      "id": "moving_count_13",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many objects enter the scene?",
+      "answer": "2",
+      "wrong_option": "1",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_13/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_13/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_13/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_13/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_13/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_count_14": {
+      "id": "moving_count_14",
+      "split": "moving_count",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "How many purple objects are stationary?",
+      "answer": "2",
+      "wrong_option": "1",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_count_14/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_count_14/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_count_14/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_count_14/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_count_14/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_00": {
+      "id": "moving_direction_00",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the gray sphere move in the video?",
+      "answer": "Down and to the left.",
+      "wrong_option": "Down and to the right.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_00/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_00/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_00/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_00/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_00/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_01": {
+      "id": "moving_direction_01",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Can you identify the direction of the green sphere's movement in the video?",
+      "answer": "Up and to the left.",
+      "wrong_option": "Down and to the right.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_01/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_01/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_01/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_01/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_01/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_02": {
+      "id": "moving_direction_02",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the red sphere move in the video?",
+      "answer": "Down and to the left.",
+      "wrong_option": "The object is stationary.",
+      "edit_interval_sec": {
+        "start": 0.31999999999999984,
+        "end": 3.32
+      },
+      "prefix_frames": 8,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 45,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_02/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_02/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_02/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_02/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_02/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_03": {
+      "id": "moving_direction_03",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Can you identify the direction of the purple sphere's movement in the video?",
+      "answer": "Up and to the right.",
+      "wrong_option": "Down and to the right.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_03/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_03/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_03/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_03/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_03/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_04": {
+      "id": "moving_direction_04",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the blue sphere move in the video?",
+      "answer": "Down and to the left.",
+      "wrong_option": "Up and to the left.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_04/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_04/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_04/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_04/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_04/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_05": {
+      "id": "moving_direction_05",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What direction is the brown cylinder moving in within the video?",
+      "answer": "Down and to the right.",
+      "wrong_option": "Up and to the right.",
+      "edit_interval_sec": {
+        "start": 1.5199999999999996,
+        "end": 4.52
+      },
+      "prefix_frames": 38,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 15,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_05/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_05/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_05/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_05/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_05/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_06": {
+      "id": "moving_direction_06",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the red cylinder move in the video?",
+      "answer": "Down and to the right.",
+      "wrong_option": "Up and to the left.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_06/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_06/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_06/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_06/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_06/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_07": {
+      "id": "moving_direction_07",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the green cube move in the video?",
+      "answer": "Down and to the right.",
+      "wrong_option": "Up and to the right.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_07/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_07/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_07/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_07/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_07/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_08": {
+      "id": "moving_direction_08",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Can you identify the direction of the blue sphere's movement in the video?",
+      "answer": "Down and to the left.",
+      "wrong_option": "Up and to the left.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_08/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_08/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_08/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_08/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_08/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_09": {
+      "id": "moving_direction_09",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What direction is the red cylinder moving in within the video?",
+      "answer": "Down and to the left.",
+      "wrong_option": "Up and to the right.",
+      "edit_interval_sec": {
+        "start": 0.6,
+        "end": 4.84
+      },
+      "prefix_frames": 15,
+      "segment_frames_edited": 101,
+      "segment_frames_source": 106,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_09/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_09/splice_10.mp4",
+          "edited_frames": 10,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_09/splice_20.mp4",
+          "edited_frames": 20,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_09/splice_50.mp4",
+          "edited_frames": 50,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_09/splice_100.mp4",
+          "edited_frames": 101,
+          "segment_frames": 101,
+          "total_frames": 123
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_10": {
+      "id": "moving_direction_10",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What direction is the blue cube moving in within the video?",
+      "answer": "Down and to the right.",
+      "wrong_option": "Up and to the right.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_10/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_10/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_10/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_10/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_10/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_11": {
+      "id": "moving_direction_11",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "What direction is the gray cylinder moving in within the video?",
+      "answer": "Down and to the left.",
+      "wrong_option": "Down and to the right.",
+      "edit_interval_sec": {
+        "start": 0.6,
+        "end": 4.84
+      },
+      "prefix_frames": 15,
+      "segment_frames_edited": 101,
+      "segment_frames_source": 106,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_11/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_11/splice_10.mp4",
+          "edited_frames": 10,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_11/splice_20.mp4",
+          "edited_frames": 20,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_11/splice_50.mp4",
+          "edited_frames": 50,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_11/splice_100.mp4",
+          "edited_frames": 101,
+          "segment_frames": 101,
+          "total_frames": 123
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_12": {
+      "id": "moving_direction_12",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the cyan sphere move in the video?",
+      "answer": "Down and to the right.",
+      "wrong_option": "Up and to the left.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_12/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_12/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_12/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_12/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_12/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_13": {
+      "id": "moving_direction_13",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the green cube move in the video?",
+      "answer": "Up and to the left.",
+      "wrong_option": "Down and to the right.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_13/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_13/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_13/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_13/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_13/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "moving_direction_14": {
+      "id": "moving_direction_14",
+      "split": "moving_direction",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "In which direction does the purple sphere move in the video?",
+      "answer": "Down and to the right.",
+      "wrong_option": "Up and to the left.",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/moving_direction_14/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/moving_direction_14/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/moving_direction_14/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/moving_direction_14/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/moving_direction_14/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_00": {
+      "id": "object_existence_00",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any blue cubes that exit the scene?",
+      "answer": "yes",
+      "wrong_option": "no",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_00/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_00/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_00/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_00/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_00/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_01": {
+      "id": "object_existence_01",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any stationary yellow objects when the video ends?",
+      "answer": "no",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_01/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_01/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_01/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_01/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_01/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_02": {
+      "id": "object_existence_02",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any moving red objects when the video ends?",
+      "answer": "no",
+      "wrong_option": "yes",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_02/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_02/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_02/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_02/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_02/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_03": {
+      "id": "object_existence_03",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any stationary gray objects?",
+      "answer": "no",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_03/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_03/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_03/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_03/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_03/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_04": {
+      "id": "object_existence_04",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any moving purple objects when the video begins?",
+      "answer": "no",
+      "wrong_option": "yes",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 3.0
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 53,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_04/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_04/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_04/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_04/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_04/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_05": {
+      "id": "object_existence_05",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any moving cylinders when the video ends?",
+      "answer": "yes",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_05/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_05/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_05/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_05/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_05/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_06": {
+      "id": "object_existence_06",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any moving yellow objects when the video ends?",
+      "answer": "no",
+      "wrong_option": "yes",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_06/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_06/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_06/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_06/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_06/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_07": {
+      "id": "object_existence_07",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any moving brown objects when the video begins?",
+      "answer": "yes",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 4.84
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 121,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_07/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_07/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_07/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_07/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 125
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_07/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 125
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_08": {
+      "id": "object_existence_08",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any stationary cyan objects when the video ends?",
+      "answer": "yes",
+      "wrong_option": "no",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_08/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_08/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_08/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_08/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_08/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_09": {
+      "id": "object_existence_09",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any stationary metal objects?",
+      "answer": "yes",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_09/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_09/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_09/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_09/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_09/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_10": {
+      "id": "object_existence_10",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any moving spheres?",
+      "answer": "yes",
+      "wrong_option": "no",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_10/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_10/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_10/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_10/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_10/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_11": {
+      "id": "object_existence_11",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any stationary cylinders?",
+      "answer": "yes",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.9199999999999999,
+        "end": 3.92
+      },
+      "prefix_frames": 23,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 30,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_11/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_11/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_11/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_11/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 129
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_11/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 129
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_12": {
+      "id": "object_existence_12",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any rubber objects that exit the scene?",
+      "answer": "no",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.0600000000000005,
+        "end": 5.0600000000000005
+      },
+      "prefix_frames": 2,
+      "segment_frames_edited": 118,
+      "segment_frames_source": 124,
+      "tail_frames": 1,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_12/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_12/splice_10.mp4",
+          "edited_frames": 12,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_12/splice_20.mp4",
+          "edited_frames": 24,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_12/splice_50.mp4",
+          "edited_frames": 59,
+          "segment_frames": 118,
+          "total_frames": 121
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_12/splice_100.mp4",
+          "edited_frames": 118,
+          "segment_frames": 118,
+          "total_frames": 121
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_13": {
+      "id": "object_existence_13",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any purple objects that exit the scene?",
+      "answer": "yes",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.0,
+        "end": 3.1
+      },
+      "prefix_frames": 0,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 78,
+      "tail_frames": 50,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_13/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 126
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_13/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 126
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_13/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 126
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_13/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 126
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_13/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 126
+        }
+      },
+      "status": "ok"
+    },
+    "object_existence_14": {
+      "id": "object_existence_14",
+      "split": "object_existence",
+      "fps": 25.0,
+      "size": [
+        1080,
+        720
+      ],
+      "question": "Are there any red objects that enter the scene?",
+      "answer": "yes",
+      "wrong_option": "not sure",
+      "edit_interval_sec": {
+        "start": 0.6,
+        "end": 4.84
+      },
+      "prefix_frames": 15,
+      "segment_frames_edited": 101,
+      "segment_frames_source": 106,
+      "tail_frames": 7,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_existence_14/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "10": {
+          "path": "ablation_outputs/object_existence_14/splice_10.mp4",
+          "edited_frames": 10,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "20": {
+          "path": "ablation_outputs/object_existence_14/splice_20.mp4",
+          "edited_frames": 20,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "50": {
+          "path": "ablation_outputs/object_existence_14/splice_50.mp4",
+          "edited_frames": 50,
+          "segment_frames": 101,
+          "total_frames": 123
+        },
+        "100": {
+          "path": "ablation_outputs/object_existence_14/splice_100.mp4",
+          "edited_frames": 101,
+          "segment_frames": 101,
+          "total_frames": 123
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_00": {
+      "id": "object_interaction_00",
+      "split": "object_interaction",
+      "fps": 29.97002997002997,
+      "size": [
+        1280,
+        720
+      ],
+      "question": "Which object was closed by the person?",
+      "answer": "The laptop.",
+      "wrong_option": "The refrigerator.",
+      "edit_interval_sec": {
+        "start": 14.032183333333332,
+        "end": 17.032183333333332
+      },
+      "prefix_frames": 421,
+      "segment_frames_edited": 91,
+      "segment_frames_source": 90,
+      "tail_frames": 429,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_00/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 91,
+          "total_frames": 941
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_00/splice_10.mp4",
+          "edited_frames": 9,
+          "segment_frames": 91,
+          "total_frames": 941
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_00/splice_20.mp4",
+          "edited_frames": 18,
+          "segment_frames": 91,
+          "total_frames": 941
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_00/splice_50.mp4",
+          "edited_frames": 46,
+          "segment_frames": 91,
+          "total_frames": 941
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_00/splice_100.mp4",
+          "edited_frames": 91,
+          "segment_frames": 91,
+          "total_frames": 941
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_01": {
+      "id": "object_interaction_01",
+      "split": "object_interaction",
+      "fps": 30.0,
+      "size": [
+        1280,
+        720
+      ],
+      "question": "Which object was taken by the person?",
+      "answer": "The dish.",
+      "wrong_option": "The paper/notebook.",
+      "edit_interval_sec": {
+        "start": 12.766666666666666,
+        "end": 17.766666666666666
+      },
+      "prefix_frames": 383,
+      "segment_frames_edited": 141,
+      "segment_frames_source": 149,
+      "tail_frames": 384,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_01/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 141,
+          "total_frames": 908
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_01/splice_10.mp4",
+          "edited_frames": 14,
+          "segment_frames": 141,
+          "total_frames": 908
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_01/splice_20.mp4",
+          "edited_frames": 28,
+          "segment_frames": 141,
+          "total_frames": 908
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_01/splice_50.mp4",
+          "edited_frames": 70,
+          "segment_frames": 141,
+          "total_frames": 908
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_01/splice_100.mp4",
+          "edited_frames": 141,
+          "segment_frames": 141,
+          "total_frames": 908
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_02": {
+      "id": "object_interaction_02",
+      "split": "object_interaction",
+      "fps": 24.0,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was put down by the person?",
+      "answer": "The towel.",
+      "wrong_option": "The bag.",
+      "edit_interval_sec": {
+        "start": 11.958333333333334,
+        "end": 14.958333333333334
+      },
+      "prefix_frames": 287,
+      "segment_frames_edited": 73,
+      "segment_frames_source": 72,
+      "tail_frames": 372,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_02/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 73,
+          "total_frames": 732
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_02/splice_10.mp4",
+          "edited_frames": 7,
+          "segment_frames": 73,
+          "total_frames": 732
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_02/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 73,
+          "total_frames": 732
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_02/splice_50.mp4",
+          "edited_frames": 36,
+          "segment_frames": 73,
+          "total_frames": 732
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_02/splice_100.mp4",
+          "edited_frames": 73,
+          "segment_frames": 73,
+          "total_frames": 732
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_03": {
+      "id": "object_interaction_03",
+      "split": "object_interaction",
+      "fps": 25.0,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was taken by the person?",
+      "answer": "The bag.",
+      "wrong_option": "The paper/notebook.",
+      "edit_interval_sec": {
+        "start": 14.969999999999999,
+        "end": 18.07
+      },
+      "prefix_frames": 374,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 77,
+      "tail_frames": 322,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_03/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 772
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_03/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 772
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_03/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 772
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_03/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 772
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_03/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 772
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_04": {
+      "id": "object_interaction_04",
+      "split": "object_interaction",
+      "fps": 30.0,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was put down by the person?",
+      "answer": "The laptop.",
+      "wrong_option": "The book.",
+      "edit_interval_sec": {
+        "start": 19.016666666666666,
+        "end": 22.016666666666666
+      },
+      "prefix_frames": 571,
+      "segment_frames_edited": 91,
+      "segment_frames_source": 90,
+      "tail_frames": 260,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_04/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 91,
+          "total_frames": 922
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_04/splice_10.mp4",
+          "edited_frames": 9,
+          "segment_frames": 91,
+          "total_frames": 922
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_04/splice_20.mp4",
+          "edited_frames": 18,
+          "segment_frames": 91,
+          "total_frames": 922
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_04/splice_50.mp4",
+          "edited_frames": 46,
+          "segment_frames": 91,
+          "total_frames": 922
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_04/splice_100.mp4",
+          "edited_frames": 91,
+          "segment_frames": 91,
+          "total_frames": 922
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_05": {
+      "id": "object_interaction_05",
+      "split": "object_interaction",
+      "fps": 14.985014985014985,
+      "size": [
+        1280,
+        720
+      ],
+      "question": "Which object was put down by the person?",
+      "answer": "The picture.",
+      "wrong_option": "The laptop.",
+      "edit_interval_sec": {
+        "start": 10.045866666666667,
+        "end": 15.045866666666667
+      },
+      "prefix_frames": 151,
+      "segment_frames_edited": 76,
+      "segment_frames_source": 75,
+      "tail_frames": 236,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_05/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 76,
+          "total_frames": 463
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_05/splice_10.mp4",
+          "edited_frames": 8,
+          "segment_frames": 76,
+          "total_frames": 463
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_05/splice_20.mp4",
+          "edited_frames": 15,
+          "segment_frames": 76,
+          "total_frames": 463
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_05/splice_50.mp4",
+          "edited_frames": 38,
+          "segment_frames": 76,
+          "total_frames": 463
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_05/splice_100.mp4",
+          "edited_frames": 76,
+          "segment_frames": 76,
+          "total_frames": 463
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_07": {
+      "id": "object_interaction_07",
+      "split": "object_interaction",
+      "fps": 15.068,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was put down by the person?",
+      "answer": "The clothes.",
+      "wrong_option": "The cup/glass/bottle.",
+      "edit_interval_sec": {
+        "start": 8.488054154499602,
+        "end": 11.488054154499602
+      },
+      "prefix_frames": 128,
+      "segment_frames_edited": 46,
+      "segment_frames_source": 45,
+      "tail_frames": 293,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_07/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 46,
+          "total_frames": 467
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_07/splice_10.mp4",
+          "edited_frames": 5,
+          "segment_frames": 46,
+          "total_frames": 467
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_07/splice_20.mp4",
+          "edited_frames": 9,
+          "segment_frames": 46,
+          "total_frames": 467
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_07/splice_50.mp4",
+          "edited_frames": 23,
+          "segment_frames": 46,
+          "total_frames": 467
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_07/splice_100.mp4",
+          "edited_frames": 46,
+          "segment_frames": 46,
+          "total_frames": 467
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_08": {
+      "id": "object_interaction_08",
+      "split": "object_interaction",
+      "fps": 29.639,
+      "size": [
+        1280,
+        720
+      ],
+      "question": "Which object was put down by the person?",
+      "answer": "The phone/camera.",
+      "wrong_option": "The laptop.",
+      "edit_interval_sec": {
+        "start": 5.867353824353049,
+        "end": 10.86735382435305
+      },
+      "prefix_frames": 174,
+      "segment_frames_edited": 149,
+      "segment_frames_source": 148,
+      "tail_frames": 637,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_08/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 149,
+          "total_frames": 960
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_08/splice_10.mp4",
+          "edited_frames": 15,
+          "segment_frames": 149,
+          "total_frames": 960
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_08/splice_20.mp4",
+          "edited_frames": 30,
+          "segment_frames": 149,
+          "total_frames": 960
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_08/splice_50.mp4",
+          "edited_frames": 74,
+          "segment_frames": 149,
+          "total_frames": 960
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_08/splice_100.mp4",
+          "edited_frames": 149,
+          "segment_frames": 149,
+          "total_frames": 960
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_09": {
+      "id": "object_interaction_09",
+      "split": "object_interaction",
+      "fps": 30.0,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was tidied up by the person?",
+      "answer": "The blanket.",
+      "wrong_option": "The table.",
+      "edit_interval_sec": {
+        "start": 9.716666666666665,
+        "end": 12.816666666666666
+      },
+      "prefix_frames": 292,
+      "segment_frames_edited": 91,
+      "segment_frames_source": 93,
+      "tail_frames": 530,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_09/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 91,
+          "total_frames": 913
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_09/splice_10.mp4",
+          "edited_frames": 9,
+          "segment_frames": 91,
+          "total_frames": 913
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_09/splice_20.mp4",
+          "edited_frames": 18,
+          "segment_frames": 91,
+          "total_frames": 913
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_09/splice_50.mp4",
+          "edited_frames": 46,
+          "segment_frames": 91,
+          "total_frames": 913
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_09/splice_100.mp4",
+          "edited_frames": 91,
+          "segment_frames": 91,
+          "total_frames": 913
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_10": {
+      "id": "object_interaction_10",
+      "split": "object_interaction",
+      "fps": 29.97002997002997,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was taken by the person?",
+      "answer": "The phone/camera.",
+      "wrong_option": "The cup/glass/bottle.",
+      "edit_interval_sec": {
+        "start": 19.038183333333336,
+        "end": 24.038183333333336
+      },
+      "prefix_frames": 571,
+      "segment_frames_edited": 151,
+      "segment_frames_source": 150,
+      "tail_frames": 164,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_10/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 151,
+          "total_frames": 886
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_10/splice_10.mp4",
+          "edited_frames": 15,
+          "segment_frames": 151,
+          "total_frames": 886
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_10/splice_20.mp4",
+          "edited_frames": 30,
+          "segment_frames": 151,
+          "total_frames": 886
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_10/splice_50.mp4",
+          "edited_frames": 76,
+          "segment_frames": 151,
+          "total_frames": 886
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_10/splice_100.mp4",
+          "edited_frames": 151,
+          "segment_frames": 151,
+          "total_frames": 886
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_11": {
+      "id": "object_interaction_11",
+      "split": "object_interaction",
+      "fps": 30.0,
+      "size": [
+        964,
+        720
+      ],
+      "question": "Which object was taken by the person?",
+      "answer": "The cup/glass/bottle.",
+      "wrong_option": "The laptop.",
+      "edit_interval_sec": {
+        "start": 9.516666666666666,
+        "end": 12.516666666666666
+      },
+      "prefix_frames": 286,
+      "segment_frames_edited": 91,
+      "segment_frames_source": 90,
+      "tail_frames": 583,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_11/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 91,
+          "total_frames": 960
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_11/splice_10.mp4",
+          "edited_frames": 9,
+          "segment_frames": 91,
+          "total_frames": 960
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_11/splice_20.mp4",
+          "edited_frames": 18,
+          "segment_frames": 91,
+          "total_frames": 960
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_11/splice_50.mp4",
+          "edited_frames": 46,
+          "segment_frames": 91,
+          "total_frames": 960
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_11/splice_100.mp4",
+          "edited_frames": 91,
+          "segment_frames": 91,
+          "total_frames": 960
+        }
+      },
+      "status": "ok"
+    },
+    "object_interaction_14": {
+      "id": "object_interaction_14",
+      "split": "object_interaction",
+      "fps": 29.454048140043763,
+      "size": [
+        1280,
+        720
+      ],
+      "question": "Which object was taken by the person?",
+      "answer": "The box.",
+      "wrong_option": "The sandwich.",
+      "edit_interval_sec": {
+        "start": 12.776475613833068,
+        "end": 15.776475613833068
+      },
+      "prefix_frames": 376,
+      "segment_frames_edited": 90,
+      "segment_frames_source": 88,
+      "tail_frames": 1692,
+      "anchor": "start",
+      "variants": {
+        "1frame": {
+          "path": "ablation_outputs/object_interaction_14/splice_1frame.mp4",
+          "edited_frames": 1,
+          "segment_frames": 90,
+          "total_frames": 2158
+        },
+        "10": {
+          "path": "ablation_outputs/object_interaction_14/splice_10.mp4",
+          "edited_frames": 9,
+          "segment_frames": 90,
+          "total_frames": 2158
+        },
+        "20": {
+          "path": "ablation_outputs/object_interaction_14/splice_20.mp4",
+          "edited_frames": 18,
+          "segment_frames": 90,
+          "total_frames": 2158
+        },
+        "50": {
+          "path": "ablation_outputs/object_interaction_14/splice_50.mp4",
+          "edited_frames": 45,
+          "segment_frames": 90,
+          "total_frames": 2158
+        },
+        "100": {
+          "path": "ablation_outputs/object_interaction_14/splice_100.mp4",
+          "edited_frames": 90,
+          "segment_frames": 90,
+          "total_frames": 2158
+        }
+      },
+      "status": "ok"
+    }
+  }
+}

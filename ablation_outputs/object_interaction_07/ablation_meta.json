@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_07",
+  "split": "object_interaction",
+  "fps": 15.068,
+  "size": [
+    964,
+    720
+  ],
+  "question": "Which object was put down by the person?",
+  "answer": "The clothes.",
+  "wrong_option": "The cup/glass/bottle.",
+  "edit_interval_sec": {
+    "start": 8.488054154499602,
+    "end": 11.488054154499602
+  },
+  "prefix_frames": 128,
+  "segment_frames_edited": 46,
+  "segment_frames_source": 45,
+  "tail_frames": 293,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_07/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 46,
+      "total_frames": 467
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_07/splice_10.mp4",
+      "edited_frames": 5,
+      "segment_frames": 46,
+      "total_frames": 467
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_07/splice_20.mp4",
+      "edited_frames": 9,
+      "segment_frames": 46,
+      "total_frames": 467
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_07/splice_50.mp4",
+      "edited_frames": 23,
+      "segment_frames": 46,
+      "total_frames": 467
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_07/splice_100.mp4",
+      "edited_frames": 46,
+      "segment_frames": 46,
+      "total_frames": 467
+    }
+  },
+  "status": "ok"
+}

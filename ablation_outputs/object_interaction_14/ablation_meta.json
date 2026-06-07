@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_14",
+  "split": "object_interaction",
+  "fps": 29.454048140043763,
+  "size": [
+    1280,
+    720
+  ],
+  "question": "Which object was taken by the person?",
+  "answer": "The box.",
+  "wrong_option": "The sandwich.",
+  "edit_interval_sec": {
+    "start": 12.776475613833068,
+    "end": 15.776475613833068
+  },
+  "prefix_frames": 376,
+  "segment_frames_edited": 90,
+  "segment_frames_source": 88,
+  "tail_frames": 1692,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_14/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 90,
+      "total_frames": 2158
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_14/splice_10.mp4",
+      "edited_frames": 9,
+      "segment_frames": 90,
+      "total_frames": 2158
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_14/splice_20.mp4",
+      "edited_frames": 18,
+      "segment_frames": 90,
+      "total_frames": 2158
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_14/splice_50.mp4",
+      "edited_frames": 45,
+      "segment_frames": 90,
+      "total_frames": 2158
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_14/splice_100.mp4",
+      "edited_frames": 90,
+      "segment_frames": 90,
+      "total_frames": 2158
+    }
+  },
+  "status": "ok"
+}

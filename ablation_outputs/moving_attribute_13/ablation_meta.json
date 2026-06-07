@@ -1,0 +1,54 @@
+{
+  "id": "moving_attribute_13",
+  "split": "moving_attribute",
+  "fps": 25.0,
+  "size": [
+    1080,
+    720
+  ],
+  "question": "What is the shape of the stationary rubber object when the video begins?",
+  "answer": "cylinder",
+  "wrong_option": "sphere",
+  "edit_interval_sec": {
+    "start": 1.2,
+    "end": 4.84
+  },
+  "prefix_frames": 30,
+  "segment_frames_edited": 84,
+  "segment_frames_source": 91,
+  "tail_frames": 7,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/moving_attribute_13/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 84,
+      "total_frames": 121
+    },
+    "10": {
+      "path": "ablation_outputs/moving_attribute_13/splice_10.mp4",
+      "edited_frames": 8,
+      "segment_frames": 84,
+      "total_frames": 121
+    },
+    "20": {
+      "path": "ablation_outputs/moving_attribute_13/splice_20.mp4",
+      "edited_frames": 17,
+      "segment_frames": 84,
+      "total_frames": 121
+    },
+    "50": {
+      "path": "ablation_outputs/moving_attribute_13/splice_50.mp4",
+      "edited_frames": 42,
+      "segment_frames": 84,
+      "total_frames": 121
+    },
+    "100": {
+      "path": "ablation_outputs/moving_attribute_13/splice_100.mp4",
+      "edited_frames": 84,
+      "segment_frames": 84,
+      "total_frames": 121
+    }
+  },
+  "status": "ok"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_10",
+  "split": "object_interaction",
+  "fps": 29.97002997002997,
+  "size": [
+    964,
+    720
+  ],
+  "question": "Which object was taken by the person?",
+  "answer": "The phone/camera.",
+  "wrong_option": "The cup/glass/bottle.",
+  "edit_interval_sec": {
+    "start": 19.038183333333336,
+    "end": 24.038183333333336
+  },
+  "prefix_frames": 571,
+  "segment_frames_edited": 151,
+  "segment_frames_source": 150,
+  "tail_frames": 164,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_10/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 151,
+      "total_frames": 886
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_10/splice_10.mp4",
+      "edited_frames": 15,
+      "segment_frames": 151,
+      "total_frames": 886
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_10/splice_20.mp4",
+      "edited_frames": 30,
+      "segment_frames": 151,
+      "total_frames": 886
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_10/splice_50.mp4",
+      "edited_frames": 76,
+      "segment_frames": 151,
+      "total_frames": 886
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_10/splice_100.mp4",
+      "edited_frames": 151,
+      "segment_frames": 151,
+      "total_frames": 886
+    }
+  },
+  "status": "ok"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "moving_attribute_14",
+  "split": "moving_attribute",
+  "fps": 25.0,
+  "size": [
+    1080,
+    720
+  ],
+  "question": "What is the color of the stationary metal cube when the video begins?",
+  "answer": "green",
+  "wrong_option": "gray",
+  "edit_interval_sec": {
+    "start": 0.0,
+    "end": 4.24
+  },
+  "prefix_frames": 0,
+  "segment_frames_edited": 101,
+  "segment_frames_source": 106,
+  "tail_frames": 22,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/moving_attribute_14/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 101,
+      "total_frames": 123
+    },
+    "10": {
+      "path": "ablation_outputs/moving_attribute_14/splice_10.mp4",
+      "edited_frames": 10,
+      "segment_frames": 101,
+      "total_frames": 123
+    },
+    "20": {
+      "path": "ablation_outputs/moving_attribute_14/splice_20.mp4",
+      "edited_frames": 20,
+      "segment_frames": 101,
+      "total_frames": 123
+    },
+    "50": {
+      "path": "ablation_outputs/moving_attribute_14/splice_50.mp4",
+      "edited_frames": 50,
+      "segment_frames": 101,
+      "total_frames": 123
+    },
+    "100": {
+      "path": "ablation_outputs/moving_attribute_14/splice_100.mp4",
+      "edited_frames": 101,
+      "segment_frames": 101,
+      "total_frames": 123
+    }
+  },
+  "status": "ok"
+}

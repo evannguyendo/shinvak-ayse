@@ -1,0 +1,54 @@
+{
+  "id": "object_existence_04",
+  "split": "object_existence",
+  "fps": 25.0,
+  "size": [
+    1080,
+    720
+  ],
+  "question": "Are there any moving purple objects when the video begins?",
+  "answer": "no",
+  "wrong_option": "yes",
+  "edit_interval_sec": {
+    "start": 0.0,
+    "end": 3.0
+  },
+  "prefix_frames": 0,
+  "segment_frames_edited": 76,
+  "segment_frames_source": 75,
+  "tail_frames": 53,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_existence_04/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "10": {
+      "path": "ablation_outputs/object_existence_04/splice_10.mp4",
+      "edited_frames": 8,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "20": {
+      "path": "ablation_outputs/object_existence_04/splice_20.mp4",
+      "edited_frames": 15,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "50": {
+      "path": "ablation_outputs/object_existence_04/splice_50.mp4",
+      "edited_frames": 38,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "100": {
+      "path": "ablation_outputs/object_existence_04/splice_100.mp4",
+      "edited_frames": 76,
+      "segment_frames": 76,
+      "total_frames": 129
+    }
+  },
+  "status": "ok"
+}

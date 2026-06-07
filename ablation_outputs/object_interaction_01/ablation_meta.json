@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_01",
+  "split": "object_interaction",
+  "fps": 30.0,
+  "size": [
+    1280,
+    720
+  ],
+  "question": "Which object was taken by the person?",
+  "answer": "The dish.",
+  "wrong_option": "The paper/notebook.",
+  "edit_interval_sec": {
+    "start": 12.766666666666666,
+    "end": 17.766666666666666
+  },
+  "prefix_frames": 383,
+  "segment_frames_edited": 141,
+  "segment_frames_source": 149,
+  "tail_frames": 384,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_01/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 141,
+      "total_frames": 908
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_01/splice_10.mp4",
+      "edited_frames": 14,
+      "segment_frames": 141,
+      "total_frames": 908
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_01/splice_20.mp4",
+      "edited_frames": 28,
+      "segment_frames": 141,
+      "total_frames": 908
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_01/splice_50.mp4",
+      "edited_frames": 70,
+      "segment_frames": 141,
+      "total_frames": 908
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_01/splice_100.mp4",
+      "edited_frames": 141,
+      "segment_frames": 141,
+      "total_frames": 908
+    }
+  },
+  "status": "ok"
+}

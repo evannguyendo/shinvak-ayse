@@ -1,0 +1,54 @@
+{
+  "id": "object_existence_02",
+  "split": "object_existence",
+  "fps": 25.0,
+  "size": [
+    1080,
+    720
+  ],
+  "question": "Are there any moving red objects when the video ends?",
+  "answer": "no",
+  "wrong_option": "yes",
+  "edit_interval_sec": {
+    "start": 0.0600000000000005,
+    "end": 5.0600000000000005
+  },
+  "prefix_frames": 2,
+  "segment_frames_edited": 118,
+  "segment_frames_source": 124,
+  "tail_frames": 1,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_existence_02/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 118,
+      "total_frames": 121
+    },
+    "10": {
+      "path": "ablation_outputs/object_existence_02/splice_10.mp4",
+      "edited_frames": 12,
+      "segment_frames": 118,
+      "total_frames": 121
+    },
+    "20": {
+      "path": "ablation_outputs/object_existence_02/splice_20.mp4",
+      "edited_frames": 24,
+      "segment_frames": 118,
+      "total_frames": 121
+    },
+    "50": {
+      "path": "ablation_outputs/object_existence_02/splice_50.mp4",
+      "edited_frames": 59,
+      "segment_frames": 118,
+      "total_frames": 121
+    },
+    "100": {
+      "path": "ablation_outputs/object_existence_02/splice_100.mp4",
+      "edited_frames": 118,
+      "segment_frames": 118,
+      "total_frames": 121
+    }
+  },
+  "status": "ok"
+}

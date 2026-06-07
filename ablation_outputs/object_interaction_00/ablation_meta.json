@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_00",
+  "split": "object_interaction",
+  "fps": 29.97002997002997,
+  "size": [
+    1280,
+    720
+  ],
+  "question": "Which object was closed by the person?",
+  "answer": "The laptop.",
+  "wrong_option": "The refrigerator.",
+  "edit_interval_sec": {
+    "start": 14.032183333333332,
+    "end": 17.032183333333332
+  },
+  "prefix_frames": 421,
+  "segment_frames_edited": 91,
+  "segment_frames_source": 90,
+  "tail_frames": 429,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_00/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 91,
+      "total_frames": 941
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_00/splice_10.mp4",
+      "edited_frames": 9,
+      "segment_frames": 91,
+      "total_frames": 941
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_00/splice_20.mp4",
+      "edited_frames": 18,
+      "segment_frames": 91,
+      "total_frames": 941
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_00/splice_50.mp4",
+      "edited_frames": 46,
+      "segment_frames": 91,
+      "total_frames": 941
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_00/splice_100.mp4",
+      "edited_frames": 91,
+      "segment_frames": 91,
+      "total_frames": 941
+    }
+  },
+  "status": "ok"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "moving_attribute_00",
+  "split": "moving_attribute",
+  "fps": 25.0,
+  "size": [
+    1080,
+    720
+  ],
+  "question": "What shape is the cyan object that is moving?",
+  "answer": "sphere",
+  "wrong_option": "cylinder",
+  "edit_interval_sec": {
+    "start": 0.9199999999999999,
+    "end": 3.92
+  },
+  "prefix_frames": 23,
+  "segment_frames_edited": 76,
+  "segment_frames_source": 75,
+  "tail_frames": 30,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/moving_attribute_00/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "10": {
+      "path": "ablation_outputs/moving_attribute_00/splice_10.mp4",
+      "edited_frames": 8,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "20": {
+      "path": "ablation_outputs/moving_attribute_00/splice_20.mp4",
+      "edited_frames": 15,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "50": {
+      "path": "ablation_outputs/moving_attribute_00/splice_50.mp4",
+      "edited_frames": 38,
+      "segment_frames": 76,
+      "total_frames": 129
+    },
+    "100": {
+      "path": "ablation_outputs/moving_attribute_00/splice_100.mp4",
+      "edited_frames": 76,
+      "segment_frames": 76,
+      "total_frames": 129
+    }
+  },
+  "status": "ok"
+}

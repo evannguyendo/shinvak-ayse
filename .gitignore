@@ -2,3 +2,7 @@
 
 # Original videos downloaded from HF for the baseline run (large; re-fetched on demand)
 results/baseline_results/_orig_videos/
+
+# Frame-count ablation videos (regenerable via `python frame_ablation.py`; one preview sample kept)
+ablation_outputs/**/*.mp4
+!ablation_outputs/moving_attribute_00/*.mp4

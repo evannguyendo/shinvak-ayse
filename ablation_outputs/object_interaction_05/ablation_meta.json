@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_05",
+  "split": "object_interaction",
+  "fps": 14.985014985014985,
+  "size": [
+    1280,
+    720
+  ],
+  "question": "Which object was put down by the person?",
+  "answer": "The picture.",
+  "wrong_option": "The laptop.",
+  "edit_interval_sec": {
+    "start": 10.045866666666667,
+    "end": 15.045866666666667
+  },
+  "prefix_frames": 151,
+  "segment_frames_edited": 76,
+  "segment_frames_source": 75,
+  "tail_frames": 236,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_05/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 76,
+      "total_frames": 463
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_05/splice_10.mp4",
+      "edited_frames": 8,
+      "segment_frames": 76,
+      "total_frames": 463
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_05/splice_20.mp4",
+      "edited_frames": 15,
+      "segment_frames": 76,
+      "total_frames": 463
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_05/splice_50.mp4",
+      "edited_frames": 38,
+      "segment_frames": 76,
+      "total_frames": 463
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_05/splice_100.mp4",
+      "edited_frames": 76,
+      "segment_frames": 76,
+      "total_frames": 463
+    }
+  },
+  "status": "ok"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "object_interaction_02",
+  "split": "object_interaction",
+  "fps": 24.0,
+  "size": [
+    964,
+    720
+  ],
+  "question": "Which object was put down by the person?",
+  "answer": "The towel.",
+  "wrong_option": "The bag.",
+  "edit_interval_sec": {
+    "start": 11.958333333333334,
+    "end": 14.958333333333334
+  },
+  "prefix_frames": 287,
+  "segment_frames_edited": 73,
+  "segment_frames_source": 72,
+  "tail_frames": 372,
+  "anchor": "start",
+  "variants": {
+    "1frame": {
+      "path": "ablation_outputs/object_interaction_02/splice_1frame.mp4",
+      "edited_frames": 1,
+      "segment_frames": 73,
+      "total_frames": 732
+    },
+    "10": {
+      "path": "ablation_outputs/object_interaction_02/splice_10.mp4",
+      "edited_frames": 7,
+      "segment_frames": 73,
+      "total_frames": 732
+    },
+    "20": {
+      "path": "ablation_outputs/object_interaction_02/splice_20.mp4",
+      "edited_frames": 15,
+      "segment_frames": 73,
+      "total_frames": 732
+    },
+    "50": {
+      "path": "ablation_outputs/object_interaction_02/splice_50.mp4",
+      "edited_frames": 36,
+      "segment_frames": 73,
+      "total_frames": 732
+    },
+    "100": {
+      "path": "ablation_outputs/object_interaction_02/splice_100.mp4",
+      "edited_frames": 73,
+      "segment_frames": 73,
+      "total_frames": 732
+    }
+  },
+  "status": "ok"
+}
